@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sillage">
+  <rect width="64" height="64" rx="10" fill="#253A2D"/>
+  <!-- four blotter strips: terracotta leading, fading rack -> trail -->
+  <rect x="14" y="16" width="7" height="34" rx="2" fill="#EE9560"/>
+  <rect x="25" y="24" width="7" height="26" rx="2" fill="#DBE9E6" fill-opacity="0.9"/>
+  <rect x="36" y="32" width="7" height="18" rx="2" fill="#DBE9E6" fill-opacity="0.55"/>
+  <rect x="47" y="40" width="7" height="10" rx="2" fill="#DBE9E6" fill-opacity="0.3"/>
+</svg>
