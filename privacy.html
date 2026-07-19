@@ -1,8 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    document.documentElement.className = "js";
+    document.addEventListener("error", function (e) {
+      var t = e.target;
+      if (t && t.tagName === "IMG") t.classList.add("img--failed");
+    }, true);
+  </script>
   <title>Privacy Policy — Sillage</title>
   <meta name="description" content="How Sillage handles personal data under UK GDPR and EU GDPR." />
   <meta name="robots" content="index,follow" />
@@ -18,8 +25,17 @@
         <span class="brand__mark"><span class="wordmark">Sillage</span></span>
         <span class="brand__descender">see-yazh &middot; scent &middot; space &middot; evidence</span>
       </a>
+
+      <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+      <label class="nav__toggle" for="nav-toggle">Menu</label>
+
       <nav class="nav__links" aria-label="Primary">
-        <a class="doc__back" href="index.html">&larr; Back to home</a>
+        <a href="index.html#method">Method</a>
+        <a href="index.html#evidence">Evidence</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#team">Team</a>
+        <a href="markets.html">Markets</a>
+        <a class="btn btn--forest" data-book href="mailto:hello@sillage.example">Book a visit</a>
       </nav>
     </div>
   </header>
@@ -80,5 +96,34 @@
       <p style="margin-top:2.5rem"><a class="doc__back" href="index.html">&larr; Back to home</a></p>
     </div>
   </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div>
+        <span class="wordmark">Sillage</span>
+        <p class="footer__cities"><a href="markets.html" style="color:inherit;text-decoration:none">Reading &middot; [German&nbsp;city] &middot; Thessaloniki</a></p>
+      </div>
+      <a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a visit</a>
+    </div>
+    <div class="wrap footer__legal">
+      <p>
+        <a href="index.html#method">Method</a> &middot;
+        <a href="index.html#evidence">Evidence</a> &middot;
+        <a href="index.html#work">Work</a> &middot;
+        <a href="index.html#team">Team</a> &middot;
+        <a href="markets.html">Markets</a> &middot;
+        <a href="privacy.html">Privacy&nbsp;Policy</a>
+      </p>
+      <p>&copy; <span id="year">2026</span> Sillage. Sensory identity consultancy &middot; fragrance-only.
+        No cookies, no third-party tracking on this site.</p>
+    </div>
+  </footer>
+
+  <script>
+    var BOOKING_URL = "mailto:hello@sillage.example?subject=Diagnostic%20visit";
+    document.querySelectorAll("[data-book]").forEach(function (a) { a.href = BOOKING_URL; });
+    var yr = document.getElementById("year");
+    if (yr) yr.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
