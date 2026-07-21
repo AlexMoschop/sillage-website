@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Progressive-enhancement flag + graceful missing-image handling.
-       Runs early so it is in place before body images attempt to load. -->
   <script>
     document.documentElement.className = "js";
     document.addEventListener("error", function (e) {
@@ -13,11 +11,10 @@
     }, true);
   </script>
   <title>Sillage — sensory identity for boutique businesses</title>
-  <meta name="description" content="Sillage designs the scent of a space and proves it. A fixed-scope, fixed-price diagnostic visit for boutique-business owners: scent, space, evidence." />
+  <meta name="description" content="Sillage diagnoses how your space smells, prescribes a scent that fits it, and hands you the evidence. Fixed scope, fixed price, fragrance-only." />
 
-  <!-- Open Graph / social -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Sillage — scent, space, evidence" />
+  <meta property="og:title" content="Sillage — what your space leaves behind" />
   <meta property="og:description" content="A fixed-scope, fixed-price sensory diagnostic for boutique businesses. See-yazh." />
   <meta property="og:image" content="og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -28,402 +25,256 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ============================================================
-       NAV
-       Method / Evidence / Work / Team are IN-PAGE anchors on this
-       homepage. Markets is a real second page (markets.html).
-       If the in-page sections ever become standalone pages, these
-       anchors become the routes to create:
-         #method -> /method   #evidence -> /evidence
-         #work   -> /work      #team     -> /team
-       ============================================================ -->
-  <header class="nav">
-    <div class="wrap nav__inner">
-      <a class="brand" href="#main">
-        <span class="brand__mark"><span class="wordmark">Sillage</span></span>
-        <span class="brand__descender">see-yazh &middot; scent &middot; space &middot; evidence</span>
-      </a>
-
-      <input type="checkbox" id="nav-toggle" aria-hidden="true" />
-      <label class="nav__toggle" for="nav-toggle">Menu</label>
-
-      <nav class="nav__links" aria-label="Primary">
-        <a href="#method">Method</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#work">Work</a>
-        <a href="#team">Team</a>
-        <a href="markets.html">Markets</a>
-        <a class="btn btn--forest" data-book href="mailto:hello@sillage.example">Book a visit</a>
-      </nav>
-    </div>
+  <!-- ================= HEADER ================= -->
+  <header class="hdr">
+    <a class="wordmark" href="index.html">Sillage<span class="slogan">What your space leaves behind</span></a>
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label class="nav-toggle-label" for="nav-toggle">Menu</label>
+    <nav aria-label="Primary">
+      <a class="navbtn" href="index.html" aria-current="page">Home</a>
+      <a class="navbtn" href="markets.html">Markets</a>
+      <a class="navbtn" href="about.html">About</a>
+      <a class="navbtn" href="contact.html">Contact</a>
+      <a class="bookbtn" data-book href="mailto:hello@sillage.example">Book a visit</a>
+    </nav>
   </header>
 
   <main id="main">
 
-    <!-- ============================================================
-         HERO — "The Trail"
-         A <canvas> drifts soft terracotta particles from the blotter
-         mark: a visible scent wake (= sillage). It is this screen's
-         SINGLE terracotta element, so the eyebrow/meta are cool.
-         Fallbacks: JS off -> .hero__wisp (static CSS trail);
-         reduced-motion -> canvas hidden, wisp shown. See script below.
-         ============================================================ -->
+    <!-- ================= HERO ================= -->
     <section class="hero">
-      <canvas class="hero__trail" aria-hidden="true"></canvas>
-      <div class="hero__wisp" aria-hidden="true"></div>
-      <div class="wrap hero__inner">
-        <div>
-          <p class="eyebrow">Sensory identity consultancy</p>
-          <h1>What your space leaves behind.</h1>
-          <p class="hero__sub">
-            We diagnose how your space smells, prescribe a scent that fits it,
-            and hand you the evidence. One assessment, decided up front.
-          </p>
-          <p class="hero__meta">Fixed scope &middot; fixed price &middot; fragrance-only</p>
-          <div class="hero__cta">
-            <a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a diagnostic visit</a>
-            <a class="btn btn--ghost" href="#method">See the method</a>
+      <div>
+        <p class="eyebrow">Sensory identity consultancy &middot; see-yazh</p>
+        <h1>What your space leaves behind.</h1>
+        <p class="sub">We diagnose how your space smells, prescribe a scent that fits it, and hand you the evidence — one assessment, decided up front. Fixed scope, fixed price, fragrance-only.</p>
+        <div class="btnrow">
+          <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Get an evaluation</a>
+          <a class="btn btn--ghost" href="#method">Our method</a>
+        </div>
+      </div>
+      <div class="blueprint">
+        <!-- Blueprint survey — the site's signature drawing (static SVG, no libs) -->
+        <svg viewBox="0 0 460 360" width="100%" role="img" aria-label="Blueprint floor plan of a four-zone space with HVAC vents, terracotta airflow arrows and dotted scent-diffusion rings from two diffusion points.">
+          <defs>
+            <marker id="ar" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <path d="M0,0 L6,3.5 L0,7 Z" fill="#B85C2B"/>
+            </marker>
+          </defs>
+          <rect x="6" y="6" width="448" height="348" rx="4" fill="#F4F1EA" stroke="#5E8B93" stroke-width="1.4"/>
+          <g stroke="#5E8B93" stroke-width=".35" opacity=".35">
+            <path d="M46 6V354M86 6V354M126 6V354M166 6V354M206 6V354M246 6V354M286 6V354M326 6V354M366 6V354M406 6V354"/>
+            <path d="M6 46H454M6 86H454M6 126H454M6 166H454M6 206H454M6 246H454M6 286H454M6 326H454"/>
+          </g>
+          <g stroke="#1E3328" stroke-width="2.2" fill="none">
+            <rect x="46" y="46" width="368" height="268"/>
+            <path d="M206 46V180 M206 226V314 M46 180H140 M170 180H310 M340 180H414"/>
+          </g>
+          <g stroke="#5E8B93" stroke-width="1.2" fill="none">
+            <path d="M206 180 A46 46 0 0 1 160 226" opacity=".7"/>
+            <path d="M310 180 A30 30 0 0 0 340 210" opacity=".7"/>
+          </g>
+          <g stroke="#1E3328" stroke-width="1.3" fill="#F4F1EA">
+            <rect x="96" y="60" width="30" height="12"/><path d="M100 63h22M100 66h22M100 69h22" stroke-width=".8"/>
+            <rect x="330" y="60" width="30" height="12"/><path d="M334 63h22M334 66h22M334 69h22" stroke-width=".8"/>
+          </g>
+          <g stroke="#B85C2B" stroke-width="1.5" fill="none" marker-end="url(#ar)" opacity=".9">
+            <path d="M112 80 C120 120, 100 140, 120 168"/>
+            <path d="M345 80 C355 118, 330 140, 350 170"/>
+            <path d="M230 200 C270 210, 300 240, 340 250"/>
+            <path d="M180 240 C150 260, 120 270, 92 288"/>
+          </g>
+          <g fill="none" stroke="#6CA085" stroke-width="1.1" stroke-dasharray="2 4">
+            <circle cx="126" cy="248" r="14"/><circle cx="126" cy="248" r="26"/><circle cx="126" cy="248" r="38"/>
+            <circle cx="300" cy="120" r="13"/><circle cx="300" cy="120" r="25"/><circle cx="300" cy="120" r="37"/>
+          </g>
+          <g fill="#1E3328"><circle cx="126" cy="248" r="3.4"/><circle cx="300" cy="120" r="3.4"/></g>
+          <g font-family="ui-monospace,Menlo,monospace" font-size="7.6" letter-spacing="1.4" fill="#3A5544">
+            <text x="58" y="100">ZONE 01 — ENTRY</text>
+            <text x="252" y="100">ZONE 02 — TREATMENT</text>
+            <text x="58" y="212">ZONE 03 — STUDIO</text>
+            <text x="252" y="212">ZONE 04 — LOUNGE</text>
+          </g>
+          <g font-family="ui-monospace,Menlo,monospace" font-size="7" letter-spacing="1.2" fill="#B85C2B">
+            <text x="96" y="308">DIFFUSION POINT A</text>
+            <text x="268" y="158">DIFFUSION POINT B</text>
+          </g>
+          <text x="46" y="340" font-family="ui-monospace,Menlo,monospace" font-size="7.4" letter-spacing="1.6" fill="#5E8B93">SILLAGE — AIRFLOW &amp; DIFFUSION SURVEY — SHEET 01</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ================= WHY IT MATTERS (epigraph only) ================= -->
+    <!-- Percentages were removed here; the sourced data lives in Research below.
+         Epigraph is in Sillage's own voice (unattributed) so no attribution is
+         fabricated. To attribute a real quote instead, it must be genuine and
+         correctly credited — see [Attribution — verify] in the ledger. -->
+    <section class="section why">
+      <p class="eyebrow">Why it matters</p>
+      <h2 class="lede">Ambience is never neutral.</h2>
+      <blockquote class="why__quote">A room speaks before anyone in it says a word — scent is the first thing it says.</blockquote>
+      <p class="why__cite">— the premise of every Sillage visit</p>
+    </section>
+
+    <!-- ================= ABOUT OUR METHOD ================= -->
+    <section class="section method" id="method">
+      <p class="eyebrow">About our method</p>
+      <h2>Five steps. One prescription.</h2>
+      <p class="intro">Every engagement follows the same diagnostic sequence, so the recommendation at the end is traceable to what we observed at the start.</p>
+
+      <div class="timeline">
+        <div class="step">
+          <span class="num">Step 01</span>
+          <h3>Primary evaluation</h3>
+          <p>We walk the space room by room and read how scent currently carries through it — including via your HVAC and airflow.</p>
+        </div>
+        <div class="step">
+          <span class="num">Step 02</span>
+          <h3>Time in the business</h3>
+          <p>We spend working hours on site, watching customer patterns and asking staff who your clientele is today versus who you want.</p>
+        </div>
+        <div class="step">
+          <span class="num">Step 03</span>
+          <h3>Analysis &amp; matching</h3>
+          <p>We match scent profiles to your target customer and business type, and check whether your music helps the scent or fights it.</p>
+        </div>
+        <div class="step">
+          <span class="num">Step 04</span>
+          <h3>Presentation &amp; testing</h3>
+          <p>We present the shortlisted directions in person, blotters in hand, and trial them in the space before anything is committed.</p>
+        </div>
+        <div class="step">
+          <span class="num">Step 05</span>
+          <h3>Return &amp; refine</h3>
+          <p>We come back, measure what changed against the baseline, and adjust — so the prescription ends up fitted, not guessed.</p>
+        </div>
+      </div>
+
+      <div class="offers">
+        <div class="offer">
+          <span class="num">01 — On site</span>
+          <h3>Diagnostic visit</h3>
+          <p>A full day in your space, measuring how it reads to the nose across its rooms, materials and traffic.</p>
+        </div>
+        <div class="offer">
+          <span class="num">02 — Written</span>
+          <h3>Strategy report</h3>
+          <p>A written prescription: the scent direction, where it belongs, and the mechanism behind each choice.</p>
+        </div>
+        <div class="offer">
+          <span class="num">03 — In person</span>
+          <h3>Stakeholder presentation</h3>
+          <p>We walk you and your team through the report in person, with the blotters, and leave you the artefact.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SUPPORTING RESEARCH (data lives here, verbatim) =========
+         Figures + citations are rendered exactly as supplied. Do not paraphrase
+         or "correct" a number or citation from memory — the owner verifies each. -->
+    <section class="section research" id="research">
+      <p class="eyebrow">Supporting research</p>
+      <h2 class="lede">Every recommendation is traceable to published evidence.</h2>
+      <p class="intro">Scent is the lever we prescribe. Music and climate are levers we evaluate and align — because the research shows they move the same outcome.</p>
+
+      <div class="rgrid">
+        <!-- SCENT -->
+        <div class="rcard">
+          <span class="tag">Scent</span>
+          <h3>Getting scent right is a ladder, not a switch</h3>
+          <div class="bars">
+            <div class="bar"><span class="bl">Done badly</span><div class="track"><div class="fill" style="right:50%; width:37%; background:var(--terracotta-deep)"></div></div><span class="val">&minus;17%</span></div>
+            <div class="bar"><span class="bl">Nothing</span><div class="track"><div class="fill" style="left:50%; width:1%; background:rgba(30,51,40,.4)"></div></div><span class="val">0%</span></div>
+            <div class="bar"><span class="bl">Basic, unadvised</span><div class="track"><div class="fill" style="left:50%; width:7%; background:var(--sage)"></div></div><span class="val">+3%</span></div>
+            <div class="bar"><span class="bl">Proper selection</span><div class="track"><div class="fill" style="left:50%; width:22%; background:var(--sage)"></div></div><span class="val">+10%</span></div>
+            <div class="bar"><span class="bl">Full strategy, right context</span><div class="track"><div class="fill" style="left:50%; width:50%; background:var(--terracotta)"></div></div><span class="val">+23%</span></div>
           </div>
+          <p>Effect on customer expenditure. The +23% ceiling appears in service and wellness settings — the context we work in.</p>
+          <p class="src">Roschk &amp; Hosseinpour, 2020 — Journal of Marketing, 84(1)</p>
         </div>
-        <div class="blotter" id="hero-mark" role="img" aria-label="Four blotter strips fading from a full terracotta strip to a faint trail — the Sillage mark.">
-          <span></span><span></span><span></span><span></span>
+
+        <!-- MUSIC -->
+        <div class="rcard">
+          <span class="tag">Music</span>
+          <h3>Music and scent must match energy</h3>
+          <p>When the arousal level of the music matches the scent, evaluations, impulse purchasing and satisfaction all rise. When they clash, the environment reads as less pleasing than doing nothing.</p>
+          <div class="duo">
+            <div class="yes"><b>Congruent</b><p>Slow ambient + lavender. Fast pop + citrus. Christmas music + pine.</p></div>
+            <div class="no"><b>Incongruent</b><p>Spa music + bright citrus. Dance music + lavender. Christmas music + summer fruit.</p></div>
+          </div>
+          <p class="src">Mattila &amp; Wirtz, 2001 — Journal of Retailing, 77(2) &middot; Spangenberg et al., 2005 — Journal of Business Research, 58(11)</p>
+        </div>
+
+        <!-- CLIMATE -->
+        <div class="rcard">
+          <span class="tag">Climate</span>
+          <h3>Comfort has a price attached</h3>
+          <p>Comfortably warm rooms raised product valuation by roughly 10% over cool ones — while discomfort at either extreme pushes decisions off course. We observe climate and refer; we don't prescribe it.</p>
+          <div class="thermo">
+            <div><span class="tv">&minus;</span><div class="tcol" style="height:38px; background:rgba(94,139,147,.55)"></div><span class="tl">Too cold — discomfort</span></div>
+            <div><span class="tv">+10.4%</span><div class="tcol" style="height:92px; background:var(--sage)"></div><span class="tl">Comfortably warm</span></div>
+            <div><span class="tv">&minus;</span><div class="tcol" style="height:34px; background:rgba(184,92,43,.5)"></div><span class="tl">Too hot — discomfort</span></div>
+          </div>
+          <p class="src">Zwebner, Lee &amp; Goldenberg, 2013 — Journal of Consumer Psychology, 24(2)</p>
         </div>
       </div>
+      <p class="rnote">This is published research on how sensory conditions affect the way people experience and spend in a space — not a promise that any single intervention will produce a specific result in yours. Doing it badly is worse than doing nothing; the value is in choosing well.</p>
     </section>
 
-    <!-- ============================================================
-         METHOD — three-step band + equipment strip
-         ============================================================ -->
-    <section class="section" id="method">
-      <div class="wrap">
-        <div class="section__head">
-          <p class="eyebrow" style="color:var(--color-accent-text)">The method</p>
-          <h2 class="lede" style="font-family:var(--font-display);font-size:var(--step-2)">
-            Three steps, three weeks, one fixed price.
-          </h2>
+    <!-- ================= SELECTED WORK (blueprint plan tiles) ================= -->
+    <section class="section work" id="work">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="lede">The kinds of spaces we tune.</h2>
+      <div class="workgrid">
+        <div class="wtile">
+          <div class="ph">
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a wellness treatment room with a scent-diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="26" y="24" width="148" height="84"/><path d="M26 78h60M116 78h58M86 78v30"/><circle cx="56" cy="50" r="12" stroke-dasharray="2 3" stroke="#6CA085"/><circle cx="56" cy="50" r="20" stroke-dasharray="2 3" stroke="#6CA085"/></g><rect x="126" y="38" width="34" height="14" rx="2" fill="none" stroke="#1E3328"/><text x="30" y="120" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">TREATMENT ROOM — PLAN</text></svg>
+          </div>
+          <div class="cap"><span class="n">01</span><h3>Wellness studio</h3><span>Treatment room</span></div>
         </div>
-        <div class="steps">
-          <article class="step">
-            <p class="step__week">Week 01</p>
-            <h3>Diagnostic visit</h3>
-            <p>We spend a day in your space, measuring how it reads to the nose across its rooms, materials and traffic.</p>
-          </article>
-          <article class="step">
-            <p class="step__week">Week 02</p>
-            <h3>Strategy report</h3>
-            <p>A written prescription: the scent direction, where it belongs, and the mechanism behind each choice.</p>
-          </article>
-          <article class="step">
-            <p class="step__week">Week 03</p>
-            <h3>Presentation</h3>
-            <p>We walk you and your team through the report in person, with the blotters, and leave you the artefact.</p>
-          </article>
+        <div class="wtile">
+          <div class="ph">
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of an independent hotel lobby corner with airflow and diffusion."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="20" y="22" width="160" height="88"/><path d="M20 66h44M108 66h72"/><rect x="36" y="80" width="30" height="16"/><rect x="132" y="34" width="34" height="16"/><path d="M76 40 C96 50, 116 46, 140 58" stroke="#B85C2B" stroke-width="1.3"/></g><circle cx="72" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="24" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">HOTEL LOBBY — PLAN</text></svg>
+          </div>
+          <div class="cap"><span class="n">02</span><h3>Independent hotel</h3><span>Lobby corner</span></div>
         </div>
-
-        <!-- Equipment strip — HOW scent is delivered (stays inside the
-             fragrance-only scope: diffusion is a delivery channel, not
-             a new service line). Drop 1:1 photos into assets/img/equipment/. -->
-        <div class="equipment">
-          <figure class="media media--1-1">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <img src="assets/img/equipment/eq-01.jpg" alt="Cold-air scent diffuser on a shelf, releasing a faint mist." loading="lazy" width="600" height="600" />
-          </figure>
-          <figure class="media media--1-1">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <img src="assets/img/equipment/eq-02.jpg" alt="Paper blotter strips fanned out for scent testing." loading="lazy" width="600" height="600" />
-          </figure>
-          <figure class="media media--1-1">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <img src="assets/img/equipment/eq-03.jpg" alt="Ceiling HVAC diffuser vent — scent integrated into airflow." loading="lazy" width="600" height="600" />
-          </figure>
+        <div class="wtile">
+          <div class="ph">
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a salon styling floor with a central diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="24" y="22" width="152" height="88"/><path d="M60 22v52M100 22v52M140 22v52"/><circle cx="42" cy="46" r="7"/><circle cx="80" cy="46" r="7"/><circle cx="120" cy="46" r="7"/><circle cx="160" cy="46" r="7"/></g><circle cx="100" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><circle cx="100" cy="92" r="20" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="28" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">STYLING FLOOR — PLAN</text></svg>
+          </div>
+          <div class="cap"><span class="n">03</span><h3>Salon</h3><span>Styling floor</span></div>
+        </div>
+        <div class="wtile">
+          <div class="ph">
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a clinic waiting room with airflow and a diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="24" y="22" width="152" height="88"/><path d="M24 66h48M120 66h56"/><rect x="40" y="78" width="52" height="14"/><rect x="40" y="34" width="24" height="20"/><path d="M132 30 C142 46, 132 58, 144 72" stroke="#B85C2B" stroke-width="1.3"/></g><circle cx="150" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="28" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">WAITING ROOM — PLAN</text></svg>
+          </div>
+          <div class="cap"><span class="n">04</span><h3>Clinic</h3><span>Waiting room</span></div>
         </div>
       </div>
-    </section>
-
-    <!-- ============================================================
-         EVIDENCE — the scent ladder (mineral ground: the ONLY cool section)
-         EVIDENCE: one row per claim, citation required, numbers verbatim
-         from a source the owner has read. Never paraphrase a statistic.
-         Figures + citation below are owner-supplied and verified; more
-         studies will be appended as rows in the same pattern.
-         ============================================================ -->
-    <section class="section evidence" id="evidence">
-      <div class="wrap">
-        <p class="eyebrow">The evidence</p>
-        <h2 class="lede" style="font-family:var(--font-display);font-size:var(--step-2);margin-bottom:var(--space-3)">
-          Getting scent right is a ladder, not a switch.
-        </h2>
-
-        <table class="ladder">
-          <caption>Documented effect of ambient scent on customer expenditure</caption>
-          <thead>
-            <tr><th scope="col">Approach</th><th scope="col"><span aria-hidden="true">&nbsp;</span></th><th scope="col" class="ladder__num">Spend</th></tr>
-          </thead>
-          <tbody>
-            <tr style="--v:0">
-              <th scope="row">Doing nothing</th>
-              <td class="ladder__cell"><span class="ladder__zero-dot" aria-hidden="true"></span></td>
-              <td class="ladder__num">0%</td>
-            </tr>
-            <tr style="--v:17">
-              <th scope="row">Doing scent badly</th>
-              <td class="ladder__cell"><span class="ladder__bar ladder__bar--neg" aria-hidden="true"></span></td>
-              <td class="ladder__num">&minus;17%</td>
-            </tr>
-            <tr style="--v:3">
-              <th scope="row">Basic scent, unadvised</th>
-              <td class="ladder__cell"><span class="ladder__bar ladder__bar--pos" aria-hidden="true"></span></td>
-              <td class="ladder__num">+3%</td>
-            </tr>
-            <tr style="--v:10">
-              <th scope="row">Proper scent selection</th>
-              <td class="ladder__cell"><span class="ladder__bar ladder__bar--pos" aria-hidden="true"></span></td>
-              <td class="ladder__num">+10%</td>
-            </tr>
-            <tr style="--v:23">
-              <th scope="row">Full scent strategy, right context</th>
-              <td class="ladder__cell"><span class="ladder__bar ladder__bar--pos ladder__bar--peak" aria-hidden="true"></span></td>
-              <td class="ladder__num">+23%</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p class="evidence__contingency">
-          The +23% figure is context-dependent &mdash; it shows up in service and wellness
-          settings, and with a female-dominant clientele. It is a ceiling under the right
-          conditions, not a default.
-        </p>
-
-        <p class="evidence__note">
-          This is published research on how scent affects the way people experience and spend in a
-          space &mdash; not a promise that any single scent will produce a specific result in yours.
-          Doing scent <em>badly</em> is worse than doing nothing; the value is in choosing well.
-        </p>
-
-        <p class="evidence__cite-full">
-          Source: Roschk, H., &amp; Hosseinpour, M. (2020). Pleasant Ambient Scents: A Meta-Analysis
-          of Customer Responses and Situational Contingencies. <em>Journal of Marketing</em>, 84(1), 125&ndash;145.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         WORK — spaces gallery + testimonial
-         Gallery captions describe ENVIRONMENTS, never clients. The
-         testimonial stays a clearly-marked placeholder until a real,
-         consented, attributable quote exists.
-         ============================================================ -->
-    <section class="section" id="work">
-      <div class="wrap">
-        <p class="eyebrow" style="color:var(--color-accent-text)">Selected work</p>
-        <h2 class="lede" style="font-family:var(--font-display);font-size:var(--step-2)">
-          The kinds of spaces we tune.
-        </h2>
-
-        <!-- Spaces gallery — environments, not clients. Drop 3:2 photos
-             into assets/img/spaces/. Captions name the room type only. -->
-        <div class="gallery">
-          <figure class="gallery__item">
-            <div class="media media--3-2 media--duotone">
-              <span class="media__ph" aria-hidden="true">[Photo]</span>
-              <img src="assets/img/spaces/space-01.jpg" alt="Wellness studio treatment room, calm and uncluttered." loading="lazy" width="900" height="600" />
-            </div>
-            <figcaption class="media-cap">Wellness studio &mdash; treatment room</figcaption>
-          </figure>
-          <figure class="gallery__item">
-            <div class="media media--3-2 media--duotone">
-              <span class="media__ph" aria-hidden="true">[Photo]</span>
-              <img src="assets/img/spaces/space-02.jpg" alt="Independent hotel lobby, quiet seating corner." loading="lazy" width="900" height="600" />
-            </div>
-            <figcaption class="media-cap">Independent hotel &mdash; lobby corner</figcaption>
-          </figure>
-          <figure class="gallery__item">
-            <div class="media media--3-2 media--duotone">
-              <span class="media__ph" aria-hidden="true">[Photo]</span>
-              <img src="assets/img/spaces/space-03.jpg" alt="Hair salon interior with warm lighting." loading="lazy" width="900" height="600" />
-            </div>
-            <figcaption class="media-cap">Salon &mdash; styling floor</figcaption>
-          </figure>
-          <figure class="gallery__item">
-            <div class="media media--3-2 media--duotone">
-              <span class="media__ph" aria-hidden="true">[Photo]</span>
-              <img src="assets/img/spaces/space-04.jpg" alt="Clinic waiting room with soft furnishings and daylight." loading="lazy" width="900" height="600" />
-            </div>
-            <figcaption class="media-cap">Clinic &mdash; waiting room</figcaption>
-          </figure>
-        </div>
-
-        <figure class="testimonial placeholder" style="margin-top:var(--space-5)">
-          <blockquote>[TESTIMONIAL &mdash; replace with a real, consented, attributable client quote, or delete this block.]</blockquote>
-          <figcaption>[Name, role &mdash; Business, city]</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         TEAM — faces behind the brand
-         Do NOT invent names, faces or credentials. Real photos + bios
-         are supplied by the owner. Photos get a duotone treatment so
-         mixed phone cameras look art-directed; add .media--plain to any
-         figure to opt it out.
-         ============================================================ -->
-    <section class="section" id="team">
-      <div class="wrap">
-        <p class="eyebrow" style="color:var(--color-accent-text)">The team</p>
-        <h2 class="lede" style="font-family:var(--font-display);font-size:var(--step-2)">
-          The people behind the nose.
-        </h2>
-
-        <!-- Group photo: 3:2, drop file at assets/img/team/group.jpg -->
-        <figure class="team__group media media--3-2 media--duotone">
-          <span class="media__ph" aria-hidden="true">[Photo]</span>
-          <img src="assets/img/team/group.jpg" alt="The Sillage team." loading="lazy" width="1200" height="800" />
-        </figure>
-        <p class="media-cap" style="margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-4)">[Group photo caption &mdash; e.g. the team in Thessaloniki, 2026]</p>
-
-        <div class="team__grid">
-          <!-- ===== CONSULTANT CARD TEMPLATE — copy this whole <article> to add a member =====
-               Portrait: 4:5, file at assets/img/team/<slug>.jpg (e.g. team/anna.jpg).
-               A good bio line = market they lead + specialism + one human sentence.
-               ================================================================================ -->
-          <article class="card">
-            <figure class="media media--4-5 media--duotone">
-              <span class="media__ph" aria-hidden="true">[Photo]</span>
-              <img src="assets/img/team/member-1.jpg" alt="[Consultant name]" loading="lazy" width="480" height="600" />
-            </figure>
-            <p class="card__name">[Name]</p>
-            <p class="card__title">[Title &mdash; e.g. Lead Consultant]</p>
-            <p class="card__bio">[Bio &mdash; market they lead + specialism + one human sentence. 2&ndash;3 lines.]</p>
-          </article>
-
-          <article class="card">
-            <figure class="media media--4-5 media--duotone">
-              <span class="media__ph" aria-hidden="true">[Photo]</span>
-              <img src="assets/img/team/member-2.jpg" alt="[Consultant name]" loading="lazy" width="480" height="600" />
-            </figure>
-            <p class="card__name">[Name]</p>
-            <p class="card__title">[Title &mdash; e.g. Consultant]</p>
-            <p class="card__bio">[Bio &mdash; market they lead + specialism + one human sentence. 2&ndash;3 lines.]</p>
-          </article>
-        </div>
-
-        <p style="margin-top:var(--space-4)">
-          <a class="team__link" href="markets.html">Working across three cities &mdash; see our markets &rarr;</a>
-        </p>
-      </div>
+      <p class="work__note">Blueprint tiles are placeholders in the survey style — swapped for your own photography from real visits as engagements complete. No stock imagery.</p>
     </section>
 
   </main>
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <div>
-        <span class="wordmark">Sillage</span>
-        <p class="footer__cities"><a href="markets.html" style="color:inherit;text-decoration:none">Reading &middot; [German&nbsp;city] &middot; Thessaloniki</a></p>
-      </div>
-      <a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a visit</a>
+  <!-- ================= FOOTER ================= -->
+  <footer class="foot">
+    <div class="foot__top">
+      <div class="fm">Sillage<i>What your space leaves behind</i></div>
+      <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a visit</a>
     </div>
-    <div class="wrap footer__legal">
-      <p>
-        <a href="#method">Method</a> &middot;
-        <a href="#evidence">Evidence</a> &middot;
-        <a href="#work">Work</a> &middot;
-        <a href="#team">Team</a> &middot;
-        <a href="markets.html">Markets</a> &middot;
-        <a href="privacy.html">Privacy&nbsp;Policy</a>
-      </p>
-      <p>&copy; <span id="year">2026</span> Sillage. Sensory identity consultancy &middot; fragrance-only.
-        No cookies, no third-party tracking on this site.</p>
+    <div class="foot__links">
+      <a href="index.html">Home</a>
+      <a href="markets.html">Markets</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
     </div>
+    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage — fragrance-only. No cookies, no third-party tracking.</p>
   </footer>
 
-  <!-- ============================================================
-       BOOKING LINK — SINGLE SOURCE OF TRUTH
-       Change BOOKING_URL on the next line and every "Book a visit"
-       button (on every page) updates. Use a NON-PERSONAL, brand-domain
-       address (e.g. hello@yourdomain.com) or a booking-form link.
-       The placeholder below (hello@sillage.example) is not a real inbox.
-       ============================================================ -->
-  <script>
-    var BOOKING_URL = "mailto:hello@sillage.example?subject=Diagnostic%20visit";
-    document.querySelectorAll("[data-book]").forEach(function (a) { a.href = BOOKING_URL; });
-    var yr = document.getElementById("year");
-    if (yr) yr.textContent = new Date().getFullYear();
-  </script>
-
-  <!-- ============================================================
-       HERO "THE TRAIL" — vanilla canvas, no libraries (~2 KB).
-       Terracotta particles drift from the blotter mark as a scent
-       wake; the cursor entrains nearby particles. Caps: 120 desktop /
-       50 mobile. Pauses when the tab is hidden or the hero scrolls
-       off-screen. Skipped entirely under prefers-reduced-motion (the
-       CSS .hero__wisp handles the static fallback).
-       ============================================================ -->
-  <script>
-  (function () {
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var hero = document.querySelector(".hero");
-    var canvas = document.querySelector(".hero__trail");
-    if (!hero || !canvas || reduce) return;
-    var ctx = canvas.getContext("2d");
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var mark = document.getElementById("hero-mark");
-    var MAX = (window.matchMedia("(max-width: 640px)").matches) ? 50 : 120;
-    var parts = [], w = 0, h = 0, running = false;
-    var mouse = { x: -999, y: -999, on: false }, origin = { x: 0, y: 0 };
-
-    function size() {
-      var r = hero.getBoundingClientRect();
-      w = r.width; h = r.height;
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      canvas.style.width = w + "px"; canvas.style.height = h + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var hr = hero.getBoundingClientRect();
-      if (mark) { var m = mark.getBoundingClientRect(); origin.x = m.left - hr.left + m.width * 0.28; origin.y = m.top - hr.top + 4; }
-      else { origin.x = w * 0.72; origin.y = h * 0.3; }
-    }
-    function spawn() {
-      parts.push({
-        x: origin.x + (Math.random() - 0.5) * 12, y: origin.y + (Math.random() - 0.5) * 12,
-        vx: -(0.15 + Math.random() * 0.45), vy: 0.12 + Math.random() * 0.4,
-        r: 5 + Math.random() * 11, life: 0, ttl: 220 + Math.random() * 200, a: 0.26 + Math.random() * 0.22
-      });
-    }
-    function frame() {
-      ctx.clearRect(0, 0, w, h);
-      if (parts.length < MAX && Math.random() < 0.5) spawn();
-      for (var i = parts.length - 1; i >= 0; i--) {
-        var p = parts[i];
-        if (mouse.on) {
-          var dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
-          if (d2 < 9000) { var f = (1 - d2 / 9000) * 0.5, dd = Math.sqrt(d2) + 1; p.vx += dx / dd * f; p.vy += dy / dd * f; }
-        }
-        p.x += p.vx; p.y += p.vy; p.vx *= 0.99; p.vy *= 0.99; p.life++;
-        var t = p.life / p.ttl;
-        if (t >= 1 || p.x < -40 || p.y > h + 40) { parts.splice(i, 1); continue; }
-        var al = p.a * (1 - t) * (t < 0.12 ? t / 0.12 : 1);
-        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-        g.addColorStop(0, "rgba(238,149,96," + al + ")");
-        g.addColorStop(1, "rgba(238,149,96,0)");
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
-      }
-      if (running) requestAnimationFrame(frame);
-    }
-    function start() { if (!running) { running = true; requestAnimationFrame(frame); } }
-    function stop() { running = false; }
-
-    hero.addEventListener("mousemove", function (e) { var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true; });
-    hero.addEventListener("mouseleave", function () { mouse.on = false; });
-    window.addEventListener("resize", size);
-    document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) start(); else stop(); }); }, { threshold: 0 }).observe(hero);
-    }
-    size(); start();
-  })();
-  </script>
+  <!-- ================= BOOKING LINK — SINGLE SOURCE OF TRUTH =================
+       Change BOOKING_URL and every "Book a visit" / "Get an evaluation" button
+       across the site updates. Use a NON-PERSONAL, brand-domain address or a
+       booking-form link. hello@sillage.example is a placeholder. -->
+  <script src="booking.js"></script>
 </body>
 </html>
