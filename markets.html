@@ -11,199 +11,153 @@
     }, true);
   </script>
   <title>Markets — Sillage</title>
-  <meta name="description" content="Where Sillage operates: the United Kingdom, Germany and Greece. One diagnostic method; the nose is local." />
+  <meta name="description" content="Where Sillage operates: Reading and Milton Keynes in the UK, and Thessaloniki in Greece. One method; the nose is local." />
   <meta name="robots" content="index,follow" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Sillage — areas of operation" />
-  <meta property="og:description" content="Three markets, one method. UK · Germany · Greece." />
-  <meta property="og:image" content="og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav">
-    <div class="wrap nav__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark"><span class="wordmark">Sillage</span></span>
-        <span class="brand__descender">see-yazh &middot; scent &middot; space &middot; evidence</span>
-      </a>
-
-      <input type="checkbox" id="nav-toggle" aria-hidden="true" />
-      <label class="nav__toggle" for="nav-toggle">Menu</label>
-
-      <nav class="nav__links" aria-label="Primary">
-        <a href="index.html#method">Method</a>
-        <a href="index.html#evidence">Evidence</a>
-        <a href="index.html#work">Work</a>
-        <a href="index.html#team">Team</a>
-        <a href="markets.html" aria-current="page">Markets</a>
-        <a class="btn btn--forest" data-book href="mailto:hello@sillage.example">Book a visit</a>
-      </nav>
-    </div>
+  <header class="hdr">
+    <a class="wordmark" href="index.html">Sillage<span class="slogan">What your space leaves behind</span></a>
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label class="nav-toggle-label" for="nav-toggle">Menu</label>
+    <nav aria-label="Primary">
+      <a class="navbtn" href="index.html">Home</a>
+      <a class="navbtn" href="markets.html" aria-current="page">Markets</a>
+      <a class="navbtn" href="about.html">About</a>
+      <a class="navbtn" href="contact.html">Contact</a>
+      <a class="bookbtn" data-book href="mailto:hello@sillage.example">Book a visit</a>
+    </nav>
   </header>
 
   <main id="main">
-    <div class="wrap">
+    <section class="section section--tight market-hero">
+      <p class="eyebrow">Areas of operation</p>
+      <h1>Two cities in the UK. One in Greece.</h1>
+      <p class="lede">The same diagnostic travels — the visit, the report, the presentation. What stays local is the nose: the materials, the climate and the habits of each place.</p>
+    </section>
 
-      <!-- Page hero strip -->
-      <section class="market-hero">
-        <p class="eyebrow" style="color:var(--color-accent-text)">Areas of operation</p>
-        <h1>Three markets. One method.</h1>
-        <p>The same diagnostic travels &mdash; the visit, the report, the presentation. What stays
-          local is the nose: the materials, the climate and the habits of each place.</p>
-      </section>
+    <!-- Abstract blueprint node diagram (not a map). Thessaloniki is the single
+         terracotta accent (the Greek base). -->
+    <figure class="opsfig">
+      <svg viewBox="0 0 600 240" role="img" aria-label="Blueprint diagram: three linked survey nodes — Reading and Milton Keynes in the UK, and Thessaloniki in Greece.">
+        <g stroke="#5E8B93" stroke-width=".4" opacity=".35"><path d="M60 10V230M160 10V230M260 10V230M360 10V230M460 10V230M560 10V230M0 60H600M0 120H600M0 180H600"/></g>
+        <!-- survey lines -->
+        <g stroke="#1E3328" stroke-width="1.4" fill="none" opacity=".55"><path d="M120 120 L300 78 L480 150"/></g>
+        <g stroke="#5E8B93" stroke-width="1" opacity=".8"><path d="M120 112v16M300 70v16M480 142v16"/></g>
+        <!-- nodes -->
+        <circle cx="120" cy="120" r="30" fill="#1E3328"/>
+        <text x="120" y="125" text-anchor="middle" fill="#FAF7F2" font-family="ui-monospace,Menlo,monospace" font-size="15">RDG</text>
+        <text x="120" y="176" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Reading · UK</text>
 
-      <!-- Operations diagram — abstract three-node figure (NOT a map;
-           a bad coastline is worse than none). Greece is the single
-           terracotta accent (the confirmed home base). -->
-      <figure class="opsfig">
-        <svg viewBox="0 0 600 240" role="img" aria-label="Diagram: three markets — the United Kingdom, Germany and Greece — joined by the same method, with Greece as the home base.">
-          <title>Sillage markets</title>
-          <desc>Three linked nodes representing the United Kingdom, Germany and Greece.</desc>
-          <!-- connecting arcs (the shared method) -->
-          <path d="M110,96 Q205,10 300,150" fill="none" style="stroke:var(--forest)" stroke-width="2" stroke-opacity="0.5" />
-          <path d="M300,150 Q400,10 490,96" fill="none" style="stroke:var(--forest)" stroke-width="2" stroke-opacity="0.5" />
-          <!-- UK -->
-          <circle cx="110" cy="96" r="34" style="fill:var(--forest)" />
-          <text x="110" y="102" text-anchor="middle" style="fill:var(--paper);font-family:var(--font-mono)" font-size="18">UK</text>
-          <text x="110" y="160" text-anchor="middle" style="fill:var(--charcoal);font-family:var(--font-mono)" font-size="13">United Kingdom</text>
-          <!-- Germany -->
-          <circle cx="300" cy="150" r="34" style="fill:var(--forest)" />
-          <text x="300" y="156" text-anchor="middle" style="fill:var(--paper);font-family:var(--font-mono)" font-size="18">DE</text>
-          <text x="300" y="212" text-anchor="middle" style="fill:var(--charcoal);font-family:var(--font-mono)" font-size="13">Germany</text>
-          <!-- Greece — the single terracotta accent (fill; label in forest) -->
-          <circle cx="490" cy="96" r="34" style="fill:var(--terracotta)" />
-          <text x="490" y="102" text-anchor="middle" style="fill:var(--forest);font-family:var(--font-mono)" font-size="18">GR</text>
-          <text x="490" y="160" text-anchor="middle" style="fill:var(--charcoal);font-family:var(--font-mono)" font-size="13">Greece</text>
-        </svg>
-        <figcaption>One method, three markets &mdash; Thessaloniki is the home base.</figcaption>
-      </figure>
+        <circle cx="300" cy="70" r="30" fill="#1E3328"/>
+        <text x="300" y="75" text-anchor="middle" fill="#FAF7F2" font-family="ui-monospace,Menlo,monospace" font-size="15">MK</text>
+        <text x="300" y="34" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Milton Keynes · UK</text>
 
-      <!-- ============ UNITED KINGDOM ============ -->
-      <section class="market" id="uk">
-        <figure class="media media--21-9 media--duotone" style="margin-bottom:var(--space-4)">
-          <span class="media__ph" aria-hidden="true">[Photo]</span>
-          <img src="assets/img/markets/uk.jpg" alt="A boutique interior in the United Kingdom." loading="lazy" width="1260" height="540" />
-        </figure>
-        <div class="market__head">
-          <span class="market__country">United Kingdom</span>
-          <span class="market__city">Reading [confirm &mdash; or London?]</span>
-        </div>
-        <div class="market__grid">
-          <div>
-            <p class="market__label">Who we serve</p>
-            <ul class="market__sectors">
-              <li>Independent hotels</li>
-              <li>Clinics &amp; wellness studios</li>
-              <li>Salons &amp; spas</li>
-              <li>Boutique retail</li>
-              <li>Hospitality</li>
-            </ul>
-          </div>
-          <div>
-            <p class="market__label">Languages</p>
-            <p>English.</p>
-            <p class="market__note">The full diagnostic, fixed-scope report and in-person presentation, delivered in English.</p>
-          </div>
-        </div>
-        <p class="market__cta"><a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a visit</a></p>
-      </section>
+        <circle cx="480" cy="150" r="30" fill="#EE9560"/>
+        <text x="480" y="155" text-anchor="middle" fill="#1E3328" font-family="ui-monospace,Menlo,monospace" font-size="15">SKG</text>
+        <text x="480" y="206" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Thessaloniki · GR</text>
 
-      <!-- ============ GERMANY ============ -->
-      <section class="market" id="germany">
-        <figure class="media media--21-9 media--duotone" style="margin-bottom:var(--space-4)">
-          <span class="media__ph" aria-hidden="true">[Photo]</span>
-          <img src="assets/img/markets/de.jpg" alt="A boutique interior in Germany." loading="lazy" width="1260" height="540" />
-        </figure>
-        <div class="market__head">
-          <span class="market__country">Germany</span>
-          <span class="market__city">[German city &mdash; confirm]</span>
-        </div>
-        <div class="market__grid">
-          <div>
-            <p class="market__label">Who we serve</p>
-            <ul class="market__sectors">
-              <li>Independent hotels</li>
-              <li>Clinics &amp; wellness studios</li>
-              <li>Salons &amp; spas</li>
-              <li>Boutique retail</li>
-              <li>Hospitality</li>
-            </ul>
-          </div>
-          <div>
-            <p class="market__label">Languages</p>
-            <p>English &middot; Deutsch [confirm capability].</p>
-            <p class="market__note">The same method for German boutique businesses. Confirm German-language delivery before relying on it &mdash; until then, briefings are in English.</p>
-          </div>
-        </div>
-        <p class="market__cta"><a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a visit</a></p>
-      </section>
+        <text x="20" y="228" fill="#5E8B93" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.6">SILLAGE — COVERAGE SURVEY — SHEET 02</text>
+      </svg>
+      <figcaption>One method, three bases — Thessaloniki is the Greek home ground.</figcaption>
+    </figure>
 
-      <!-- ============ GREECE ============ -->
-      <section class="market" id="greece">
-        <figure class="media media--21-9 media--duotone" style="margin-bottom:var(--space-4)">
-          <span class="media__ph" aria-hidden="true">[Photo]</span>
-          <img src="assets/img/markets/gr.jpg" alt="A boutique interior in Greece." loading="lazy" width="1260" height="540" />
-        </figure>
-        <div class="market__head">
-          <span class="market__country">Greece</span>
-          <span class="market__city">Thessaloniki</span>
+    <!-- ============ READING (UK) ============ -->
+    <section class="market" id="reading">
+      <div class="market__head">
+        <h2 class="market__country">Reading</h2>
+        <span class="market__city">United Kingdom</span>
+      </div>
+      <div class="market__grid">
+        <div>
+          <p class="market__label">Who we serve</p>
+          <ul class="sectorlist">
+            <li>Independent hotels</li>
+            <li>Clinics &amp; wellness studios</li>
+            <li>Salons &amp; spas</li>
+            <li>Boutique retail</li>
+            <li>Hospitality</li>
+          </ul>
         </div>
-        <div class="market__grid">
-          <div>
-            <p class="market__label">Who we serve</p>
-            <ul class="market__sectors">
-              <li>Independent hotels</li>
-              <li>Clinics &amp; wellness studios</li>
-              <li>Salons &amp; spas</li>
-              <li>Boutique retail</li>
-              <li>Hospitality</li>
-            </ul>
-          </div>
-          <div>
-            <p class="market__label">Languages</p>
-            <p>English &middot; Ελληνικά.</p>
-            <p class="market__note">Our Greek base is in Thessaloniki. Fieldwork, the report and the presentation are available in Greek as well as English.</p>
-          </div>
+        <div>
+          <p class="market__label">Languages</p>
+          <p>English.</p>
+          <p class="market__note">The full diagnostic, fixed-scope report and in-person presentation, delivered in English.</p>
         </div>
-        <p class="market__cta"><a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a visit</a></p>
-      </section>
+      </div>
+      <p style="margin-top:1.4rem"><a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a visit</a></p>
+    </section>
 
-    </div>
+    <!-- ============ MILTON KEYNES (UK) ============ -->
+    <section class="market" id="milton-keynes">
+      <div class="market__head">
+        <h2 class="market__country">Milton Keynes</h2>
+        <span class="market__city">United Kingdom</span>
+      </div>
+      <div class="market__grid">
+        <div>
+          <p class="market__label">Who we serve</p>
+          <ul class="sectorlist">
+            <li>Independent hotels</li>
+            <li>Clinics &amp; wellness studios</li>
+            <li>Salons &amp; spas</li>
+            <li>Boutique retail</li>
+            <li>Hospitality</li>
+          </ul>
+        </div>
+        <div>
+          <p class="market__label">Languages</p>
+          <p>English.</p>
+          <p class="market__note">Same method, same artefacts — briefings and the written report in English.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem"><a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a visit</a></p>
+    </section>
+
+    <!-- ============ THESSALONIKI (GREECE) ============ -->
+    <section class="market" id="thessaloniki">
+      <div class="market__head">
+        <h2 class="market__country">Thessaloniki</h2>
+        <span class="market__city">Greece</span>
+      </div>
+      <div class="market__grid">
+        <div>
+          <p class="market__label">Who we serve</p>
+          <ul class="sectorlist">
+            <li>Independent hotels</li>
+            <li>Clinics &amp; wellness studios</li>
+            <li>Salons &amp; spas</li>
+            <li>Boutique retail</li>
+            <li>Hospitality</li>
+          </ul>
+        </div>
+        <div>
+          <p class="market__label">Languages</p>
+          <p>English &middot; Ελληνικά.</p>
+          <p class="market__note">Our Greek base. Fieldwork, the report and the presentation are available in Greek as well as English.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem"><a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a visit</a></p>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <div>
-        <span class="wordmark">Sillage</span>
-        <p class="footer__cities"><a href="markets.html" style="color:inherit;text-decoration:none">Reading &middot; [German&nbsp;city] &middot; Thessaloniki</a></p>
-      </div>
-      <a class="btn btn--accent" data-book href="mailto:hello@sillage.example">Book a visit</a>
+  <footer class="foot">
+    <div class="foot__top">
+      <div class="fm">Sillage<i>What your space leaves behind</i></div>
+      <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a visit</a>
     </div>
-    <div class="wrap footer__legal">
-      <p>
-        <a href="index.html#method">Method</a> &middot;
-        <a href="index.html#evidence">Evidence</a> &middot;
-        <a href="index.html#work">Work</a> &middot;
-        <a href="index.html#team">Team</a> &middot;
-        <a href="markets.html">Markets</a> &middot;
-        <a href="privacy.html">Privacy&nbsp;Policy</a>
-      </p>
-      <p>&copy; <span id="year">2026</span> Sillage. Sensory identity consultancy &middot; fragrance-only.
-        No cookies, no third-party tracking on this site.</p>
+    <div class="foot__links">
+      <a href="index.html">Home</a>
+      <a href="markets.html">Markets</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
     </div>
+    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage — fragrance-only. No cookies, no third-party tracking.</p>
   </footer>
-
-  <script>
-    var BOOKING_URL = "mailto:hello@sillage.example?subject=Diagnostic%20visit";
-    document.querySelectorAll("[data-book]").forEach(function (a) { a.href = BOOKING_URL; });
-    var yr = document.getElementById("year");
-    if (yr) yr.textContent = new Date().getFullYear();
-  </script>
+  <script src="booking.js"></script>
 </body>
 </html>
