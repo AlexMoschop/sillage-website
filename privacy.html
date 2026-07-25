@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script>
-    document.documentElement.className = "js";
+    document.documentElement.className = "js js-motion";
     document.addEventListener("error", function (e) {
       var t = e.target;
       if (t && t.tagName === "IMG") t.classList.add("img--failed");
     }, true);
   </script>
-  <title>Privacy Policy — Sillage</title>
+  <title>Privacy Policy · Sillage</title>
   <meta name="description" content="How Sillage handles personal data under UK GDPR and EU GDPR." />
   <meta name="robots" content="index,follow" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -25,9 +25,7 @@
     <label class="nav-toggle-label" for="nav-toggle">Menu</label>
     <nav aria-label="Primary">
       <a class="navbtn" href="index.html">Home</a>
-      <a class="navbtn" href="markets.html">Markets</a>
       <a class="navbtn" href="about.html">About</a>
-      <a class="navbtn" href="contact.html">Contact</a>
       <a class="bookbtn" data-book href="mailto:hello@sillage.example">Book a visit</a>
     </nav>
   </header>
@@ -46,16 +44,16 @@
 
       <h2>2. What data we collect</h2>
       <ul>
-        <li><strong>Contact details</strong> you give us when booking — name, business name, email address and any message content.</li>
-        <li><strong>Booking details</strong> — the location and nature of the space you ask us to assess.</li>
+        <li><strong>Contact details</strong> you give us when booking; name, business name, email address and any message content.</li>
+        <li><strong>Booking details</strong>; the location and nature of the space you ask us to assess.</li>
         <li>We do <strong>not</strong> use third-party analytics or advertising cookies on this website.</li>
       </ul>
 
       <h2>3. Why we use it, and our lawful basis</h2>
       <ul>
-        <li>To respond to your enquiry and arrange a visit &mdash; lawful basis: <strong>steps taken at your request prior to entering a contract</strong> (Art. 6(1)(b)).</li>
-        <li>To carry out the engagement you book &mdash; lawful basis: <strong>performance of a contract</strong> (Art. 6(1)(b)).</li>
-        <li>To keep records we are legally required to keep &mdash; lawful basis: <strong>legal obligation</strong> (Art. 6(1)(c)).</li>
+        <li>To respond to your enquiry and arrange a visit; lawful basis: <strong>steps taken at your request prior to entering a contract</strong> (Art. 6(1)(b)).</li>
+        <li>To carry out the engagement you book; lawful basis: <strong>performance of a contract</strong> (Art. 6(1)(b)).</li>
+        <li>To keep records we are legally required to keep; lawful basis: <strong>legal obligation</strong> (Art. 6(1)(c)).</li>
       </ul>
 
       <h2>4. How long we keep it</h2>
@@ -83,7 +81,7 @@
       <h2>8. Cookies &amp; tracking</h2>
       <p>This website sets no cookies and loads no third-party scripts or fonts by default. The contact form opens
         your own email app and stores nothing. If a booking form or embedded scheduler is added later, it may set
-        its own cookies &mdash; we will add a consent notice and a data-processing agreement at that point.</p>
+        its own cookies; we will add a consent notice and a data-processing agreement at that point.</p>
 
       <p style="margin-top:2.5rem"><a class="doc__back" href="index.html">&larr; Back to home</a></p>
     </div>
@@ -96,13 +94,14 @@
     </div>
     <div class="foot__links">
       <a href="index.html">Home</a>
-      <a href="markets.html">Markets</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="about.html#markets">Where we work</a>
+      <a href="about.html#contact">Contact</a>
       <a href="privacy.html">Privacy</a>
     </div>
-    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage — fragrance-only. No cookies, no third-party tracking.</p>
+    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage · fragrance-only. No cookies, no third-party tracking.</p>
   </footer>
   <script src="booking.js"></script>
+  <script src="motion.js"></script>
 </body>
 </html>
