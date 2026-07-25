@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script>
-    document.documentElement.className = "js";
+    document.documentElement.className = "js js-motion";
     document.addEventListener("error", function (e) {
       var t = e.target;
       if (t && t.tagName === "IMG") t.classList.add("img--failed");
     }, true);
   </script>
-  <title>Sillage — sensory identity for boutique businesses</title>
+  <title>Sillage · sensory identity for boutique businesses</title>
   <meta name="description" content="Sillage diagnoses how your space smells, prescribes a scent that fits it, and hands you the evidence. Fixed scope, fixed price, fragrance-only." />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Sillage — what your space leaves behind" />
+  <meta property="og:title" content="Sillage · what your space leaves behind" />
   <meta property="og:description" content="A fixed-scope, fixed-price sensory diagnostic for boutique businesses. See-yazh." />
   <meta property="og:image" content="og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -32,9 +32,7 @@
     <label class="nav-toggle-label" for="nav-toggle">Menu</label>
     <nav aria-label="Primary">
       <a class="navbtn" href="index.html" aria-current="page">Home</a>
-      <a class="navbtn" href="markets.html">Markets</a>
       <a class="navbtn" href="about.html">About</a>
-      <a class="navbtn" href="contact.html">Contact</a>
       <a class="bookbtn" data-book href="mailto:hello@sillage.example">Book a visit</a>
     </nav>
   </header>
@@ -43,17 +41,17 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <div>
-        <p class="eyebrow">Sensory identity consultancy &middot; see-yazh</p>
+      <div data-animate>
+        <p class="eyebrow on-dark">Sensory Identity Consultancy &middot; see-yazh</p>
         <h1>What your space leaves behind.</h1>
-        <p class="sub">We diagnose how your space smells, prescribe a scent that fits it, and hand you the evidence — one assessment, decided up front. Fixed scope, fixed price, fragrance-only.</p>
+        <p class="sub">We diagnose how your space smells, prescribe a scent that fits it, and hand you the evidence; one assessment, decided up front. Fixed scope, fixed price, fragrance-only.</p>
         <div class="btnrow">
           <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Get an evaluation</a>
           <a class="btn btn--ghost" href="#method">Our method</a>
         </div>
       </div>
-      <div class="blueprint">
-        <!-- Blueprint survey — the site's signature drawing (static SVG, no libs) -->
+      <div class="blueprint" data-animate data-anim-delay="120">
+        <!-- Blueprint survey - the site's signature drawing (static SVG, no libs) -->
         <svg viewBox="0 0 460 360" width="100%" role="img" aria-label="Blueprint floor plan of a four-zone space with HVAC vents, terracotta airflow arrows and dotted scent-diffusion rings from two diffusion points.">
           <defs>
             <marker id="ar" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
@@ -89,16 +87,16 @@
           </g>
           <g fill="#1E3328"><circle cx="126" cy="248" r="3.4"/><circle cx="300" cy="120" r="3.4"/></g>
           <g font-family="ui-monospace,Menlo,monospace" font-size="7.6" letter-spacing="1.4" fill="#3A5544">
-            <text x="58" y="100">ZONE 01 — ENTRY</text>
-            <text x="252" y="100">ZONE 02 — TREATMENT</text>
-            <text x="58" y="212">ZONE 03 — STUDIO</text>
-            <text x="252" y="212">ZONE 04 — LOUNGE</text>
+            <text x="58" y="100">ZONE 01 · ENTRY</text>
+            <text x="252" y="100">ZONE 02 · TREATMENT</text>
+            <text x="58" y="212">ZONE 03 · STUDIO</text>
+            <text x="252" y="212">ZONE 04 · LOUNGE</text>
           </g>
           <g font-family="ui-monospace,Menlo,monospace" font-size="7" letter-spacing="1.2" fill="#B85C2B">
             <text x="96" y="308">DIFFUSION POINT A</text>
             <text x="268" y="158">DIFFUSION POINT B</text>
           </g>
-          <text x="46" y="340" font-family="ui-monospace,Menlo,monospace" font-size="7.4" letter-spacing="1.6" fill="#5E8B93">SILLAGE — AIRFLOW &amp; DIFFUSION SURVEY — SHEET 01</text>
+          <text x="46" y="340" font-family="ui-monospace,Menlo,monospace" font-size="7.4" letter-spacing="1.6" fill="#5E8B93">SILLAGE · AIRFLOW &amp; DIFFUSION SURVEY · SHEET 01</text>
         </svg>
       </div>
     </section>
@@ -107,61 +105,61 @@
     <!-- Percentages were removed here; the sourced data lives in Research below.
          Epigraph is in Sillage's own voice (unattributed) so no attribution is
          fabricated. To attribute a real quote instead, it must be genuine and
-         correctly credited — see [Attribution — verify] in the ledger. -->
+         correctly credited - see [Attribution - verify] in the ledger. -->
     <section class="section why">
-      <p class="eyebrow">Why it matters</p>
-      <h2 class="lede">Ambience is never neutral.</h2>
-      <blockquote class="why__quote">A room speaks before anyone in it says a word — scent is the first thing it says.</blockquote>
-      <p class="why__cite">— the premise of every Sillage visit</p>
+      <p class="eyebrow" data-animate>Why It Matters</p>
+      <h2 class="lede" data-animate data-anim-delay="60">Ambience is never neutral.</h2>
+      <blockquote class="why__quote" data-animate data-anim-delay="120">A room speaks before anyone in it says a word; scent is the first thing it says.</blockquote>
+      <p class="why__cite" data-animate data-anim-delay="180">The premise of every Sillage visit</p>
     </section>
 
     <!-- ================= ABOUT OUR METHOD ================= -->
     <section class="section method" id="method">
-      <p class="eyebrow">About our method</p>
-      <h2>Five steps. One prescription.</h2>
-      <p class="intro">Every engagement follows the same diagnostic sequence, so the recommendation at the end is traceable to what we observed at the start.</p>
+      <p class="eyebrow" data-animate>About Our Method</p>
+      <h2 data-animate data-anim-delay="60">Five steps. One prescription.</h2>
+      <p class="intro" data-animate data-anim-delay="120">Every engagement follows the same diagnostic sequence, so the recommendation at the end is traceable to what we observed at the start.</p>
 
       <div class="timeline">
-        <div class="step">
+        <div class="step" data-animate data-anim-delay="0">
           <span class="num">Step 01</span>
           <h3>Primary evaluation</h3>
-          <p>We walk the space room by room and read how scent currently carries through it — including via your HVAC and airflow.</p>
+          <p>We walk the space room by room and read how scent currently carries through it, including via your HVAC and airflow.</p>
         </div>
-        <div class="step">
+        <div class="step" data-animate data-anim-delay="80">
           <span class="num">Step 02</span>
           <h3>Time in the business</h3>
           <p>We spend working hours on site, watching customer patterns and asking staff who your clientele is today versus who you want.</p>
         </div>
-        <div class="step">
+        <div class="step" data-animate data-anim-delay="160">
           <span class="num">Step 03</span>
           <h3>Analysis &amp; matching</h3>
           <p>We match scent profiles to your target customer and business type, and check whether your music helps the scent or fights it.</p>
         </div>
-        <div class="step">
+        <div class="step" data-animate data-anim-delay="240">
           <span class="num">Step 04</span>
           <h3>Presentation &amp; testing</h3>
           <p>We present the shortlisted directions in person, blotters in hand, and trial them in the space before anything is committed.</p>
         </div>
-        <div class="step">
+        <div class="step" data-animate data-anim-delay="320">
           <span class="num">Step 05</span>
           <h3>Return &amp; refine</h3>
-          <p>We come back, measure what changed against the baseline, and adjust — so the prescription ends up fitted, not guessed.</p>
+          <p>We come back, measure what changed against the baseline, and adjust, so the prescription ends up fitted, not guessed.</p>
         </div>
       </div>
 
       <div class="offers">
         <div class="offer">
-          <span class="num">01 — On site</span>
+          <span class="num">01 · On site</span>
           <h3>Diagnostic visit</h3>
           <p>A full day in your space, measuring how it reads to the nose across its rooms, materials and traffic.</p>
         </div>
         <div class="offer">
-          <span class="num">02 — Written</span>
+          <span class="num">02 · Written</span>
           <h3>Strategy report</h3>
           <p>A written prescription: the scent direction, where it belongs, and the mechanism behind each choice.</p>
         </div>
         <div class="offer">
-          <span class="num">03 — In person</span>
+          <span class="num">03 · In person</span>
           <h3>Stakeholder presentation</h3>
           <p>We walk you and your team through the report in person, with the blotters, and leave you the artefact.</p>
         </div>
@@ -170,30 +168,30 @@
 
     <!-- ================= SUPPORTING RESEARCH (data lives here, verbatim) =========
          Figures + citations are rendered exactly as supplied. Do not paraphrase
-         or "correct" a number or citation from memory — the owner verifies each. -->
+         or "correct" a number or citation from memory - the owner verifies each. -->
     <section class="section research" id="research">
-      <p class="eyebrow">Supporting research</p>
-      <h2 class="lede">Every recommendation is traceable to published evidence.</h2>
-      <p class="intro">Scent is the lever we prescribe. Music and climate are levers we evaluate and align — because the research shows they move the same outcome.</p>
+      <p class="eyebrow" data-animate>Supporting Research</p>
+      <h2 class="lede" data-animate data-anim-delay="60">Every recommendation is traceable to published evidence.</h2>
+      <p class="intro" data-animate data-anim-delay="120">Scent is the lever we prescribe. Music and climate are levers we evaluate and align, because the research shows they move the same outcome.</p>
 
       <div class="rgrid">
         <!-- SCENT -->
-        <div class="rcard">
+        <div class="rcard" data-animate data-anim-delay="0">
           <span class="tag">Scent</span>
           <h3>Getting scent right is a ladder, not a switch</h3>
           <div class="bars">
-            <div class="bar"><span class="bl">Done badly</span><div class="track"><div class="fill" style="right:50%; width:37%; background:var(--terracotta-deep)"></div></div><span class="val">&minus;17%</span></div>
+            <div class="bar"><span class="bl">Done badly</span><div class="track"><div class="fill neg" style="right:50%; width:37%; background:var(--terracotta-deep)"></div></div><span class="val">&minus;17%</span></div>
             <div class="bar"><span class="bl">Nothing</span><div class="track"><div class="fill" style="left:50%; width:1%; background:rgba(30,51,40,.4)"></div></div><span class="val">0%</span></div>
             <div class="bar"><span class="bl">Basic, unadvised</span><div class="track"><div class="fill" style="left:50%; width:7%; background:var(--sage)"></div></div><span class="val">+3%</span></div>
             <div class="bar"><span class="bl">Proper selection</span><div class="track"><div class="fill" style="left:50%; width:22%; background:var(--sage)"></div></div><span class="val">+10%</span></div>
-            <div class="bar"><span class="bl">Full strategy, right context</span><div class="track"><div class="fill" style="left:50%; width:50%; background:var(--terracotta)"></div></div><span class="val">+23%</span></div>
+            <div class="bar"><span class="bl">Full strategy, right context</span><div class="track"><div class="fill" style="left:50%; width:50%; background:var(--forest)"></div></div><span class="val">+23%</span></div>
           </div>
-          <p>Effect on customer expenditure. The +23% ceiling appears in service and wellness settings — the context we work in.</p>
-          <p class="src">Roschk &amp; Hosseinpour, 2020 — Journal of Marketing, 84(1)</p>
+          <p>Effect on customer expenditure. The +23% ceiling appears in service and wellness settings, the context we work in.</p>
+          <p class="src">Roschk &amp; Hosseinpour, 2020. Journal of Marketing, 84(1)</p>
         </div>
 
         <!-- MUSIC -->
-        <div class="rcard">
+        <div class="rcard" data-animate data-anim-delay="90">
           <span class="tag">Music</span>
           <h3>Music and scent must match energy</h3>
           <p>When the arousal level of the music matches the scent, evaluations, impulse purchasing and satisfaction all rise. When they clash, the environment reads as less pleasing than doing nothing.</p>
@@ -201,56 +199,56 @@
             <div class="yes"><b>Congruent</b><p>Slow ambient + lavender. Fast pop + citrus. Christmas music + pine.</p></div>
             <div class="no"><b>Incongruent</b><p>Spa music + bright citrus. Dance music + lavender. Christmas music + summer fruit.</p></div>
           </div>
-          <p class="src">Mattila &amp; Wirtz, 2001 — Journal of Retailing, 77(2) &middot; Spangenberg et al., 2005 — Journal of Business Research, 58(11)</p>
+          <p class="src">Mattila &amp; Wirtz, 2001. Journal of Retailing, 77(2) &middot; Spangenberg et al., 2005. Journal of Business Research, 58(11)</p>
         </div>
 
         <!-- CLIMATE -->
-        <div class="rcard">
+        <div class="rcard" data-animate data-anim-delay="180">
           <span class="tag">Climate</span>
           <h3>Comfort has a price attached</h3>
-          <p>Comfortably warm rooms raised product valuation by roughly 10% over cool ones — while discomfort at either extreme pushes decisions off course. We observe climate and refer; we don't prescribe it.</p>
+          <p>Comfortably warm rooms raised product valuation by roughly 10% over cool ones, while discomfort at either extreme pushes decisions off course. We observe climate and refer; we don't prescribe it.</p>
           <div class="thermo">
-            <div><span class="tv">&minus;</span><div class="tcol" style="height:38px; background:rgba(94,139,147,.55)"></div><span class="tl">Too cold — discomfort</span></div>
+            <div><span class="tv">&minus;</span><div class="tcol" style="height:38px; background:rgba(94,139,147,.55)"></div><span class="tl">Too cold, discomfort</span></div>
             <div><span class="tv">+10.4%</span><div class="tcol" style="height:92px; background:var(--sage)"></div><span class="tl">Comfortably warm</span></div>
-            <div><span class="tv">&minus;</span><div class="tcol" style="height:34px; background:rgba(184,92,43,.5)"></div><span class="tl">Too hot — discomfort</span></div>
+            <div><span class="tv">&minus;</span><div class="tcol" style="height:34px; background:rgba(30,51,40,.35)"></div><span class="tl">Too hot, discomfort</span></div>
           </div>
-          <p class="src">Zwebner, Lee &amp; Goldenberg, 2013 — Journal of Consumer Psychology, 24(2)</p>
+          <p class="src">Zwebner, Lee &amp; Goldenberg, 2013. Journal of Consumer Psychology, 24(2)</p>
         </div>
       </div>
-      <p class="rnote">This is published research on how sensory conditions affect the way people experience and spend in a space — not a promise that any single intervention will produce a specific result in yours. Doing it badly is worse than doing nothing; the value is in choosing well.</p>
+      <p class="rnote">This is published research on how sensory conditions affect the way people experience and spend in a space, not a promise that any single intervention will produce a specific result in yours. Doing it badly is worse than doing nothing; the value is in choosing well.</p>
     </section>
 
     <!-- ================= SELECTED WORK (blueprint plan tiles) ================= -->
     <section class="section work" id="work">
-      <p class="eyebrow">Selected work</p>
-      <h2 class="lede">The kinds of spaces we tune.</h2>
+      <p class="eyebrow" data-animate>Selected Work</p>
+      <h2 class="lede" data-animate data-anim-delay="60">The kinds of spaces we tune.</h2>
       <div class="workgrid">
-        <div class="wtile">
+        <div class="wtile" data-animate data-anim-delay="0">
           <div class="ph">
-            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a wellness treatment room with a scent-diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="26" y="24" width="148" height="84"/><path d="M26 78h60M116 78h58M86 78v30"/><circle cx="56" cy="50" r="12" stroke-dasharray="2 3" stroke="#6CA085"/><circle cx="56" cy="50" r="20" stroke-dasharray="2 3" stroke="#6CA085"/></g><rect x="126" y="38" width="34" height="14" rx="2" fill="none" stroke="#1E3328"/><text x="30" y="120" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">TREATMENT ROOM — PLAN</text></svg>
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a wellness treatment room with a scent-diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="26" y="24" width="148" height="84"/><path d="M26 78h60M116 78h58M86 78v30"/><circle cx="56" cy="50" r="12" stroke-dasharray="2 3" stroke="#6CA085"/><circle cx="56" cy="50" r="20" stroke-dasharray="2 3" stroke="#6CA085"/></g><rect x="126" y="38" width="34" height="14" rx="2" fill="none" stroke="#1E3328"/><text x="30" y="120" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">TREATMENT ROOM · PLAN</text></svg>
           </div>
           <div class="cap"><span class="n">01</span><h3>Wellness studio</h3><span>Treatment room</span></div>
         </div>
-        <div class="wtile">
+        <div class="wtile" data-animate data-anim-delay="70">
           <div class="ph">
-            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of an independent hotel lobby corner with airflow and diffusion."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="20" y="22" width="160" height="88"/><path d="M20 66h44M108 66h72"/><rect x="36" y="80" width="30" height="16"/><rect x="132" y="34" width="34" height="16"/><path d="M76 40 C96 50, 116 46, 140 58" stroke="#B85C2B" stroke-width="1.3"/></g><circle cx="72" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="24" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">HOTEL LOBBY — PLAN</text></svg>
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of an independent hotel lobby corner with airflow and diffusion."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="20" y="22" width="160" height="88"/><path d="M20 66h44M108 66h72"/><rect x="36" y="80" width="30" height="16"/><rect x="132" y="34" width="34" height="16"/><path d="M76 40 C96 50, 116 46, 140 58" stroke="#B85C2B" stroke-width="1.3"/></g><circle cx="72" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="24" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">HOTEL LOBBY · PLAN</text></svg>
           </div>
           <div class="cap"><span class="n">02</span><h3>Independent hotel</h3><span>Lobby corner</span></div>
         </div>
-        <div class="wtile">
+        <div class="wtile" data-animate data-anim-delay="140">
           <div class="ph">
-            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a salon styling floor with a central diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="24" y="22" width="152" height="88"/><path d="M60 22v52M100 22v52M140 22v52"/><circle cx="42" cy="46" r="7"/><circle cx="80" cy="46" r="7"/><circle cx="120" cy="46" r="7"/><circle cx="160" cy="46" r="7"/></g><circle cx="100" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><circle cx="100" cy="92" r="20" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="28" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">STYLING FLOOR — PLAN</text></svg>
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a salon styling floor with a central diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="24" y="22" width="152" height="88"/><path d="M60 22v52M100 22v52M140 22v52"/><circle cx="42" cy="46" r="7"/><circle cx="80" cy="46" r="7"/><circle cx="120" cy="46" r="7"/><circle cx="160" cy="46" r="7"/></g><circle cx="100" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><circle cx="100" cy="92" r="20" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="28" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">STYLING FLOOR · PLAN</text></svg>
           </div>
           <div class="cap"><span class="n">03</span><h3>Salon</h3><span>Styling floor</span></div>
         </div>
-        <div class="wtile">
+        <div class="wtile" data-animate data-anim-delay="210">
           <div class="ph">
-            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a clinic waiting room with airflow and a diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="24" y="22" width="152" height="88"/><path d="M24 66h48M120 66h56"/><rect x="40" y="78" width="52" height="14"/><rect x="40" y="34" width="24" height="20"/><path d="M132 30 C142 46, 132 58, 144 72" stroke="#B85C2B" stroke-width="1.3"/></g><circle cx="150" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="28" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">WAITING ROOM — PLAN</text></svg>
+            <svg viewBox="0 0 200 130" width="100%" role="img" aria-label="Blueprint plan of a clinic waiting room with airflow and a diffusion point."><rect width="200" height="130" fill="#F7FBF8"/><g stroke="#5E8B93" stroke-width="1.4" fill="none"><rect x="24" y="22" width="152" height="88"/><path d="M24 66h48M120 66h56"/><rect x="40" y="78" width="52" height="14"/><rect x="40" y="34" width="24" height="20"/><path d="M132 30 C142 46, 132 58, 144 72" stroke="#B85C2B" stroke-width="1.3"/></g><circle cx="150" cy="92" r="12" stroke-dasharray="2 3" stroke="#6CA085" fill="none"/><text x="28" y="122" font-family="Menlo,monospace" font-size="7" letter-spacing="1.5" fill="#3A5544">WAITING ROOM · PLAN</text></svg>
           </div>
           <div class="cap"><span class="n">04</span><h3>Clinic</h3><span>Waiting room</span></div>
         </div>
       </div>
-      <p class="work__note">Blueprint tiles are placeholders in the survey style — swapped for your own photography from real visits as engagements complete. No stock imagery.</p>
+      <p class="work__note">Blueprint tiles are placeholders in the survey style; swapped for your own photography from real visits as engagements complete. No stock imagery.</p>
     </section>
 
   </main>
@@ -263,18 +261,19 @@
     </div>
     <div class="foot__links">
       <a href="index.html">Home</a>
-      <a href="markets.html">Markets</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="about.html#markets">Where we work</a>
+      <a href="about.html#contact">Contact</a>
       <a href="privacy.html">Privacy</a>
     </div>
-    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage — fragrance-only. No cookies, no third-party tracking.</p>
+    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage · fragrance-only. No cookies, no third-party tracking.</p>
   </footer>
 
-  <!-- ================= BOOKING LINK — SINGLE SOURCE OF TRUTH =================
+  <!-- ================= BOOKING LINK - SINGLE SOURCE OF TRUTH =================
        Change BOOKING_URL and every "Book a visit" / "Get an evaluation" button
        across the site updates. Use a NON-PERSONAL, brand-domain address or a
        booking-form link. hello@sillage.example is a placeholder. -->
   <script src="booking.js"></script>
+  <script src="motion.js"></script>
 </body>
 </html>

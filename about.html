@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script>
-    document.documentElement.className = "js";
+    document.documentElement.className = "js js-motion";
     document.addEventListener("error", function (e) {
       var t = e.target;
       if (t && t.tagName === "IMG") t.classList.add("img--failed");
     }, true);
   </script>
-  <title>About — Sillage</title>
-  <meta name="description" content="Who Sillage is, how we work, and the kinds of engagements we take on. Fixed scope, fixed price, fragrance-only." />
+  <title>About Sillage</title>
+  <meta name="description" content="Who Sillage is, how we work, where we work, and how to reach us. Fixed scope, fixed price, fragrance-only." />
   <meta name="robots" content="index,follow" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
@@ -25,9 +25,7 @@
     <label class="nav-toggle-label" for="nav-toggle">Menu</label>
     <nav aria-label="Primary">
       <a class="navbtn" href="index.html">Home</a>
-      <a class="navbtn" href="markets.html">Markets</a>
       <a class="navbtn" href="about.html" aria-current="page">About</a>
-      <a class="navbtn" href="contact.html">Contact</a>
       <a class="bookbtn" data-book href="mailto:hello@sillage.example">Book a visit</a>
     </nav>
   </header>
@@ -36,27 +34,27 @@
 
     <!-- Hero strip -->
     <section class="section section--tight about-hero">
-      <p class="eyebrow">About</p>
-      <h1>Three noses, one method.</h1>
-      <p class="lede">A small team of sensory-identity consultants working across two countries — running the same fixed-scope diagnostic wherever the space is.</p>
+      <p class="eyebrow on-dark" data-animate>About Sillage</p>
+      <h1 data-animate data-anim-delay="60">Three noses, one method.</h1>
+      <p class="lede" data-animate data-anim-delay="120">A small team of sensory-identity consultants working across two countries, running the same fixed-scope diagnostic wherever the space is.</p>
     </section>
 
     <!-- The team -->
     <section class="section" id="team">
-      <p class="eyebrow">The team</p>
-      <h2 class="lede">The people behind the nose.</h2>
+      <p class="eyebrow" data-animate>The Team</p>
+      <h2 class="lede" data-animate data-anim-delay="60">The people behind the nose.</h2>
 
       <!-- Group photo: drop a 3:2 file at assets/img/team/group.jpg -->
-      <figure class="team__group media media--3-2 media--duotone">
+      <figure data-animate data-anim-delay="120" class="team__group media media--3-2 media--duotone">
         <span class="media__ph" aria-hidden="true">[Photo]</span>
         <img src="assets/img/team/group.jpg" alt="The Sillage team." loading="lazy" width="1140" height="760" />
       </figure>
 
       <!-- ===========================================================
-           TEAM CARDS. Names/titles/bios are bracketed — DO NOT SHIP
+           TEAM CARDS. Names/titles/bios are bracketed - DO NOT SHIP
            until filled. The mockup's Contact page suggests, by city:
            Reading = Kevin · Milton Keynes = Prithvish · Thessaloniki = Alex
-           — confirm spelling/roles before publishing. Two real people-
+           - confirm spelling/roles before publishing. Two real people-
            photos from your materials are shown below (portrait-1,
            portrait-3); write each person's name UNDER their own photo.
            The third consultant's portrait is still a [Photo] placeholder.
@@ -64,30 +62,30 @@
            =========================================================== -->
       <div class="team__grid">
 
-        <!-- ===== CONSULTANT CARD TEMPLATE — copy this whole <article> to add a member =====
+        <!-- ===== CONSULTANT CARD TEMPLATE - copy this whole <article> to add a member =====
              Portrait: 4:5, file at assets/img/team/<slug>.jpg -->
-        <article class="card">
+        <article class="card" data-animate data-anim-delay="0">
           <figure class="media media--4-5 media--duotone">
             <span class="media__ph" aria-hidden="true">[Photo]</span>
             <img src="assets/img/team/portrait-1.jpg" alt="A Sillage consultant presenting during a session." loading="lazy" width="480" height="600" />
           </figure>
           <h3 class="card__name">[Name]</h3>
-          <p class="card__title">[Title — e.g. Lead Consultant] · [City]</p>
-          <p class="card__bio">[Bio — market they lead + specialism + one human sentence. 2–3 lines.]</p>
+          <p class="card__title">[Title, e.g. Lead Consultant] · [City]</p>
+          <p class="card__bio">[Bio, being the market they lead + specialism + one human sentence. 2 to 3 lines.]</p>
         </article>
 
-        <article class="card">
+        <article class="card" data-animate data-anim-delay="80">
           <figure class="media media--4-5 media--duotone">
             <span class="media__ph" aria-hidden="true">[Photo]</span>
             <img src="assets/img/team/portrait-3.jpg" alt="A Sillage consultant reviewing report work while travelling." loading="lazy" width="480" height="600" />
           </figure>
           <h3 class="card__name">[Name]</h3>
           <p class="card__title">[Title] · [City]</p>
-          <p class="card__bio">[Bio — market they lead + specialism + one human sentence. 2–3 lines.]</p>
+          <p class="card__bio">[Bio, being the market they lead + specialism + one human sentence. 2 to 3 lines.]</p>
         </article>
 
-        <article class="card">
-          <!-- Third consultant — no portrait supplied yet; the [Photo] placeholder
+        <article class="card" data-animate data-anim-delay="160">
+          <!-- Third consultant - no portrait supplied yet; the [Photo] placeholder
                holds the frame. Drop a 4:5 photo at assets/img/team/member-3.jpg. -->
           <figure class="media media--4-5 media--duotone">
             <span class="media__ph" aria-hidden="true">[Photo]</span>
@@ -95,7 +93,7 @@
           </figure>
           <h3 class="card__name">[Name]</h3>
           <p class="card__title">[Title] · [City]</p>
-          <p class="card__bio">[Bio — market they lead + specialism + one human sentence. 2–3 lines.]</p>
+          <p class="card__bio">[Bio, being the market they lead + specialism + one human sentence. 2 to 3 lines.]</p>
         </article>
       </div>
     </section>
@@ -104,12 +102,12 @@
     <section class="section why" id="operate">
       <div class="opgrid">
         <div class="prose">
-          <p class="eyebrow">How we operate</p>
-          <h2>Fixed scope. Fixed price. Fragrance only.</h2>
-          <p>We take one clear brief — the scent of your space — and stay inside it. We diagnose on site, write a prescription, present it in person, and come back to measure. Climate and music we assess and align to; we don't sell hardware or take a cut of what you install.</p>
+          <p class="eyebrow" data-animate>How We Operate</p>
+          <h2 data-animate data-anim-delay="60">Fixed scope. Fixed price. Fragrance only.</h2>
+          <p>We take one clear brief, the scent of your space, and stay inside it. We diagnose on site, write a prescription, present it in person, and come back to measure. Climate and music we assess and align to; we don't sell hardware or take a cut of what you install.</p>
           <ul class="oplist">
             <li>On-site diagnosis across every zone, including how airflow carries scent.</li>
-            <li>A written prescription you own — the direction, the placement, and the reasoning.</li>
+            <li>A written prescription you own, covering the direction, the placement, and the reasoning.</li>
             <li>An in-person presentation with blotters, then a return visit to measure against the baseline.</li>
           </ul>
         </div>
@@ -121,15 +119,15 @@
           <g fill="none" stroke="#6CA085" stroke-width="1.1" stroke-dasharray="2 4"><circle cx="130" cy="104" r="14"/><circle cx="130" cy="104" r="24"/></g>
           <circle cx="130" cy="104" r="3" fill="#1E3328"/>
           <path d="M64 44 C70 60, 60 72, 72 88" fill="none" stroke="#B85C2B" stroke-width="1.4"/>
-          <text x="30" y="158" font-family="Menlo,monospace" font-size="7" letter-spacing="1.4" fill="#5E8B93">DIAGNOSTIC — SHEET A</text>
+          <text x="30" y="158" font-family="Menlo,monospace" font-size="7" letter-spacing="1.4" fill="#5E8B93">DIAGNOSTIC · SHEET A</text>
         </svg>
       </div>
     </section>
 
     <!-- What we've done -->
     <section class="section" id="work">
-      <p class="eyebrow">What we've done</p>
-      <h2 class="lede">The kinds of engagements — and what you receive.</h2>
+      <p class="eyebrow" data-animate>What We Have Done</p>
+      <h2 class="lede" data-animate data-anim-delay="60">The kinds of engagements, and what you receive.</h2>
       <p class="lede" style="margin-top:0.8rem; color:rgba(42,42,40,.82)">We work with independent, owner-led businesses where atmosphere is part of the product. We don't publish client names or numbers; where a client consents, a named reference appears below.</p>
 
       <p class="market__label" style="margin-top:2rem">Sectors we serve</p>
@@ -142,17 +140,17 @@
       </ul>
 
       <div class="deliver">
-        <div class="offer">
+        <div class="offer" data-animate data-anim-delay="0">
           <span class="num">Artefact 01</span>
           <h3>Diagnostic visit</h3>
           <p>A full day on site, mapping how the space reads to the nose across its rooms, materials and traffic.</p>
         </div>
-        <div class="offer">
+        <div class="offer" data-animate data-anim-delay="70">
           <span class="num">Artefact 02</span>
           <h3>Strategy report</h3>
           <p>A written prescription: the scent direction, where it belongs, and the mechanism behind each choice.</p>
         </div>
-        <div class="offer">
+        <div class="offer" data-animate data-anim-delay="140">
           <span class="num">Artefact 03</span>
           <h3>Stakeholder presentation</h3>
           <p>An in-person walkthrough with blotters, leaving you the artefact and a baseline to measure against.</p>
@@ -164,22 +162,174 @@
         <span class="media__ph" aria-hidden="true">[Photo]</span>
         <img src="assets/img/team/portrait-2.jpg" alt="Presenting the Sillage method to an audience." loading="lazy" width="1280" height="720" />
       </figure>
-      <p class="media-cap">Presenting the method — in person</p>
+      <p class="media-cap">Presenting the method, in person</p>
 
-      <!-- ===== CASE REFERENCE TEMPLATE — use ONLY with written, attributable consent =====
+      <!-- ===== CASE REFERENCE TEMPLATE - use ONLY with written, attributable consent =====
            Copy this block per real, consented reference. Consent bar: the client has
            agreed in writing to be named and quoted. Never publish client names,
            logos or results without it. Delete this template if unused. -->
       <!--
-      <figure class="testimonial" style="margin-top:2.5rem; border-left:3px solid var(--terracotta); padding-left:1.2rem">
-        <blockquote>[Case — consented, attributable client quote]</blockquote>
-        <figcaption class="media-cap">[Name, role — Business, city]</figcaption>
+      <figure class="testimonial" style="margin-top:2.5rem; border-left:3px solid var(--forest); padding-left:1.2rem">
+        <blockquote>[Case, a consented and attributable client quote]</blockquote>
+        <figcaption class="media-cap">[Name, role · Business, city]</figcaption>
       </figure>
       -->
 
       <p style="margin-top:2.5rem">
         <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a diagnostic visit</a>
       </p>
+    </section>
+
+    <!-- ================= WHERE WE WORK =================
+         Merged in from the former markets.html. That page now redirects
+         here; the anchor #markets is the stable link target. -->
+    <section class="section markets" id="markets">
+      <p class="eyebrow" data-animate>Where We Work</p>
+      <h2 class="lede" data-animate data-anim-delay="60">Two cities in the UK. One in Greece.</h2>
+      <p class="lede" data-animate data-anim-delay="120" style="margin-top:0.8rem; color:rgba(42,42,40,.82)">The same diagnostic travels; the visit, the report, the presentation. What stays local is the nose, meaning the materials, the climate and the habits of each place.</p>
+
+      <!-- Abstract blueprint node diagram, not a map. Thessaloniki is the
+           single terracotta node, which is SVG fill and so within the rule. -->
+      <figure class="opsfig" data-animate data-anim-delay="180">
+        <svg viewBox="0 0 600 240" role="img" aria-label="Blueprint diagram: three linked survey nodes, Reading and Milton Keynes in the UK, and Thessaloniki in Greece.">
+          <g stroke="#5E8B93" stroke-width=".4" opacity=".35"><path d="M60 10V230M160 10V230M260 10V230M360 10V230M460 10V230M560 10V230M0 60H600M0 120H600M0 180H600"/></g>
+          <g stroke="#1E3328" stroke-width="1.4" fill="none" opacity=".55"><path d="M120 120 L300 78 L480 150"/></g>
+          <g stroke="#5E8B93" stroke-width="1" opacity=".8"><path d="M120 112v16M300 70v16M480 142v16"/></g>
+
+          <circle cx="120" cy="120" r="30" fill="#1E3328"/>
+          <text x="120" y="125" text-anchor="middle" fill="#FBF8F1" font-family="ui-monospace,Menlo,monospace" font-size="15">RDG</text>
+          <text x="120" y="176" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Reading · UK</text>
+
+          <circle cx="300" cy="70" r="30" fill="#1E3328"/>
+          <text x="300" y="75" text-anchor="middle" fill="#FBF8F1" font-family="ui-monospace,Menlo,monospace" font-size="15">MK</text>
+          <text x="300" y="34" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Milton Keynes · UK</text>
+
+          <circle cx="480" cy="150" r="30" fill="#EE9560"/>
+          <text x="480" y="155" text-anchor="middle" fill="#1E3328" font-family="ui-monospace,Menlo,monospace" font-size="15">SKG</text>
+          <text x="480" y="206" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Thessaloniki · GR</text>
+
+          <text x="20" y="228" fill="#5E8B93" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.6">SILLAGE · COVERAGE SURVEY · SHEET 02</text>
+        </svg>
+        <figcaption>One method, three bases; Thessaloniki is the Greek home ground.</figcaption>
+      </figure>
+
+      <div class="mkgrid">
+        <section class="market" id="reading" data-animate data-anim-delay="0">
+          <div class="market__head">
+            <span class="market__city">United Kingdom</span>
+            <h3 class="market__country">Reading</h3>
+          </div>
+          <div class="market__grid">
+            <div>
+              <p class="market__label">Who we serve</p>
+              <ul class="sectorlist">
+                <li>Independent hotels</li>
+                <li>Clinics &amp; wellness studios</li>
+                <li>Salons &amp; spas</li>
+                <li>Boutique retail</li>
+                <li>Hospitality</li>
+              </ul>
+            </div>
+            <div>
+              <p class="market__label">Languages</p>
+              <p class="market__note">English. The full diagnostic, the fixed-scope report and the in-person presentation are all delivered in English.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="market" id="milton-keynes" data-animate data-anim-delay="80">
+          <div class="market__head">
+            <span class="market__city">United Kingdom</span>
+            <h3 class="market__country">Milton Keynes</h3>
+          </div>
+          <div class="market__grid">
+            <div>
+              <p class="market__label">Who we serve</p>
+              <ul class="sectorlist">
+                <li>Independent hotels</li>
+                <li>Clinics &amp; wellness studios</li>
+                <li>Salons &amp; spas</li>
+                <li>Boutique retail</li>
+                <li>Hospitality</li>
+              </ul>
+            </div>
+            <div>
+              <p class="market__label">Languages</p>
+              <p class="market__note">English. Same method, same artefacts; briefings and the written report in English.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="market" id="thessaloniki" data-animate data-anim-delay="160">
+          <div class="market__head">
+            <span class="market__city">Greece</span>
+            <h3 class="market__country">Thessaloniki</h3>
+          </div>
+          <div class="market__grid">
+            <div>
+              <p class="market__label">Who we serve</p>
+              <ul class="sectorlist">
+                <li>Independent hotels</li>
+                <li>Clinics &amp; wellness studios</li>
+                <li>Salons &amp; spas</li>
+                <li>Boutique retail</li>
+                <li>Hospitality</li>
+              </ul>
+            </div>
+            <div>
+              <p class="market__label">Languages</p>
+              <p class="market__note">English and Ελληνικά. Our Greek base; fieldwork, the report and the presentation are available in Greek as well as English.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT =================
+         Merged in from the former contact.html, form and all. That page now
+         redirects here; the anchor #contact is the stable link target. -->
+    <section class="contact" id="contact">
+      <div data-animate>
+        <p class="eyebrow">Contact</p>
+        <h2>Tell us about your space.</h2>
+        <p class="lede">One conversation is usually enough to know whether a diagnostic visit makes sense. No obligation, and nothing to buy; the first step is always just a walk-through.</p>
+        <div class="cities">
+          <!-- Contact points by city. Confirm names and roles before publishing. -->
+          <div class="city"><span class="cc">UK</span><div><b>Reading</b> &nbsp;<span>[Contact, English]</span></div></div>
+          <div class="city"><span class="cc">UK</span><div><b>Milton Keynes</b> &nbsp;<span>[Contact, English]</span></div></div>
+          <div class="city"><span class="cc">GR</span><div><b>Thessaloniki</b> &nbsp;<span>[Contact, English · Ελληνικά]</span></div></div>
+        </div>
+        <p class="cf-note" style="margin-top:2rem">Prefer email? Write to <a data-book href="mailto:hello@sillage.example">hello@sillage.example</a>.</p>
+      </div>
+
+      <!-- Real, labelled form. No third-party handler and no cookies: by default
+           it opens the visitor's own email app (mailto). To use a hosted form
+           handler, set FORM_ENDPOINT below, and add a consent/DPA note first. -->
+      <form class="cform" id="contact-form" novalidate data-animate data-anim-delay="120">
+        <label class="cf-lab" for="cf-name">Your name</label>
+        <input class="cf-in" id="cf-name" name="name" type="text" autocomplete="name" placeholder="Your name" />
+
+        <label class="cf-lab" for="cf-biz">Business &amp; city</label>
+        <input class="cf-in" id="cf-biz" name="business" type="text" placeholder="Business name, city" />
+
+        <label class="cf-lab" for="cf-type">Type of space</label>
+        <select class="cf-in" id="cf-type" name="type">
+          <option value="" selected>Choose one…</option>
+          <option>Spa / wellness studio</option>
+          <option>Salon</option>
+          <option>Independent hotel</option>
+          <option>Clinic</option>
+          <option>Boutique retail</option>
+          <option>Hospitality</option>
+          <option>Other</option>
+        </select>
+
+        <label class="cf-lab" for="cf-msg">What does your space smell like today?</label>
+        <textarea class="cf-in" id="cf-msg" name="message" placeholder="Honestly, we have never chosen it…"></textarea>
+
+        <button class="btn btn--orange" type="submit" style="margin-top:1.4rem">Get an evaluation</button>
+        <p class="cf-note" id="cf-status" role="status" aria-live="polite">This opens your email app; nothing is stored here, no cookies, no tracking.</p>
+      </form>
     </section>
 
   </main>
@@ -191,13 +341,33 @@
     </div>
     <div class="foot__links">
       <a href="index.html">Home</a>
-      <a href="markets.html">Markets</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="about.html#markets">Where we work</a>
+      <a href="about.html#contact">Contact</a>
       <a href="privacy.html">Privacy</a>
     </div>
-    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage — fragrance-only. No cookies, no third-party tracking.</p>
+    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage · fragrance-only. No cookies, no third-party tracking.</p>
   </footer>
   <script src="booking.js"></script>
+  <script src="motion.js"></script>
+  <script>
+    // Contact form: default = open the visitor's email app (no third party, no cookies).
+    // To use a hosted handler instead, set FORM_ENDPOINT to its URL.
+    var FORM_ENDPOINT = "";            // e.g. "https://formhandler.example/…"
+    var CONTACT_EMAIL = "hello@sillage.example";
+    var form = document.getElementById("contact-form");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        if (FORM_ENDPOINT) { form.action = FORM_ENDPOINT; form.method = "post"; return; }
+        e.preventDefault();
+        var g = function (id) { var el = document.getElementById(id); return el ? el.value : ""; };
+        var body = "Name: " + g("cf-name") + "\nBusiness & city: " + g("cf-biz") +
+                   "\nType of space: " + g("cf-type") + "\n\n" + g("cf-msg");
+        window.location.href = "mailto:" + CONTACT_EMAIL +
+          "?subject=" + encodeURIComponent("Diagnostic enquiry") +
+          "&body=" + encodeURIComponent(body);
+      });
+    }
+  </script>
 </body>
 </html>
