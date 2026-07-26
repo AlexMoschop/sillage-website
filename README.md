@@ -19,7 +19,7 @@ editor, and preview it by double-clicking `index.html`.
 | `motion.js` | Scroll-reveal. Adds a class when an element scrolls into view; the animating is all in `styles.css`. |
 | `favicon.svg` | The browser-tab icon (the blotter mark). |
 | `og-image.png` | The picture shown when the site is shared on social media. |
-| `assets/img/team/` | Team photos (`portrait-1.jpg`, `portrait-3.jpg` are in; add `group.jpg`, `member-3.jpg`). |
+| `assets/img/team/` | Team photos. `group.jpg`, `headshot-curly.jpg` (Kevin), `presenting.jpg` (Prithvish), `headshot-gold-glasses.jpg` (Alexandros) are live. `portrait-1/2/3.jpg` are leftovers from the v3 mockup and are no longer referenced. |
 
 ---
 
@@ -49,18 +49,20 @@ editor, and preview it by double-clicking `index.html`.
 ### 3. Edit the words
 - Change text **between** the tags (e.g. the homepage headline lives inside `<h1>…</h1>`). Save, refresh.
 
-### 4. Add the team (About page)
-- **File:** `about.html`, the `TEAM CARDS` block. Replace `[Name]`, `[Title]`, `[City]`, `[Bio]`.
-  A good bio line = **market they lead + specialism + one human sentence.**
-- Photos go in `assets/img/team/` - `portrait-1.jpg` and `portrait-3.jpg` are already shown; add the
-  third consultant's photo as `member-3.jpg` and a group photo as `group.jpg` (4:5 for portraits,
-  3:2 for the group). Missing photos show a tasteful `[Photo]` tile, never a broken icon.
-- To add a person, copy the commented "CONSULTANT CARD TEMPLATE" `<article>`.
+### 4. Edit the team (About page)
+- **File:** `about.html`, the `TEAM CARDS` block. All three cards are filled: Kevin Kegel (Reading),
+  Prithvish Patil (Milton Keynes), Alexandros Moschopoulos (Thessaloniki), each with course, society
+  role, remit and languages.
+- ⚠️ Courses and society roles are **facts about real people**. They came from each founder's own
+  LinkedIn plus the owner's corrections (checked 26 July 2026). When a course finishes or a role
+  changes, update the card; don't let it go stale.
+- Photos go in `assets/img/team/` at 4:5 for portraits and 3:2 for the group. Missing photos show a
+  tasteful `[Photo]` tile, never a broken icon.
+- To add a person, copy a whole `<article class="card">` and keep the `data-anim-delay` steps 80ms apart.
 
 ### 5. Set the contact names
-- **File:** `about.html` (the `.cities` list in the Contact section) and the `about.html` team cards. Replace the
-  `[Contact - …]` / `[Name]` placeholders. Your mockup suggested Kevin (Reading), Prithvish
-  (Milton Keynes), Alex (Thessaloniki) - confirm before publishing.
+- **File:** `about.html`, the `.cities` list in the Contact section. Each city names its lead
+  consultant and must stay in step with the team cards above.
 
 ### 6. The contact form
 - By default the form **opens the visitor's own email app** (no third-party service, no cookies).
