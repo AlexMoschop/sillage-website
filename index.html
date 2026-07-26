@@ -107,10 +107,94 @@
          fabricated. To attribute a real quote instead, it must be genuine and
          correctly credited - see [Attribution - verify] in the ledger. -->
     <section class="section why">
-      <p class="eyebrow" data-animate>Why It Matters</p>
-      <h2 class="lede" data-animate data-anim-delay="60">Ambience is never neutral.</h2>
-      <blockquote class="why__quote" data-animate data-anim-delay="120">A room speaks before anyone in it says a word; scent is the first thing it says.</blockquote>
-      <p class="why__cite" data-animate data-anim-delay="180">The premise of every Sillage visit</p>
+      <div class="why__grid">
+        <div>
+          <p class="eyebrow" data-animate>Why It Matters</p>
+          <h2 class="lede" data-animate data-anim-delay="60">Ambience is never neutral.</h2>
+          <blockquote class="why__quote" data-animate data-anim-delay="120">A room speaks before anyone in it says a word; scent is the first thing it says.</blockquote>
+          <p class="why__cite" data-animate data-anim-delay="180">The premise of every Sillage visit</p>
+        </div>
+
+        <!-- Cold-air nebuliser, drawn in the survey language: forest ink for the
+             object, blueprint blue for interior detail and leaders, terracotta for
+             anything moving. SVG line work, which is the one place terracotta is
+             allowed. Callouts state what a part is for, not what it is called. -->
+        <figure class="diffuser" data-animate data-anim-delay="240">
+          <svg viewBox="0 0 400 360" role="img" aria-label="Technical drawing of a freestanding cold-air nebulising diffuser, showing the atomising nozzle and dry plume, the timer, the micro compressor, the neat oil reservoir and the weighted base.">
+            <defs>
+              <pattern id="dgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M20 0V20M0 20H20" stroke="#5E8B93" stroke-width=".4" opacity=".22" fill="none"/>
+              </pattern>
+              <marker id="dar" markerWidth="6" markerHeight="6" refX="4.6" refY="3" orient="auto">
+                <path d="M0,0 L5,3 L0,6 Z" fill="#B85C2B"/>
+              </marker>
+            </defs>
+            <rect width="400" height="360" fill="url(#dgrid)"/>
+
+            <!-- dry plume -->
+            <g stroke="#B85C2B" stroke-width="1.4" fill="none" stroke-linecap="round" marker-end="url(#dar)">
+              <path d="M205 62 C205 44, 190 34, 174 24"/>
+              <path d="M205 60 C205 40, 205 30, 205 18"/>
+              <path d="M205 62 C205 44, 220 34, 236 24"/>
+            </g>
+            <g stroke="#B85C2B" stroke-width=".9" fill="none" stroke-dasharray="2 4" opacity=".6">
+              <circle cx="205" cy="66" r="14"/><circle cx="205" cy="66" r="24"/>
+            </g>
+
+            <!-- body -->
+            <g stroke="#1E3328" stroke-width="1.7" fill="none" stroke-linejoin="round">
+              <rect x="185" y="70" width="40" height="19" rx="4"/>
+              <circle cx="205" cy="68" r="3"/>
+              <rect x="175" y="89" width="60" height="196" rx="6"/>
+              <rect x="163" y="285" width="84" height="16" rx="3"/>
+            </g>
+            <!-- interior -->
+            <g stroke="#5E8B93" stroke-width="1" fill="none">
+              <circle cx="205" cy="117" r="9"/>
+              <path d="M205 117 L205 110"/>
+              <rect x="185" y="144" width="40" height="62" rx="2"/>
+              <circle cx="205" cy="175" r="11"/>
+              <rect x="183" y="216" width="44" height="62" rx="3"/>
+              <path d="M183 233 C192 229, 200 237, 209 233 C217 229, 223 236, 227 233"/>
+            </g>
+            <circle cx="205" cy="175" r="2.4" fill="#1E3328"/>
+            <g stroke="#5E8B93" stroke-width=".55" fill="none" opacity=".55">
+              <path d="M185 243h40M185 251h40M185 259h40M185 267h40"/>
+            </g>
+
+            <!-- leaders -->
+            <g stroke="#5E8B93" stroke-width=".7" fill="none">
+              <path d="M150 54 L172 54 L182 72"/>
+              <path d="M150 120 L188 120"/>
+              <path d="M150 178 L186 178"/>
+              <path d="M262 232 L236 232 L227 236"/>
+              <path d="M262 292 L250 292 L247 294"/>
+            </g>
+            <g fill="#1E3328">
+              <circle cx="182" cy="72" r="1.8"/><circle cx="196" cy="120" r="1.8"/>
+              <circle cx="196" cy="178" r="1.8"/><circle cx="227" cy="236" r="1.8"/>
+              <circle cx="247" cy="294" r="1.8"/>
+            </g>
+
+            <g font-family="ui-monospace,Menlo,monospace" fill="#1E3328" font-size="8" letter-spacing="1.1">
+              <text x="146" y="46" text-anchor="end">ATOMISING NOZZLE</text>
+              <text x="146" y="112" text-anchor="end">TIMER AND INTENSITY</text>
+              <text x="146" y="170" text-anchor="end">MICRO COMPRESSOR</text>
+              <text x="266" y="226">NEAT OIL RESERVOIR</text>
+              <text x="266" y="288">WEIGHTED BASE</text>
+            </g>
+            <g font-family="ui-monospace,Menlo,monospace" fill="#5A6B60" font-size="6.9" letter-spacing=".3">
+              <text x="146" y="56" text-anchor="end"><tspan x="146">Breaks neat oil into a dry micro-mist so</tspan><tspan x="146" dy="9">scent hangs in the air instead of settling</tspan></text>
+              <text x="146" y="122" text-anchor="end"><tspan x="146">Runs to opening hours, not constantly;</tspan><tspan x="146" dy="9">noses stop registering steady output</tspan></text>
+              <text x="146" y="180" text-anchor="end"><tspan x="146">Quiet enough for a treatment room without</tspan><tspan x="146" dy="9">competing with the music</tspan></text>
+              <text x="266" y="236"><tspan x="266">No water, no dilution; the scent</tspan><tspan x="266" dy="9">arrives exactly as prescribed</tspan></text>
+              <text x="266" y="298"><tspan x="266">Freestanding. Nothing is fixed to</tspan><tspan x="266" dy="9">the building; it leaves in one lift</tspan></text>
+            </g>
+            <text x="20" y="346" font-family="ui-monospace,Menlo,monospace" font-size="7.2" letter-spacing="1.5" fill="#5E8B93">SILLAGE &#183; DIFFUSION UNIT 01 &#183; COLD-AIR NEBULISER</text>
+          </svg>
+          <figcaption>Diffusion unit 01, cold-air nebuliser. Freestanding and plug-in, so a trial leaves no mark on the building.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- ================= ABOUT OUR METHOD ================= -->
@@ -205,14 +289,43 @@
         <!-- CLIMATE -->
         <div class="rcard" data-animate data-anim-delay="180">
           <span class="tag">Climate</span>
-          <h3>Comfort has a price attached</h3>
-          <p>Comfortably warm rooms raised product valuation by roughly 10% over cool ones, while discomfort at either extreme pushes decisions off course. We observe climate and refer; we don't prescribe it.</p>
-          <div class="thermo">
-            <div><span class="tv">&minus;</span><div class="tcol" style="height:38px; background:rgba(94,139,147,.55)"></div><span class="tl">Too cold, discomfort</span></div>
-            <div><span class="tv">+10.4%</span><div class="tcol" style="height:92px; background:var(--sage)"></div><span class="tl">Comfortably warm</span></div>
-            <div><span class="tv">&minus;</span><div class="tcol" style="height:34px; background:rgba(30,51,40,.35)"></div><span class="tl">Too hot, discomfort</span></div>
+          <h3>Warmth carries a premium. Cold is the baseline.</h3>
+          <p>In a controlled test, shoppers in a room set roughly 4&deg;C above a comfortable 22&deg;C were willing to pay 10.4% more across a basket of everyday products than shoppers in a room 4&deg;C below it. Both rooms were rated equally pleasant, so this is not a comfort effect; it is warmth itself doing the work.</p>
+
+          <div class="cbars">
+            <div class="cbar">
+              <span class="cl"><b>Cool room</b>approx. 18&deg;C</span>
+              <div class="track"><div class="fill" style="width:100%; background:rgba(30,51,40,.14)"></div></div>
+              <span class="cv">baseline</span>
+            </div>
+            <div class="cbar">
+              <span class="cl"><b>Warm room</b>approx. 26&deg;C</span>
+              <div class="track"><div class="fill" style="width:64%; background:var(--sage)"></div></div>
+              <span class="cv">+10.4%</span>
+            </div>
           </div>
-          <p class="src">Zwebner, Lee &amp; Goldenberg, 2013. Journal of Consumer Psychology, 24(2)</p>
+
+          <!-- Purchase intention against daily temperature. The solid line is the
+               observed range; the dotted tail marks where the data stops. -->
+          <figure class="curve">
+            <svg viewBox="0 0 340 150" role="img" aria-label="Purchase intention rises with daily temperature and the rate of gain flattens as temperature climbs. The observed data ends at 32 degrees Celsius; beyond that the line is dotted to show no data.">
+              <text x="12" y="16" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#3A5544">PURCHASE INTENTION</text>
+              <g stroke="#5E8B93" stroke-width=".7" opacity=".5" fill="none">
+                <path d="M14 118 H326"/><path d="M14 26 V118"/>
+              </g>
+              <path d="M18 112 C74 108, 132 84, 180 60 C214 44, 248 36, 278 33"
+                    fill="none" stroke="#1E3328" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M278 33 H320" fill="none" stroke="#1E3328" stroke-width="1.5"
+                    stroke-dasharray="3 4" opacity=".55"/>
+              <path d="M278 33 V118" stroke="#5E8B93" stroke-width=".8" stroke-dasharray="2 3" fill="none" opacity=".8"/>
+              <text x="18" y="132" font-family="ui-monospace,Menlo,monospace" font-size="7.6" letter-spacing="1" fill="#5A6B60">6&deg;C</text>
+              <text x="326" y="132" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="7.6" letter-spacing="1" fill="#5A6B60">32&deg;C  no data</text>
+            </svg>
+          </figure>
+
+          <p>Across 6.3 million purchase clicks over 24 months, purchase intention rose with daily temperature, and the rate of gain flattened as temperatures climbed. The data stops at 32&deg;C, so whether the curve levels off or turns down beyond that is unknown.</p>
+          <p class="src">Zwebner, Lee and Goldenberg, 2013. Journal of Consumer Psychology, 24(2), 251 to 259</p>
+          <p class="rcaveat">Room comparison drawn from 98 participants across 11 products; nine of the eleven moved upward. Treat as directional evidence, not a guaranteed return.</p>
         </div>
       </div>
       <p class="rnote">This is published research on how sensory conditions affect the way people experience and spend in a space, not a promise that any single intervention will produce a specific result in yours. Doing it badly is worse than doing nothing; the value is in choosing well.</p>

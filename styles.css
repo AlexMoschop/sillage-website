@@ -248,6 +248,33 @@ textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible {
   margin-top: 1.1rem; font-family: var(--mono); font-size: 0.72rem;
   letter-spacing: 0.06em; color: var(--charcoal);
 }
+/* Epigraph sits beside the diffuser drawing */
+.why__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 4vw, 3.25rem); align-items: center;
+}
+.why__grid > * { min-width: 0; }
+.diffuser { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem 1rem 0.6rem; }
+.diffuser svg { width: 100%; height: auto; }
+.diffuser figcaption {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em;
+  color: var(--forest-mid); padding: 0.7rem 0.2rem 0.4rem; line-height: 1.55;
+}
+@media (max-width: 900px) { .why__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ============================================================
+   CLIMATE CARD - room comparison bars + purchase-intention curve
+   ============================================================ */
+.cbars { margin-top: 1.2rem; }
+.cbar { display: grid; grid-template-columns: minmax(0, 108px) minmax(0, 1fr) 62px; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; }
+.cbar .cl { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.05em; color: rgba(42, 42, 40, 0.65); line-height: 1.4; }
+.cbar .cl b { display: block; font-weight: 500; color: var(--forest-mid); }
+.cbar .track { height: 20px; background: rgba(30, 51, 40, 0.08); border-radius: 2px; position: relative; overflow: hidden; }
+.cbar .fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 2px; }
+.cbar .cv { font-family: var(--display); font-size: 0.95rem; color: var(--charcoal); text-align: right; }
+.curve { margin-top: 1.4rem; }
+.curve svg { width: 100%; height: auto; }
+.rcaveat { font-size: 0.78rem; color: rgba(42, 42, 40, 0.68); margin-top: 0.9rem; line-height: 1.55; }
 
 /* ============================================================
    METHOD (ivory ground - F2/F6; was a full terracotta ground)
