@@ -78,12 +78,42 @@ editor, and preview it by double-clicking `index.html`.
 
 ---
 
-## Publishing (Netlify drag-and-drop - no tools)
-1. Sign up free at **https://app.netlify.com/signup**.
-2. Open **Sites**, then **drag the whole `sillage-website` folder** onto the drop zone. You get a live URL.
-3. **Re-deploy after an edit:** save your file, go to your site's **Deploys** tab, drag the folder again.
+## Publishing
 
-*(This repo is also on GitHub Pages - pushing to `master` auto-deploys in ~1 minute.)*
+The site is live on **two** hosts, which serve identical content. Either one can carry the
+site alone, so if one breaks the other is the fallback.
+
+| Host | URL | How it updates |
+|------|-----|----------------|
+| GitHub Pages | https://alexmoschop.github.io/sillage-website/ | Automatic, about a minute after you push to `master`. |
+| Hostinger | https://sillage.moschopoulos.com | One command, see below. |
+
+### To publish a change
+1. Save your edit, then commit and push:
+   ```
+   git add -A && git commit -m "describe your change" && git push
+   ```
+   GitHub Pages picks it up on its own.
+2. Then update Hostinger:
+   ```
+   bash ~/.claude/skills/sillage-deploy/deploy.sh --push
+   ```
+   That builds the upload straight from `master`, sends it, and checks every page and image
+   arrived intact. Run it with no arguments first if you want to see what it would send
+   without sending anything.
+
+### Two rules that matter
+- ⚠️ **Never upload this folder by dragging it onto a host, and never edit files in
+  Hostinger's File Manager.** Dragging the folder publishes `context.md` (private working
+  notes) and the whole `.git` history to the open internet. Editing on the server makes the
+  two copies disagree, and then neither one is the real version. `master` is the only source
+  of truth, and publishing always goes one way, from `master` out to the hosts.
+- The live Hostinger copy also carries a `robots.txt` and an `.htaccess` that are **not** in
+  this repo, on purpose. They keep the site out of search results while the booking address
+  and privacy policy are still unfinished. The deploy command adds them for you every time.
+
+*(An older draft sits in a separate `sillage-site` folder. It is not this project. Do not
+publish it.)*
 
 ---
 
