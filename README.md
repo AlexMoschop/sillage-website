@@ -1,21 +1,29 @@
 # Sillage - website
 
-A small marketing site for the Sillage sensory-identity consultancy: **Home, Markets, About,
-Contact** and a **Privacy** page. It is **plain HTML and hand-written CSS** with a little vanilla
-JavaScript - no framework, no build step, no npm. You edit it by opening a file in any text
-editor, and preview it by double-clicking `index.html`.
+A small marketing site for the Sillage sensory-identity consultancy: **Home**, **About**
+(which carries the team, the method, the scope statement, the markets and the enquiry form)
+and a **Privacy** page, plus a **404** page and three **venue** pages that are built but not
+yet published. It is **plain HTML and hand-written CSS** with a little vanilla JavaScript,
+and one small PHP file for the contact form. No framework, no build step, no npm.
+
+**v7 "Ambience" rebuilt this site against a written build specification.** If anything in this
+README disagrees with `styles.css`, the comment block at the top of `styles.css` wins: it is
+the current statement of the colour, type and layout rules.
 
 ## Files
 
 | File | What it is |
 |------|------------|
-| `index.html` | Homepage - hero, "why it matters", 5-step method, research, selected work. |
-| `about.html` | The team, how we operate, what we've done, **where we work**, and **contact + enquiry form**. Markets and Contact were merged in here in v4. |
+| `index.html` | Homepage - hero, the three ambience rows with their evidence expanders, the interplay band, venues, and a testimonials block that is built but switched off. |
+| `about.html` | The team, the five-stage method, the three artefacts, the **scope statement**, the markets, and the **enquiry form**. Markets and Contact merged in here in v4; the method moved here in v7. |
 | `markets.html` | Redirect stub only. Sends visitors to `about.html#markets`; kept so old links still work. |
 | `contact.html` | Redirect stub only. Sends visitors to `about.html#contact`; kept so old links still work. |
 | `privacy.html` | Privacy policy (required - this is a live UK/EU business). |
 | `styles.css` | All the styling. The colour palette lives at the very top. |
-| `booking.js` | **One line** that sets every "Book a visit" button - see edit #1. |
+| `ui.js` | The evidence expanders, moving focus to the first form field, and the contact form validation and submit. Replaced `booking.js`, deleted in v7. |
+| `contact.php` | The contact form server endpoint. **The only server-side file on the site.** See edit #1. |
+| `404.html` | Styled "page not found", links back to the homepage. |
+| `venues/` | Three venue pages, **built but not published**. See edit #7. |
 | `motion.js` | Scroll-reveal. Adds a class when an element scrolls into view; the animating is all in `styles.css`. |
 | `favicon.svg` | The browser-tab icon (the blotter mark). |
 | `og-image.png` | The picture shown when the site is shared on social media. |
@@ -23,28 +31,56 @@ editor, and preview it by double-clicking `index.html`.
 
 ---
 
-## How to preview (no tools needed)
-1. Open the `sillage-website` folder and **double-click `index.html`.** It opens in your browser.
-2. Edit a file, **save**, then **refresh** the browser to see the change.
+## How to preview
+
+Double-clicking `index.html` mostly works, but **serve it over HTTP instead**. From this folder:
+
+```
+python -m http.server 8731
+```
+
+then open `http://localhost:8731`. Paths and the form behave differently on `file://`.
+`contact.php` will not run under that server, which is fine: you are then testing the
+fallback path that the GitHub Pages copy also takes.
 
 ---
 
 ## Common edits - exact file & line
 
-### 1. Change the booking link (do this before launch)
-- **File:** `booking.js`, first line: `var BOOKING_URL = "mailto:hello@sillage.example?subject=Diagnostic%20visit";`
-- Replace `hello@sillage.example` with your real **non-personal, brand-domain** address, **or**
-  paste a booking-form link in place of the whole `mailto:…` string.
-- This is the **single place** - every "Book a visit" / "Get an evaluation" button on every page updates.
+### 1. The contact form and where it sends
+- Every "Get an evaluation" button is now a plain link to `about.html#contact`. No script
+  rewrites them any more; `booking.js` was deleted in v7.
+- The form posts to **`contact.php`**, which needs a config file **outside the web root**
+  before it can send anything. Exact steps are in the comment at the top of `contact.php`.
+  In short: create `~/sillage-private/config.php` on the Hostinger account with the
+  destination address, a from-address, an encryption key and two directory paths, `chmod 600`.
+- **Until that config exists the form cannot deliver.** It fails safely: the visitor keeps
+  everything they typed and is shown the email address instead. The same happens on the
+  GitHub Pages copy, which cannot run PHP at all.
+- The displayed address is `info@seeyazh.com`. To change it, search every file for that
+  string: it is in the footer of every page, the form fallback, and the privacy policy.
+- The `from` address in the config must be a **real mailbox on the sending domain**, or SPF
+  and DMARC will drop the mail silently.
+- WARNING: **do not add a second PHP file, reCAPTCHA, or a hosted form service** without
+  changing the privacy sentence under the submit button first. It promises no third-party
+  sharing and no cookies, and it has to stay true.
 
 ### 2. Change a colour
-- **File:** `styles.css`, the `:root { … }` block at the top - the **single source of truth** for colour.
-- ⚠️ Three rules to keep (v4):
-  1. **`--terracotta #EE9560` is SVG stroke/fill only.** It fails AA as text.
-  2. **`--terracotta-deep #B85C2B` is allowed on exactly one piece of type**, the wordmark slogan.
-     No terracotta buttons, grounds, eyebrows or bullets; that was removed in v4.
-  3. **Grounds are forest (hero + footer) or ivory `#FBF8F1`.** Section eyebrows are `--forest`,
-     Title Case, never uppercased.
+- **File:** `styles.css`, the `:root` block, and read the comment above it first. That
+  comment lists every colour pair on the site with its **measured** contrast ratio.
+- Rules to keep (v7; these replace the v4 rules that used to be listed here):
+  1. **Do not add a colour that is not in `:root`.**
+  2. **`--clay-bright #EE9560`, `--sage` and `--plum` are fills.** They fail AA as text on a
+     light ground. `--clay-bright` is text in exactly **two** places sitewide, both on forest:
+     the footer slogan, and the word "agreement" in the interplay statement.
+  3. **`--clay` is `#A85526`.** The specification named `#B4602C`; measured, that is 4.26:1 on
+     ivory and fails AA. Never put `--clay` or `--forest-soft` on a mineral panel as text.
+  4. **Grounds are forest or ivory.** `--white` is a background for the header and cards only.
+     Never pure white or pure black as a type colour.
+  5. **Section eyebrows are sans and UPPERCASE** (`--body`, 12.5px, weight 600, `--forest`,
+     opacity .75). This reversed the v4 "mono, Title Case, never uppercase" rule.
+  6. **Headings are sentence case with a full stop** where they are statements. Never title-case.
+- If you change a colour that carries text, **re-measure it**. Do not assume.
 
 ### 3. Edit the words
 - Change text **between** the tags (e.g. the homepage headline lives inside `<h1>…</h1>`). Save, refresh.
@@ -64,14 +100,23 @@ editor, and preview it by double-clicking `index.html`.
 - **File:** `about.html`, the `.cities` list in the Contact section. Each city names its lead
   consultant and must stay in step with the team cards above.
 
-### 6. The contact form
-- By default the form **opens the visitor's own email app** (no third-party service, no cookies).
-- To use a hosted form handler instead, set `FORM_ENDPOINT` in the `<script>` at the bottom of
-  `about.html` to its URL - and add a consent/DPA note to the privacy policy first.
+### 6. The evidence expanders (homepage)
+- **File:** `index.html`, the three `.row3` blocks. Each has a `<button class="see">` and a
+  panel. Figures and citations are shown **verbatim**. Never paraphrase a statistic, guess a
+  date, or add a figure that is not in the build specification.
+- **The climate chart has two bars, not three.** An earlier version added a hot condition and
+  misrepresented the source. Do not add it back.
+- **Do not turn these into an accordion.** More than one may be open at once; that is the point.
+- The Music row has **no image on purpose**, and stays that way until a real photograph exists.
+  Do not put a stock image there.
 
-### 7. Add research (homepage)
-- **File:** `index.html`, `SUPPORTING RESEARCH`. Figures and citations are shown **verbatim** from
-  sources the owner supplied. Never paraphrase a statistic or guess a date; add the full citation.
+### 7. Venue pages (built, not published)
+- **Files:** `venues/wellness/`, `venues/personal-care/`, `venues/business-premises/`.
+- They are **deliberately empty of research**, because a thin venue page is worse than no venue
+  page. Every content block is a labelled "pending" box. **Do not fill them with an invented
+  statistic, percentage or citation.**
+- The homepage venue cards are therefore **not links yet**. Each card carries a comment saying
+  exactly what to change to publish it, once the research lands.
 
 ### 8. Fill in the privacy policy
 - **File:** `privacy.html` - replace every `[BRACKETED]` field before launch.
@@ -119,18 +164,30 @@ publish it.)*
 
 ## Notes for whoever maintains this
 
-- **Design language:** the site's signature is the blueprint "airflow & diffusion survey" drawing
-  (paper sheet, forest walls, terracotta airflow arrows, dotted sage diffusion rings). It's inline
-  SVG - no images, no libraries. Reuse that language for any new illustration.
-- **Fonts:** the display face is *Source Serif 4, upright*. It is **not** shipped as a font file; the
-  stack falls back to Georgia (an upright serif on Windows/macOS/Android) so it looks deliberate. To
-  match exactly, self-host Source Serif 4 (SIL OFL): put the `.woff2` in `assets/fonts/` and add an
-  `@font-face` rule naming `"Source Serif 4"` at the top of `styles.css` - it'll be picked up automatically.
+- **Design language:** the signature is the blueprint "airflow and diffusion survey" drawing
+  (paper sheet, forest walls, clay airflow arrows, dotted sage diffusion rings). It is inline
+  SVG, no images and no libraries. In v7 it moved off the homepage hero, which is now a
+  photograph, onto the venue template where it is the venue plan. Reuse that language for any
+  new illustration, and keep blueprint drawings as inline SVG rather than raster.
+- **Fonts:** on Apple hardware the display face resolves natively to *New York* and the body to
+  *SF Pro Text*, which Apple licences for use on Apple platforms. Those faces are **deliberately
+  not self-hosted**: that licence does not cover redistributing them as webfonts to arbitrary
+  browsers, and the build specification was wrong to ask for it. Everywhere else the stack
+  currently falls back to Georgia. To close that gap, self-host **Source Serif 4 (SIL OFL)**:
+  put the `.woff2` files in `assets/fonts/` and uncomment the `@font-face` block near the top
+  of `styles.css`. **Never add Google Fonts**; it would break the no-third-party promise the
+  contact form makes.
 - **No cookies / no tracking.** If you add analytics, a booking embed, CDN fonts, or a hosted form
   handler, you must add a cookie/consent notice and a data-processing agreement, and update `privacy.html`.
-- **Accessibility:** semantic HTML, heading order, alt text, visible focus, keyboard-navigable nav and
-  a skip link are in place; target is WCAG AA. **Lighthouse was not run** in this build - run it in
-  Chrome DevTools before launch rather than assuming a score.
+- **Accessibility:** semantic HTML, one `<h1>` per page, heading order, alt text, visible focus,
+  keyboard-operable expanders, form errors that are never colour alone and are wired with
+  `aria-describedby`, and a skip link. Target is WCAG 2.1 AA. In v7 all 28 shipped colour pairs
+  were measured in the browser against their real composited backgrounds; all 28 pass.
+- **Responsive:** exactly **one** breakpoint, 900px. Below it the header wraps and all three nav
+  items stay visible. **There is no hamburger**; `#nav-toggle` was deleted in v7. Test at
+  375, 768, 1024 and 1440.
+- **Lighthouse has still never been run.** Run `npx lighthouse http://localhost:8731 --view`
+  against a local server, or use Chrome DevTools, rather than assuming a score.
 
 ---
 
