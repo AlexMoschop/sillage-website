@@ -35,25 +35,36 @@
  * address instead, which is the required degraded path (spec 6.2).
  *
  * ------------------------------------------------------------
- * ONE-TIME SERVER SETUP, outside the web root:
+ * SERVER SETUP. Done on 2026-07-31; this is the record, not a to-do.
  *
- *   mkdir -p ~/sillage-private/submissions
- *   chmod 700 ~/sillage-private ~/sillage-private/submissions
- *   php -r 'echo bin2hex(random_bytes(32)), "\n";'   # the key
+ * The config lives ONE DIRECTORY ABOVE THE WEB ROOT, because that is
+ * what dirname(__DIR__) resolves to below. It is NOT in $HOME. Getting
+ * that wrong is silent: the endpoint just answers "not_configured"
+ * forever. On this account the real path is
  *
- * Then create ~/sillage-private/config.php containing:
+ *   ~/domains/sillage.moschopoulos.com/sillage-private/
+ *
+ * while the web root is    ~/domains/sillage.moschopoulos.com/public_html/
+ *
+ *   PRIV=~/domains/sillage.moschopoulos.com/sillage-private
+ *   mkdir -p $PRIV/submissions $PRIV/ratelimit
+ *   chmod 700 $PRIV $PRIV/submissions $PRIV/ratelimit
+ *   php -r 'echo bin2hex(random_bytes(32)), "\n";'   # generate ON the server
+ *
+ * Then create $PRIV/config.php containing:
  *
  *   <?php return array(
  *     'to'      => 'info@seeyazh.com',
- *     'from'    => 'website@seeyazh.com',   // must be a real mailbox
- *                                           // on the sending domain,
- *                                           // or SPF and DMARC drop it
+ *     'from'    => 'website@sillage.moschopoulos.com',  // must be a real
+ *              // mailbox on the domain the mail is SENT from, or SPF and
+ *              // DMARC drop it. Not the seeyazh.com address: the site is
+ *              // served from sillage.moschopoulos.com today.
  *     'key_hex' => '<the 64-character hex string printed above>',
- *     'store'   => '/home/<user>/sillage-private/submissions',
- *     'rate'    => '/home/<user>/sillage-private/ratelimit',
+ *     'store'   => '<absolute path>/submissions',
+ *     'rate'    => '<absolute path>/ratelimit',
  *   );
  *
- * chmod 600 ~/sillage-private/config.php
+ * chmod 600 $PRIV/config.php
  *
  * To read a stored submission back:
  *   openssl_decrypt(base64 ciphertext, 'aes-256-gcm', hex2bin(key),
