@@ -56,7 +56,8 @@
 
    TYPE. Eyebrows are sans, uppercase: --body 12.5px, weight 600,
    letter-spacing .04em, opacity .75, colour --forest. This
-   SUPERSEDES the v4 decision recorded in context.md, which made
+   SUPERSEDES the v4 decision recorded in the private working notes,
+   which made
    them mono and Title Case. Headings are sentence case with a
    full stop where they are statements. Never title-case a heading.
 
@@ -188,7 +189,7 @@ h1, h2, h3, h4 {
 }
 
 /* Section eyebrow. v7: sans, uppercase. Supersedes the v4 mono Title
-   Case rule recorded in context.md. Applies to every equivalent
+   Case rule in the private working notes. Applies to every equivalent
    label sitewide. */
 .eyebrow {
   font-family: var(--body);
