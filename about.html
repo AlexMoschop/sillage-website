@@ -10,353 +10,435 @@
       if (t && t.tagName === "IMG") t.classList.add("img--failed");
     }, true);
   </script>
-  <title>About Sillage</title>
-  <meta name="description" content="Who Sillage is, how we work, where we work, and how to reach us. Fixed scope, fixed price, fragrance-only." />
-  <meta name="robots" content="index,follow" />
+
+  <title>About Sillage &middot; three noses, one method</title>
+  <meta name="description" content="Who Sillage is, the five-stage method, exactly what is and is not inside our scope, where we work, and how to ask for an evaluation." />
+  <link rel="canonical" href="https://sillage.moschopoulos.com/about.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Sillage &middot; three noses, one method" />
+  <meta property="og:description" content="Three consultants across the United Kingdom, Germany and Greece, running one method." />
+  <meta property="og:image" content="og-image.png" />
+  <meta property="og:url" content="https://sillage.moschopoulos.com/about.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Sillage",
+    "description": "Sensory identity consultancy for boutique wellness and hospitality businesses. Advises on scent, aligns music to it, and trials freestanding climate and diffusion equipment.",
+    "url": "https://sillage.moschopoulos.com/about.html",
+    "areaServed": [
+      { "@type": "City", "name": "Reading" },
+      { "@type": "City", "name": "Milton Keynes" },
+      { "@type": "City", "name": "London" },
+      { "@type": "City", "name": "Hannover" },
+      { "@type": "City", "name": "Thessaloniki" }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "info@seeyazh.com",
+      "availableLanguage": ["English", "German", "Greek"]
+    }
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="hdr">
-    <a class="wordmark" href="index.html">Sillage<span class="slogan">What your space leaves behind</span></a>
-    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
-    <label class="nav-toggle-label" for="nav-toggle">Menu</label>
-    <nav aria-label="Primary">
-      <a class="navbtn" href="index.html">Home</a>
-      <a class="navbtn" href="about.html" aria-current="page">About</a>
-      <a class="bookbtn" data-book href="mailto:hello@sillage.example">Book a visit</a>
-    </nav>
+    <div class="hdr__inner">
+      <a class="wordmark" href="index.html">Sillage<span class="phon">SEE-YAHZH</span></a>
+      <nav aria-label="Primary">
+        <a class="navbtn" href="index.html">Home</a>
+        <a class="navbtn" href="about.html" aria-current="page">About</a>
+        <a class="bookbtn" href="about.html#contact">Get an evaluation</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
 
-    <!-- Hero strip -->
-    <section class="section section--tight about-hero">
-      <p class="eyebrow on-dark" data-animate>About Sillage</p>
-      <h1 data-animate data-anim-delay="60">Three noses, one method.</h1>
-      <p class="lede" data-animate data-anim-delay="120">A small team of sensory-identity consultants working across two countries, running the same fixed-scope diagnostic wherever the space is.</p>
+    <!-- ================= HERO =================
+         Forest band, H1, short standfirst (spec 7). The phonetic stays
+         in the header lockup and is not repeated here.
+
+         COPY NOTE: section 11 supplies no About hero copy. The standfirst
+         below is assembled only from facts the specification already
+         states: the description in section 0 and the markets in section 7.
+         Nothing about the founders or the founding story is written here;
+         that copy is Kevin's to supply. -->
+    <section class="abouthero on-forest">
+      <div class="wrap" data-animate>
+        <p class="eyebrow on-dark">Who we are</p>
+        <h1>About Sillage</h1>
+        <p class="stand">A sensory identity consultancy for boutique wellness and hospitality businesses, working in the United Kingdom, Germany and Greece.</p>
+      </div>
     </section>
 
-    <!-- The team -->
-    <section class="section" id="team">
-      <p class="eyebrow" data-animate>The Team</p>
-      <h2 class="lede" data-animate data-anim-delay="60">The people behind the nose.</h2>
+    <!-- ================= SECTION HEADING =================
+         "Three noses, one method." with one or two words in --clay, not
+         the whole line; the spec suggests colouring "one method".
 
-      <figure data-animate data-anim-delay="120" class="team__group media media--3-2 media--duotone">
-        <span class="media__ph" aria-hidden="true">[Photo]</span>
-        <img src="assets/img/team/group.jpg" alt="The three Sillage founders in a working session, recording notes around a table." loading="lazy" width="1320" height="2868" />
-      </figure>
-      <p class="media-cap">The founding team, mid-session</p>
+         This sits on a LIGHT ground on purpose. --clay is the text-safe
+         warm accent at 4.96:1 on ivory; on the forest band above it
+         would be dark on dark. --clay-bright is not an option either:
+         it is a fill colour with exactly two sanctioned text uses, both
+         elsewhere. So the heading sits here, immediately above the team
+         block, rather than inside the hero. -->
+    <section class="sec sec--light">
+      <div class="wrap">
+        <h2 data-animate>Three noses, <span class="hl">one method</span>.</h2>
+      </div>
+    </section>
 
-      <!-- ===========================================================
-           TEAM CARDS. Names, courses and current roles below are taken from
-           each founder's own LinkedIn profile (checked 26 July 2026). Nothing
-           here is inferred: if a detail is not on the profile, it is not on
-           the page. Update this block when a course finishes or a role changes.
-           Portraits are 4:5, in assets/img/team/.
-           =========================================================== -->
-      <div class="team__grid">
+    <!-- ================= TEAM =================
+         The forest ground extends to ENCLOSE the group photograph. The
+         photo sits inside the green section, not on ivory below it
+         (spec 7). The duotone treatment was tuned for ivory, so its
+         blend opacity was reduced for this ground.
 
-        <article class="card" data-animate data-anim-delay="0">
-          <figure class="media media--4-5 media--duotone">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <img src="assets/img/team/headshot-curly.jpg" alt="Kevin Kegel." loading="lazy" width="2048" height="1942" />
+         The founding-story paragraph beneath the photograph is copy
+         Kevin is supplying (spec 7, 12.5). It has not arrived, so the
+         existing caption stands and the item is logged in the ledger.
+         Do not write it here.
+
+         Every biographical detail below comes from each founder's own
+         LinkedIn plus the owner's corrections, checked 26 July 2026.
+         Nothing is inferred. Do not invent a credential, a course or a
+         role for a real person. -->
+    <section class="team" id="team">
+      <div class="wrap">
+        <figure class="team__group media media--3-2 media--duotone" data-animate>
+          <span class="media__ph" aria-hidden="true">[Photo]</span>
+          <img src="assets/img/team/group.jpg" width="1320" height="2868" loading="lazy"
+               alt="The three Sillage founders in a working session, recording notes around a table." />
+        </figure>
+        <p class="team__cap">The founding team, mid-session</p>
+
+        <h3 class="sub-h" data-animate>The team.</h3>
+        <div class="team__grid">
+          <article class="tperson" data-animate>
+            <p class="nm">Kevin Kegel</p>
+            <p class="city">READING &middot; UNITED KINGDOM</p>
+            <p class="brings">Owns the published research the method is built on, so every recommendation traces back to a source a client can check.</p>
+            <p class="langs">English &middot; German &middot; French &middot; Amharic</p>
+          </article>
+
+          <article class="tperson" data-animate data-anim-delay="80">
+            <p class="nm">Prithvish Patil</p>
+            <p class="city">MILTON KEYNES &middot; UNITED KINGDOM</p>
+            <p class="brings">Runs the measurement side, from the baseline reading to the return visit, which is what makes a claim checkable.</p>
+            <p class="langs">English &middot; German &middot; Marathi</p>
+          </article>
+
+          <article class="tperson" data-animate data-anim-delay="160">
+            <p class="nm">Alexandros Moschopoulos</p>
+            <p class="city">THESSALONIKI &middot; GREECE</p>
+            <p class="brings">Leads the Greek market and the commercial side of the business, from branding through to supply chain.</p>
+            <p class="langs">English &middot; Ελληνικά &middot; German</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE METHOD =================
+         Moved here from the homepage (spec 7). Presented as the
+         vertical timeline already designed: stage number in mono,
+         stage title in display, description in body text, connected
+         by a vertical rule with forest nodes. -->
+    <section class="sec sec--light" id="method">
+      <div class="wrap">
+        <p class="eyebrow" data-animate>The method</p>
+        <h2 data-animate data-anim-delay="60">Five stages. One prescription.</h2>
+        <p class="stand" data-animate data-anim-delay="120">Every engagement follows the same diagnostic sequence, so the recommendation at the end is traceable to what we observed at the start.</p>
+
+        <div class="timeline">
+          <div class="stage" data-animate>
+            <span class="n">STAGE 01</span>
+            <h3>Primary evaluation</h3>
+            <p>We walk the space room by room and read how scent currently carries through it, including via your HVAC and airflow.</p>
+          </div>
+          <div class="stage" data-animate data-anim-delay="60">
+            <span class="n">STAGE 02</span>
+            <h3>Time in the business</h3>
+            <p>We spend working hours on site, watching customer patterns and asking staff who your clientele is today versus who you want.</p>
+          </div>
+          <div class="stage" data-animate data-anim-delay="120">
+            <span class="n">STAGE 03</span>
+            <h3>Analysis and matching</h3>
+            <p>We match scent profiles to your target customer and business type, and check whether your music helps the scent or fights it.</p>
+          </div>
+          <div class="stage" data-animate data-anim-delay="180">
+            <span class="n">STAGE 04</span>
+            <h3>Presentation and testing</h3>
+            <p>We present the shortlisted directions in person, blotters in hand, and trial them in the space before anything is committed.</p>
+          </div>
+          <div class="stage" data-animate data-anim-delay="240">
+            <span class="n">STAGE 05</span>
+            <h3>Return and refine</h3>
+            <p>We come back, measure what changed against the baseline, and adjust, so the prescription ends up fitted, not guessed.</p>
+          </div>
+        </div>
+
+        <div class="artefacts">
+          <div class="acard" data-animate>
+            <p class="n">ARTEFACT 01</p>
+            <h3>Diagnostic visit</h3>
+            <p>A full day on site, mapping how the space reads to the nose across its rooms, materials and traffic.</p>
+          </div>
+          <div class="acard" data-animate data-anim-delay="70">
+            <p class="n">ARTEFACT 02</p>
+            <h3>Strategy report</h3>
+            <p>A written prescription: the scent direction, where it belongs, and the mechanism behind each choice.</p>
+          </div>
+          <div class="acard" data-animate data-anim-delay="140">
+            <p class="n">ARTEFACT 03</p>
+            <h3>Stakeholder presentation</h3>
+            <p>An in-person walkthrough with blotters, leaving you the artefact and a baseline to measure against.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCOPE =================
+         Its own short block, not a footnote. This wording is a legal
+         boundary, not marketing copy: do not paraphrase it, shorten it,
+         or let anyone soften it later. Verbatim from spec 11.5.
+         It replaces the retired "fixed scope, fixed price, fragrance
+         only" line, which was narrower than the real scope and has now
+         been removed from every page. -->
+    <section class="sec sec--light" id="scope">
+      <div class="wrap">
+        <p class="eyebrow" data-animate>What we do, and what we do not</p>
+        <h2 data-animate data-anim-delay="60">Where our <span class="hl">scope</span> ends.</h2>
+        <div class="scopegrid">
+          <div class="scope" data-animate data-anim-delay="120">
+            <p>We advise on scent, and we prescribe it. We evaluate the music already playing and align it to that prescription. We trial freestanding, plug-in diffusion and air equipment as part of a proof-of-concept visit, under a short agreement covering the loan period. Anything hardwired or ducted, including work inside walls or ventilation systems, is referred to a licensed partner with an indicative cost. That work is never carried out by us.</p>
+          </div>
+
+          <!-- Cold-air nebuliser, drawn in the survey language. It earns its
+               place here: it shows the "freestanding, nothing fixed to the
+               building" half of the scope boundary above. The callouts are
+               descriptive; this drawing carries no specifications, so the
+               ledger item about placeholder figures does not apply to it.
+               Retire it here if the owner would rather it went. -->
+          <figure class="diffuser" data-animate data-anim-delay="180">
+            <svg viewBox="0 0 400 360" role="img" aria-label="Technical drawing of a freestanding cold-air nebulising diffuser, showing the atomising nozzle and dry plume, the timer, the micro compressor, the neat oil reservoir and the weighted base.">
+              <defs>
+                <pattern id="dgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M20 0V20M0 20H20" stroke="#5E8B93" stroke-width=".4" opacity=".22" fill="none"/>
+                </pattern>
+                <marker id="dar" markerWidth="6" markerHeight="6" refX="4.6" refY="3" orient="auto">
+                  <path d="M0,0 L5,3 L0,6 Z" fill="#A85526"/>
+                </marker>
+              </defs>
+              <rect width="400" height="360" fill="url(#dgrid)"/>
+              <g stroke="#A85526" stroke-width="1.4" fill="none" stroke-linecap="round" marker-end="url(#dar)">
+                <path d="M205 62 C205 44, 190 34, 174 24"/>
+                <path d="M205 60 C205 40, 205 30, 205 18"/>
+                <path d="M205 62 C205 44, 220 34, 236 24"/>
+              </g>
+              <g stroke="#A85526" stroke-width=".9" fill="none" stroke-dasharray="2 4" opacity=".6">
+                <circle cx="205" cy="66" r="14"/><circle cx="205" cy="66" r="24"/>
+              </g>
+              <g stroke="#1E3328" stroke-width="1.7" fill="none" stroke-linejoin="round">
+                <rect x="185" y="70" width="40" height="19" rx="4"/>
+                <circle cx="205" cy="68" r="3"/>
+                <rect x="175" y="89" width="60" height="196" rx="6"/>
+                <rect x="163" y="285" width="84" height="16" rx="3"/>
+              </g>
+              <g stroke="#5E8B93" stroke-width="1" fill="none">
+                <circle cx="205" cy="117" r="9"/>
+                <path d="M205 117 L205 110"/>
+                <rect x="185" y="144" width="40" height="62" rx="2"/>
+                <circle cx="205" cy="175" r="11"/>
+                <rect x="183" y="216" width="44" height="62" rx="3"/>
+                <path d="M183 233 C192 229, 200 237, 209 233 C217 229, 223 236, 227 233"/>
+              </g>
+              <circle cx="205" cy="175" r="2.4" fill="#1E3328"/>
+              <g stroke="#5E8B93" stroke-width=".55" fill="none" opacity=".55">
+                <path d="M185 243h40M185 251h40M185 259h40M185 267h40"/>
+              </g>
+              <g stroke="#5E8B93" stroke-width=".7" fill="none">
+                <path d="M150 54 L172 54 L182 72"/>
+                <path d="M150 120 L188 120"/>
+                <path d="M150 178 L186 178"/>
+                <path d="M262 232 L236 232 L227 236"/>
+                <path d="M262 292 L250 292 L247 294"/>
+              </g>
+              <g fill="#1E3328">
+                <circle cx="182" cy="72" r="1.8"/><circle cx="196" cy="120" r="1.8"/>
+                <circle cx="196" cy="178" r="1.8"/><circle cx="227" cy="236" r="1.8"/>
+                <circle cx="247" cy="294" r="1.8"/>
+              </g>
+              <g font-family="ui-monospace,Menlo,monospace" fill="#1E3328" font-size="8" letter-spacing="1.1">
+                <text x="146" y="46" text-anchor="end">ATOMISING NOZZLE</text>
+                <text x="146" y="112" text-anchor="end">TIMER AND INTENSITY</text>
+                <text x="146" y="170" text-anchor="end">MICRO COMPRESSOR</text>
+                <text x="266" y="226">NEAT OIL RESERVOIR</text>
+                <text x="266" y="288">WEIGHTED BASE</text>
+              </g>
+              <g font-family="ui-monospace,Menlo,monospace" fill="#3A5544" font-size="6.9" letter-spacing=".3">
+                <text x="146" y="56" text-anchor="end"><tspan x="146">Breaks neat oil into a dry micro-mist so</tspan><tspan x="146" dy="9">scent hangs in the air instead of settling</tspan></text>
+                <text x="146" y="122" text-anchor="end"><tspan x="146">Runs to opening hours, not constantly;</tspan><tspan x="146" dy="9">noses stop registering steady output</tspan></text>
+                <text x="146" y="180" text-anchor="end"><tspan x="146">Quiet enough for a treatment room without</tspan><tspan x="146" dy="9">competing with the music</tspan></text>
+                <text x="266" y="236"><tspan x="266">No water, no dilution; the scent</tspan><tspan x="266" dy="9">arrives exactly as prescribed</tspan></text>
+                <text x="266" y="298"><tspan x="266">Freestanding. Nothing is fixed to</tspan><tspan x="266" dy="9">the building; it leaves in one lift</tspan></text>
+              </g>
+              <text x="20" y="346" font-family="ui-monospace,Menlo,monospace" font-size="7.2" letter-spacing="1.5" fill="#5E8B93">SILLAGE &#183; DIFFUSION UNIT 01 &#183; COLD-AIR NEBULISER</text>
+            </svg>
           </figure>
-          <h3 class="card__name">Kevin Kegel</h3>
-          <p class="card__title">Lead consultant &#183; Reading</p>
-          <p class="card__bio">Studies Economics at the University of Reading and sits on the advisory group at Reading Tech Cluster. Leads the Reading engagements and owns the published research the method is built on, so every recommendation traces back to a source a client can check.</p>
-          <p class="card__langs"><b>Languages</b> English · German · French · Amharic</p>
-        </article>
-
-        <article class="card" data-animate data-anim-delay="80">
-          <figure class="media media--4-5 media--duotone">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <img src="assets/img/team/presenting.jpg" alt="Prithvish Patil presenting." loading="lazy" width="1362" height="2048" />
-          </figure>
-          <h3 class="card__name">Prithvish Patil</h3>
-          <p class="card__title">Lead consultant &#183; Milton Keynes</p>
-          <p class="card__bio">Studies Business Management with Data Analytics and Digital Business at Henley Business School, University of Reading, and is the entrepreneurship society’s secretary. Runs the measurement side, from the baseline reading to the return visit, which is what makes a claim checkable.</p>
-          <p class="card__langs"><b>Languages</b> English · German · Marathi</p>
-        </article>
-
-        <article class="card" data-animate data-anim-delay="160">
-          <figure class="media media--4-5 media--duotone">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <img src="assets/img/team/headshot-gold-glasses.jpg" alt="Alexandros Moschopoulos." loading="lazy" width="1536" height="2048" />
-          </figure>
-          <h3 class="card__name">Alexandros Moschopoulos</h3>
-          <p class="card__title">Lead consultant &#183; Thessaloniki</p>
-          <p class="card__bio">Studies Finance and International Business at the University of Reading and is President of the University’s finance society. Leads the Greek market and the commercial side of the business, from branding through to supply chain, working in English and Greek.</p>
-          <p class="card__langs"><b>Languages</b> English · Ελληνικά · German</p>
-        </article>
+        </div>
       </div>
     </section>
 
-    <!-- How we operate -->
-    <section class="section why" id="operate">
-      <div class="opgrid">
-        <div class="prose">
-          <p class="eyebrow" data-animate>How We Operate</p>
-          <h2 data-animate data-anim-delay="60">Fixed scope. Fixed price. Fragrance only.</h2>
-          <p>We take one clear brief, the scent of your space, and stay inside it. We diagnose on site, write a prescription, present it in person, and come back to measure. Climate and music we assess and align to; we don't sell hardware or take a cut of what you install.</p>
-          <ul class="oplist">
-            <li>On-site diagnosis across every zone, including how airflow carries scent.</li>
-            <li>A written prescription you own, covering the direction, the placement, and the reasoning.</li>
-            <li>An in-person presentation with blotters, then a return visit to measure against the baseline.</li>
-          </ul>
+    <!-- ================= MARKETS =================
+         Three cards: United Kingdom, Germany, Greece. This supersedes
+         the v5 three-city, no-Germany structure and matches the footer
+         (spec 7). -->
+    <section class="sec sec--light" id="markets">
+      <div class="wrap">
+        <p class="eyebrow" data-animate>Where we work</p>
+        <h2 data-animate data-anim-delay="60">Three countries, one method.</h2>
+        <div class="mkgrid">
+          <div class="market" data-animate>
+            <p class="country">United Kingdom</p>
+            <p class="cities">READING<br />MILTON KEYNES<br />LONDON</p>
+          </div>
+          <div class="market" data-animate data-anim-delay="70">
+            <p class="country">Germany</p>
+            <p class="cities">HANNOVER</p>
+          </div>
+          <div class="market" data-animate data-anim-delay="140">
+            <p class="country">Greece</p>
+            <p class="cities">THESSALONIKI</p>
+          </div>
         </div>
-        <!-- small blueprint spot -->
-        <svg viewBox="0 0 200 170" width="100%" role="img" aria-label="Small blueprint of a single room with a scent-diffusion point and sheet label." style="background:var(--paper); border:1px solid var(--rule); border-radius:var(--radius); padding:6px">
-          <g stroke="#5E8B93" stroke-width=".35" opacity=".35"><path d="M40 8V162M80 8V162M120 8V162M160 8V162M8 40H192M8 80H192M8 120H192"/></g>
-          <g stroke="#1E3328" stroke-width="2" fill="none"><rect x="30" y="26" width="140" height="118"/><path d="M100 26v40M100 108v36M30 88h44"/></g>
-          <rect x="52" y="34" width="26" height="10" fill="#F4F1EA" stroke="#1E3328" stroke-width="1.2"/>
-          <g fill="none" stroke="#6CA085" stroke-width="1.1" stroke-dasharray="2 4"><circle cx="130" cy="104" r="14"/><circle cx="130" cy="104" r="24"/></g>
-          <circle cx="130" cy="104" r="3" fill="#1E3328"/>
-          <path d="M64 44 C70 60, 60 72, 72 88" fill="none" stroke="#B85C2B" stroke-width="1.4"/>
-          <text x="30" y="158" font-family="Menlo,monospace" font-size="7" letter-spacing="1.4" fill="#5E8B93">DIAGNOSTIC · SHEET A</text>
-        </svg>
       </div>
     </section>
 
-    <!-- What we've done -->
-    <section class="section" id="work">
-      <p class="eyebrow" data-animate>What We Have Done</p>
-      <h2 class="lede" data-animate data-anim-delay="60">The kinds of engagements, and what you receive.</h2>
-      <p class="lede" style="margin-top:0.8rem; color:rgba(42,42,40,.82)">We work with independent, owner-led businesses where atmosphere is part of the product. We don't publish client names or numbers; where a client consents, a named reference appears below.</p>
+    <!-- ================= CONTACT (spec 6) =================
+         The site's only conversion point. The languages line that used
+         to sit in this block has been removed (spec 7).
 
-      <p class="market__label" style="margin-top:2rem">Sectors we serve</p>
-      <ul class="sectorlist">
-        <li>Independent hotels</li>
-        <li>Clinics &amp; wellness studios</li>
-        <li>Salons &amp; spas</li>
-        <li>Boutique retail</li>
-        <li>Hospitality</li>
-      </ul>
+         The form posts to contact.php, a small single-file endpoint on
+         Hostinger. If that endpoint is unreachable, which is the case on
+         the GitHub Pages rollback host, the submit handler keeps every
+         entered value and reveals the email address instead (spec 6.2).
 
-      <div class="deliver">
-        <div class="offer" data-animate data-anim-delay="0">
-          <span class="num">Artefact 01</span>
-          <h3>Diagnostic visit</h3>
-          <p>A full day on site, mapping how the space reads to the nose across its rooms, materials and traffic.</p>
-        </div>
-        <div class="offer" data-animate data-anim-delay="70">
-          <span class="num">Artefact 02</span>
-          <h3>Strategy report</h3>
-          <p>A written prescription: the scent direction, where it belongs, and the mechanism behind each choice.</p>
-        </div>
-        <div class="offer" data-animate data-anim-delay="140">
-          <span class="num">Artefact 03</span>
-          <h3>Stakeholder presentation</h3>
-          <p>An in-person walkthrough with blotters, leaving you the artefact and a baseline to measure against.</p>
-        </div>
-      </div>
-
-      <!-- ===== CASE REFERENCE TEMPLATE - use ONLY with written, attributable consent =====
-           Copy this block per real, consented reference. Consent bar: the client has
-           agreed in writing to be named and quoted. Never publish client names,
-           logos or results without it. Delete this template if unused. -->
-      <!--
-      <figure class="testimonial" style="margin-top:2.5rem; border-left:3px solid var(--forest); padding-left:1.2rem">
-        <blockquote>[Case, a consented and attributable client quote]</blockquote>
-        <figcaption class="media-cap">[Name, role · Business, city]</figcaption>
-      </figure>
-      -->
-
-      <p style="margin-top:2.5rem">
-        <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a diagnostic visit</a>
-      </p>
-    </section>
-
-    <!-- ================= WHERE WE WORK =================
-         Merged in from the former markets.html. That page now redirects
-         here; the anchor #markets is the stable link target. -->
-    <section class="section markets" id="markets">
-      <p class="eyebrow" data-animate>Where We Work</p>
-      <h2 class="lede" data-animate data-anim-delay="60">Two cities in the UK. One in Greece.</h2>
-      <p class="lede" data-animate data-anim-delay="120" style="margin-top:0.8rem; color:rgba(42,42,40,.82)">The same diagnostic travels; the visit, the report, the presentation. What stays local is the nose, meaning the materials, the climate and the habits of each place.</p>
-
-      <!-- Abstract blueprint node diagram, not a map. Thessaloniki is the
-           single terracotta node, which is SVG fill and so within the rule. -->
-      <figure class="opsfig" data-animate data-anim-delay="180">
-        <svg viewBox="0 0 600 240" role="img" aria-label="Blueprint diagram: three linked survey nodes, Reading and Milton Keynes in the UK, and Thessaloniki in Greece.">
-          <g stroke="#5E8B93" stroke-width=".4" opacity=".35"><path d="M60 10V230M160 10V230M260 10V230M360 10V230M460 10V230M560 10V230M0 60H600M0 120H600M0 180H600"/></g>
-          <g stroke="#1E3328" stroke-width="1.4" fill="none" opacity=".55"><path d="M120 120 L300 78 L480 150"/></g>
-          <g stroke="#5E8B93" stroke-width="1" opacity=".8"><path d="M120 112v16M300 70v16M480 142v16"/></g>
-
-          <circle cx="120" cy="120" r="30" fill="#1E3328"/>
-          <text x="120" y="125" text-anchor="middle" fill="#FBF8F1" font-family="ui-monospace,Menlo,monospace" font-size="15">RDG</text>
-          <text x="120" y="176" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Reading · UK</text>
-
-          <circle cx="300" cy="70" r="30" fill="#1E3328"/>
-          <text x="300" y="75" text-anchor="middle" fill="#FBF8F1" font-family="ui-monospace,Menlo,monospace" font-size="15">MK</text>
-          <text x="300" y="34" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Milton Keynes · UK</text>
-
-          <circle cx="480" cy="150" r="30" fill="#EE9560"/>
-          <text x="480" y="155" text-anchor="middle" fill="#1E3328" font-family="ui-monospace,Menlo,monospace" font-size="15">SKG</text>
-          <text x="480" y="206" text-anchor="middle" fill="#2A2A28" font-family="ui-monospace,Menlo,monospace" font-size="11">Thessaloniki · GR</text>
-
-          <text x="20" y="228" fill="#5E8B93" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.6">SILLAGE · COVERAGE SURVEY · SHEET 02</text>
-        </svg>
-        <figcaption>One method, three bases; Thessaloniki is the Greek home ground.</figcaption>
-      </figure>
-
-      <div class="mkgrid">
-        <section class="market" id="reading" data-animate data-anim-delay="0">
-          <div class="market__head">
-            <span class="market__city">United Kingdom</span>
-            <h3 class="market__country">Reading</h3>
-          </div>
-          <div class="market__grid">
-            <div>
-              <p class="market__label">Who we serve</p>
-              <ul class="sectorlist">
-                <li>Independent hotels</li>
-                <li>Clinics &amp; wellness studios</li>
-                <li>Salons &amp; spas</li>
-                <li>Boutique retail</li>
-                <li>Hospitality</li>
-              </ul>
-            </div>
-            <div>
-              <p class="market__label">Languages</p>
-              <p class="market__note">English. The full diagnostic, the fixed-scope report and the in-person presentation are all delivered in English.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="market" id="milton-keynes" data-animate data-anim-delay="80">
-          <div class="market__head">
-            <span class="market__city">United Kingdom</span>
-            <h3 class="market__country">Milton Keynes</h3>
-          </div>
-          <div class="market__grid">
-            <div>
-              <p class="market__label">Who we serve</p>
-              <ul class="sectorlist">
-                <li>Independent hotels</li>
-                <li>Clinics &amp; wellness studios</li>
-                <li>Salons &amp; spas</li>
-                <li>Boutique retail</li>
-                <li>Hospitality</li>
-              </ul>
-            </div>
-            <div>
-              <p class="market__label">Languages</p>
-              <p class="market__note">English. Same method, same artefacts; briefings and the written report in English.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="market" id="thessaloniki" data-animate data-anim-delay="160">
-          <div class="market__head">
-            <span class="market__city">Greece</span>
-            <h3 class="market__country">Thessaloniki</h3>
-          </div>
-          <div class="market__grid">
-            <div>
-              <p class="market__label">Who we serve</p>
-              <ul class="sectorlist">
-                <li>Independent hotels</li>
-                <li>Clinics &amp; wellness studios</li>
-                <li>Salons &amp; spas</li>
-                <li>Boutique retail</li>
-                <li>Hospitality</li>
-              </ul>
-            </div>
-            <div>
-              <p class="market__label">Languages</p>
-              <p class="market__note">English and Ελληνικά. Our Greek base; fieldwork, the report and the presentation are available in Greek as well as English.</p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <!-- ================= CONTACT =================
-         Merged in from the former contact.html, form and all. That page now
-         redirects here; the anchor #contact is the stable link target. -->
+         The privacy sentence beneath the button must remain TRUE. It is
+         why no reCAPTCHA and no tracking form service may ever be added
+         here without changing that wording first, and openly (spec 6.3). -->
     <section class="contact" id="contact">
-      <div data-animate>
-        <p class="eyebrow">Contact</p>
-        <h2>Tell us about your space.</h2>
-        <p class="lede">One conversation is usually enough to know whether a diagnostic visit makes sense. No obligation, and nothing to buy; the first step is always just a walk-through.</p>
-        <div class="cities">
-          <!-- Contact points by city, matching the team cards above. -->
-          <div class="city"><span class="cc">UK</span><div><b>Reading</b> &nbsp;<span>Kevin Kegel · English</span></div></div>
-          <div class="city"><span class="cc">UK</span><div><b>Milton Keynes</b> &nbsp;<span>Prithvish Patil · English</span></div></div>
-          <div class="city"><span class="cc">GR</span><div><b>Thessaloniki</b> &nbsp;<span>Alexandros Moschopoulos · English · Ελληνικά</span></div></div>
+      <div class="wrap">
+        <div class="cgrid">
+          <div data-animate>
+            <p class="eyebrow">Contact</p>
+            <h2>Tell us about your space.</h2>
+            <p class="stand">One conversation is usually enough to know whether an evaluation makes sense. There is no obligation and nothing to buy; the first step is always a walk-through.</p>
+            <p class="contact-direct">Prefer to write directly? <a href="mailto:info@seeyazh.com">info@seeyazh.com</a></p>
+          </div>
+
+          <form class="cform" id="contact-form" action="contact.php" method="post" novalidate data-animate data-anim-delay="120">
+            <div class="field">
+              <label class="cf-lab" for="cf-name">YOUR NAME</label>
+              <input class="cf-in" id="cf-name" name="name" type="text" autocomplete="name"
+                     required aria-describedby="cf-name-err" />
+              <p class="cf-err" id="cf-name-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-email">EMAIL ADDRESS</label>
+              <input class="cf-in" id="cf-email" name="email" type="email" autocomplete="email"
+                     required aria-describedby="cf-email-err" />
+              <p class="cf-err" id="cf-email-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-biz">BUSINESS AND CITY</label>
+              <input class="cf-in" id="cf-biz" name="business" type="text"
+                     placeholder="The Willow Rooms, Reading"
+                     required aria-describedby="cf-biz-err" />
+              <p class="cf-err" id="cf-biz-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-type">TYPE OF SPACE</label>
+              <select class="cf-in" id="cf-type" name="type" required aria-describedby="cf-type-err">
+                <option value="" selected>Choose one</option>
+                <option>Spa or wellness studio</option>
+                <option>Yoga or pilates studio</option>
+                <option>Salon, barber or beauty</option>
+                <option>Hotel or hospitality</option>
+                <option>Office or reception</option>
+                <option>Other</option>
+              </select>
+              <p class="cf-err" id="cf-type-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-msg">WHAT DOES YOUR SPACE SMELL LIKE TODAY?</label>
+              <textarea class="cf-in" id="cf-msg" name="message"
+                        placeholder="Honestly, we have never chosen it."></textarea>
+            </div>
+
+            <div class="consent">
+              <input type="checkbox" id="cf-consent" name="consent" value="yes"
+                     required aria-describedby="cf-consent-err" />
+              <label for="cf-consent">I am happy for Sillage to use these details to respond to my enquiry.</label>
+            </div>
+            <p class="cf-err" id="cf-consent-err" role="alert"></p>
+
+            <!-- Spam control: a honeypot plus a timing check. No reCAPTCHA,
+                 because it would load Google resources and set identifiers,
+                 which would make the sentence below untrue (spec 6.3). -->
+            <div class="hp" aria-hidden="true">
+              <label for="cf-website">Leave this field empty</label>
+              <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="ts" value="" />
+
+            <button class="btn btn--solid" type="submit">Get an evaluation</button>
+
+            <p class="cf-note">We use what you submit only to respond to your enquiry. No mailing lists, no third-party sharing, no cookies on this form. <a href="privacy.html">Read the privacy policy</a>.</p>
+
+            <div class="cf-fail" id="cf-fail" role="alert" tabindex="-1" hidden>
+              <p>We could not send that just now. Nothing you typed has been lost. Please email <a href="mailto:info@seeyazh.com">info@seeyazh.com</a> and we will pick it up from there.</p>
+            </div>
+          </form>
         </div>
-        <p class="cf-note" style="margin-top:2rem">Prefer email? Write to <a data-book href="mailto:hello@sillage.example">hello@sillage.example</a>.</p>
       </div>
-
-      <!-- Real, labelled form. No third-party handler and no cookies: by default
-           it opens the visitor's own email app (mailto). To use a hosted form
-           handler, set FORM_ENDPOINT below, and add a consent/DPA note first. -->
-      <form class="cform" id="contact-form" novalidate data-animate data-anim-delay="120">
-        <label class="cf-lab" for="cf-name">Your name</label>
-        <input class="cf-in" id="cf-name" name="name" type="text" autocomplete="name" placeholder="Your name" />
-
-        <label class="cf-lab" for="cf-biz">Business &amp; city</label>
-        <input class="cf-in" id="cf-biz" name="business" type="text" placeholder="Business name, city" />
-
-        <label class="cf-lab" for="cf-type">Type of space</label>
-        <select class="cf-in" id="cf-type" name="type">
-          <option value="" selected>Choose one…</option>
-          <option>Spa / wellness studio</option>
-          <option>Salon</option>
-          <option>Independent hotel</option>
-          <option>Clinic</option>
-          <option>Boutique retail</option>
-          <option>Hospitality</option>
-          <option>Other</option>
-        </select>
-
-        <label class="cf-lab" for="cf-msg">What does your space smell like today?</label>
-        <textarea class="cf-in" id="cf-msg" name="message" placeholder="Honestly, we have never chosen it…"></textarea>
-
-        <button class="btn btn--orange" type="submit" style="margin-top:1.4rem">Get an evaluation</button>
-        <p class="cf-note" id="cf-status" role="status" aria-live="polite">This opens your email app; nothing is stored here, no cookies, no tracking.</p>
-      </form>
     </section>
 
   </main>
 
   <footer class="foot">
-    <div class="foot__top">
-      <div class="fm">Sillage<i>What your space leaves behind</i></div>
-      <a class="btn btn--orange" data-book href="mailto:hello@sillage.example">Book a visit</a>
+    <div class="foot__inner">
+      <p class="slog">What your space leaves behind.</p>
+      <div class="cols">
+        <div class="fm">Sillage<span>SEE-YAHZH</span></div>
+        <div class="meta">
+          Reading &middot; Milton Keynes &middot; London &middot; Hannover &middot; Thessaloniki
+          &nbsp;&middot;&nbsp; <a href="mailto:info@seeyazh.com">info@seeyazh.com</a>
+          &nbsp;&middot;&nbsp; &copy; 2026 Sillage
+        </div>
+      </div>
+      <div class="foot__links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="about.html#contact">Contact</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
     </div>
-    <div class="foot__links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="about.html#markets">Where we work</a>
-      <a href="about.html#contact">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-    <p class="foot__legal">Reading &middot; Milton Keynes &middot; Thessaloniki &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> Sillage · fragrance-only. No cookies, no third-party tracking.</p>
   </footer>
-  <script src="booking.js"></script>
+
+  <script src="ui.js"></script>
   <script src="motion.js"></script>
-  <script>
-    // Contact form: default = open the visitor's email app (no third party, no cookies).
-    // To use a hosted handler instead, set FORM_ENDPOINT to its URL.
-    var FORM_ENDPOINT = "";            // e.g. "https://formhandler.example/…"
-    var CONTACT_EMAIL = "hello@sillage.example";
-    var form = document.getElementById("contact-form");
-    if (form) {
-      form.addEventListener("submit", function (e) {
-        if (FORM_ENDPOINT) { form.action = FORM_ENDPOINT; form.method = "post"; return; }
-        e.preventDefault();
-        var g = function (id) { var el = document.getElementById(id); return el ? el.value : ""; };
-        var body = "Name: " + g("cf-name") + "\nBusiness & city: " + g("cf-biz") +
-                   "\nType of space: " + g("cf-type") + "\n\n" + g("cf-msg");
-        window.location.href = "mailto:" + CONTACT_EMAIL +
-          "?subject=" + encodeURIComponent("Diagnostic enquiry") +
-          "&body=" + encodeURIComponent(body);
-      });
-    }
-  </script>
 </body>
 </html>
