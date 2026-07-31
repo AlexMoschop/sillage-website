@@ -53,7 +53,7 @@
 
   <header class="hdr">
     <div class="hdr__inner">
-      <a class="wordmark" href="index.html">Sillage<span class="phon">SEE YAZH</span></a>
+      <a class="wordmark" href="index.html">Sillage<span class="phon">SEE-YAZH</span></a>
       <nav aria-label="Primary">
         <a class="navbtn" href="index.html">Home</a>
         <a class="navbtn" href="about.html" aria-current="page">About</a>
@@ -112,21 +112,48 @@
          Every biographical detail below comes from each founder's own
          LinkedIn plus the owner's corrections, checked 26 July 2026.
          Nothing is inferred. Do not invent a credential, a course or a
-         role for a real person. -->
+         role for a real person.
+
+         PORTRAITS: restored at the owner's instruction on 2026-07-31.
+         v7 had dropped them, which left three photographs of real people
+         deployed but referenced by nothing. They are back, and the
+         originals they were cut from have been removed from the tree, so
+         nothing unreferenced ships any more. The full-resolution
+         originals remain in git history.
+
+         The name-to-face mapping was ASKED, never inferred:
+           kevin-kegel             <- headshot-curly.jpg
+           prithvish-patil         <- presenting.jpg
+           alexandros-moschopoulos <- headshot-gold-glasses.jpg
+         Do not reassign a file to a different person on a hunch.
+
+         Each is cropped 4:5 around the face so no one is beheaded by
+         object-fit, served as WebP with a JPEG fallback at the size it
+         is displayed, with width and height set, and lazy-loaded. -->
     <section class="team" id="team">
       <div class="wrap">
         <h2 data-animate>Three noses, one method.</h2>
 
         <figure class="team__group media media--3-2 media--duotone" data-animate data-anim-delay="60">
           <span class="media__ph" aria-hidden="true">[Photo]</span>
-          <img src="assets/img/team/group.jpg" width="1320" height="2868" loading="lazy"
-               alt="The three Sillage founders in a working session, recording notes around a table." />
+          <picture>
+            <source srcset="assets/img/team/group-session.webp" type="image/webp" />
+            <img src="assets/img/team/group-session.jpg" width="1040" height="693" loading="lazy"
+                 alt="The three Sillage founders in a working session around a table, one speaking into a microphone." />
+          </picture>
         </figure>
         <p class="team__cap">The founding team, mid-session</p>
 
         <h3 class="sub-h" data-animate>The team.</h3>
         <div class="team__grid">
           <article class="tperson" data-animate>
+            <figure class="tphoto">
+              <picture>
+                <source srcset="assets/img/team/kevin-kegel.webp" type="image/webp" />
+                <img src="assets/img/team/kevin-kegel.jpg" width="560" height="700"
+                     loading="lazy" alt="Kevin Kegel." />
+              </picture>
+            </figure>
             <p class="nm">Kevin Kegel</p>
             <p class="city">READING &middot; UNITED KINGDOM</p>
             <p class="brings">Owns the published research the method is built on, so every recommendation traces back to a source a client can check.</p>
@@ -134,6 +161,13 @@
           </article>
 
           <article class="tperson" data-animate data-anim-delay="80">
+            <figure class="tphoto">
+              <picture>
+                <source srcset="assets/img/team/prithvish-patil.webp" type="image/webp" />
+                <img src="assets/img/team/prithvish-patil.jpg" width="560" height="700"
+                     loading="lazy" alt="Prithvish Patil." />
+              </picture>
+            </figure>
             <p class="nm">Prithvish Patil</p>
             <p class="city">MILTON KEYNES &middot; UNITED KINGDOM</p>
             <p class="brings">Runs the measurement side, from the baseline reading to the return visit, which is what makes a claim checkable.</p>
@@ -141,6 +175,13 @@
           </article>
 
           <article class="tperson" data-animate data-anim-delay="160">
+            <figure class="tphoto">
+              <picture>
+                <source srcset="assets/img/team/alexandros-moschopoulos.webp" type="image/webp" />
+                <img src="assets/img/team/alexandros-moschopoulos.jpg" width="560" height="700"
+                     loading="lazy" alt="Alexandros Moschopoulos." />
+              </picture>
+            </figure>
             <p class="nm">Alexandros Moschopoulos</p>
             <p class="city">THESSALONIKI &middot; GREECE</p>
             <p class="brings">Leads the Greek market and the commercial side of the business, from branding through to supply chain.</p>
@@ -425,7 +466,7 @@
     <div class="foot__inner">
       <p class="slog">What your space leaves behind.</p>
       <div class="cols">
-        <div class="fm">Sillage<span>SEE YAZH</span></div>
+        <div class="fm">Sillage<span>SEE-YAZH</span></div>
         <div class="meta">
           Reading &middot; Milton Keynes &middot; London &middot; Hannover &middot; Thessaloniki
           &nbsp;&middot;&nbsp; <a href="mailto:info@seeyazh.com">info@seeyazh.com</a>
