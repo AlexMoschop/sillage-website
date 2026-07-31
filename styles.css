@@ -1,583 +1,801 @@
 /* ============================================================
    Sillage - sensory identity consultancy
-   Hand-written CSS. No framework, no build step.
+   Hand-written CSS. No framework, no build step, no dependency.
    ------------------------------------------------------------
-   v3 "Blueprint": adopts the survey/airflow mockup system.
-   SINGLE SOURCE OF TRUTH FOR COLOUR = the :root block below.
-   Raw brand hexes map to semantic --color-* roles so a future
-   theme is a token swap.
+   v7 "Ambience". Built to Website Build Specification v1.0.
+   THIS COMMENT IS THE STATEMENT OF THE RULES. Keep it true.
 
-   HARD RULE - GREEN ON TITLES AND EYEBROWS:
-   --forest (green) may appear on headings (h1-h4), the wordmark,
-   section eyebrows, the footer mark, and blueprint LINE WORK /
-   chart fills (drawn graphics, not type). Body text is --charcoal.
-   (v4: eyebrows moved from terracotta-deep to forest, Title Case,
-   never uppercase.)
+   COLOUR. The :root block below is the single source of truth.
+   Do not introduce a colour that is not in it (spec 2.1).
 
-   HARD RULE - TERRACOTTA IS ALMOST NEVER USED:
-   --terracotta-deep is permitted on exactly one piece of type, the
-   wordmark slogan "What your space leaves behind". --terracotta
-   (#EE9560) fails AA as text and is permitted ONLY as stroke/fill
-   inside the blueprint SVG drawings. No terracotta buttons, no
-   terracotta section grounds, no terracotta eyebrows or bullets.
-   Grounds are forest (hero + footer) or ivory. (v4.)
+   --clay is #A85526, NOT the #B4602C the specification names.
+   Measured, #B4602C on ivory is 4.26:1, below the 4.5:1 AA
+   threshold for normal text, so the spec's own claim of "roughly
+   4.6:1 and passes AA" does not hold. #A85526 measures 4.96:1 on
+   ivory and 5.26:1 on white and is a barely perceptible shift.
+   That single change carries the header phonetic, the venue
+   arrows and the form error text. (Supersedes spec 2.1.)
+
+   Measured on what actually ships:
+     clay #A85526 on ivory ............ 4.96  pass
+     clay #A85526 on white ............ 5.26  pass
+     clay #A85526 on ivory-2 .......... 4.62  pass
+     clay #A85526 on mineral .......... 4.21  FAIL, so never do it
+     forest on ivory .................. 12.70 pass
+     forest-mid on ivory .............. 7.73  pass
+     forest-mid on mineral ............ 6.56  pass
+     forest-soft #6E8579 on ivory ..... 3.74  FAIL, fill only
+     clay-bright on forest ............ 5.84  pass
+     clay-bright on ivory ............. 2.17  FAIL, fill only
+     sage on ivory .................... 2.83  FAIL, fill only
+     ivory 55% on forest .............. 4.97  pass  (was 50% = 4.38)
+     charcoal 78% on white ............ 7.03  pass
+     charcoal 72% on mineral .......... 5.15  pass  (was 65% = 4.22)
+     charcoal 72% on ivory ............ 5.62  pass  (was 62% = 4.15)
+
+   NEVER put --clay or --forest-soft on a mineral panel as text.
+   NEVER use --clay-bright, --sage or --plum as text on a light
+   ground; they are fills. --clay-bright appears as TEXT in exactly
+   two places sitewide, both on forest: the footer slogan and the
+   word "agreement" in the interplay statement.
+
+   PROPORTION: ivory ~60%, forest ~25%, mineral or sage ~10%,
+   clay ~5%. Orange appears on the phonetic, the footer slogan,
+   the venue arrows and inside the blueprint drawings. Nowhere else.
+
+   NEVER pure white or pure black as a type colour. --white is a
+   legitimate BACKGROUND for the header and cards only.
+
+   TYPE. Eyebrows are sans, uppercase: --body 12.5px, weight 600,
+   letter-spacing .04em, opacity .75, colour --forest. This
+   SUPERSEDES the v4 decision recorded in context.md, which made
+   them mono and Title Case. Headings are sentence case with a
+   full stop where they are statements. Never title-case a heading.
+
+   COPY. No em dashes. No en dashes. No exclamation marks.
+   Citations in full: author, year, journal, volume. Never
+   "studies show". (spec 2.3)
+
+   LAYOUT. Content max width 1120px, centred; section backgrounds
+   are full bleed and the content inside them is capped. Section
+   padding 46px horizontal desktop, 26px below 900px; 56px top and
+   bottom. Radius 3px buttons, 5px cards, 2px images. No pills.
+   No drop shadows on type. (spec 2.4)
+
+   RESPONSIVE. ONE breakpoint, 900px. The header wraps and all
+   three nav items stay visible. There is no hamburger and no
+   #nav-toggle; both were deleted in v7. (spec 2.5)
+
+   MOTION CONTRACT, unchanged since v4: elements opt in with
+   data-animate plus optional data-anim-delay; motion.js only adds
+   .in; every hiding rule is scoped under .js-motion so JS off
+   means nothing is hidden; prefers-reduced-motion pins the final
+   state; only transform and opacity animate.
    ============================================================ */
 
 :root {
-  /* ---- RAW PALETTE (from the Blueprint mockup - supersedes 4b) ---- */
-  --forest:          #1E3328;  /* titles / footer ground / blueprint walls */
-  --forest-mid:      #3A5544;  /* blueprint mid-tone (graphics only)       */
-  --terracotta:      #EE9560;  /* SVG stroke/fill ONLY (fails AA for text) */
-  --terracotta-deep: #B85C2B;  /* the slogan, and nothing else (AA-safe)   */
-  --sage:            #6CA085;  /* diffusion rings / chart fills (graphics) */
-  --seafoam:         #DCEDE4;  /* retained for chart tints only            */
-  --amber:           #F5C97E;  /* held for the Scent ID sub-brand          */
-  --mineral:         #DBE9E6;  /* retained for chart tints only            */
-  --mineral-deep:    #BED8D3;  /* mineral border / active nav              */
-  --blueprint:       #5E8B93;  /* blueprint line colour                    */
-  --charcoal:        #2A2A28;  /* body ink                                 */
-  --ivory:           #FBF8F1;  /* the light ground for the whole site      */
-  --paper:           var(--ivory); /* legacy alias - resolves to ivory     */
-  --rule:            rgba(30, 51, 40, 0.15); /* hairlines (neutral)        */
+  /* ---- PALETTE (spec 2.1, with the --clay correction above) ---- */
+  --forest:       #1E3328;  /* primary. Dark sections, headings, buttons  */
+  --forest-mid:   #3A5544;  /* secondary text on light grounds, citations */
+  --forest-soft:  #6E8579;  /* FILL ONLY. Fails AA as text on ivory       */
+  --clay:         #A85526;  /* text-safe accent. Links, phonetic, arrows  */
+  --clay-bright:  #EE9560;  /* FILL ONLY, except two places on forest     */
+  --sage:         #6CA085;  /* chart fills, positive data                 */
+  --mineral:      #DBE9E6;  /* evidence ground. Expander panels only      */
+  --plum:         #7A5A72;  /* chart series, medium-importance markers    */
+  --ivory:        #FBF8F1;  /* default page background                    */
+  --ivory-2:      #F4F0E6;  /* active nav state                           */
+  --white:        #FFFFFF;  /* header and card BACKGROUND only            */
+  --charcoal:     #2A2A28;  /* body ink                                   */
+  --rule:         rgba(30, 51, 40, .14);  /* all hairline borders         */
 
-  /* ---- SEMANTIC TOKENS (components use these) ---- */
-  --color-bg:          var(--ivory);
-  --color-ink:         var(--charcoal);
-  --color-title:       var(--forest);      /* headings / wordmark          */
-  --color-ground-dark: var(--forest);      /* hero + footer ground         */
-  --color-mineral:     var(--mineral);
-  --color-seafoam:     var(--seafoam);
-  --color-accent:      var(--terracotta);      /* SVG stroke/fill only      */
-  /* v4: label/eyebrow ink is forest, not terracotta. --color-slogan is the
-     one and only place --terracotta-deep is allowed to touch type. */
-  --color-accent-text: var(--forest);
-  --color-slogan:      var(--terracotta-deep);
-  --color-line:        var(--rule);
+  /* Ratings on venue pages. Colour is carried by a swatch; the word
+     High / Medium / Low is always present as text in --forest. */
+  --rate-high:    #A8492F;
+  --rate-medium:  var(--plum);
+  --rate-low:     var(--sage);
 
-  /* ---- TYPE ----
-     Brand face = Source Serif 4, upright. It is NOT shipped as a
-     binary here; the stack falls back to Georgia (an upright serif
-     on Windows/macOS/Android) so the fallback looks deliberate.
-     To match exactly, self-host Source Serif 4 (SIL OFL) - see README. */
-  --display: "Source Serif 4", "Source Serif Pro", Georgia,
-             "Iowan Old Style", "Times New Roman", serif;
-  --body:    -apple-system, BlinkMacSystemFont, "Segoe UI",
-             "Helvetica Neue", system-ui, sans-serif;
-  --mono:    ui-monospace, "SF Mono", "Cascadia Code",
-             Consolas, Menlo, monospace;
+  /* Blueprint drawing inks. Line work only, never type on a page. */
+  --bp-line:      #5E8B93;
+  --bp-ground:    #FCFAF4;
 
-  /* ---- SCALE & RHYTHM ---- */
-  --measure: 66ch;
-  --h1: clamp(2.25rem, 1.7rem + 2.6vw, 3.25rem);
-  --h2: clamp(1.6rem, 1.3rem + 1.4vw, 2.25rem);
-  --h3: clamp(1.1rem, 1rem + 0.4vw, 1.25rem);
-  --small: 0.82rem;
+  /* ---- TYPE (spec 2.2) ----
+     'New York' and 'SF Pro Text' resolve natively on Apple devices,
+     where Apple's licence covers them. They are NOT self-hosted:
+     that licence does not grant redistribution as a webfont served
+     to arbitrary browsers, and doing it would put a licence
+     violation on a client-facing site. (Supersedes spec 2.2.)
 
-  --space-1: 0.5rem;
-  --space-2: 1rem;
-  --space-3: 1.5rem;
-  --space-4: 2.5rem;
-  --space-5: 4rem;
-  --space-6: 5.5rem;
+     The self-hosted display face is Source Serif 4 (SIL OFL), which
+     is licensed for this. The binaries are not in the repo yet, so
+     the stack currently falls through to Georgia, an upright serif
+     present on Windows, macOS and Android. When the woff2 files
+     land, drop them in assets/fonts/ and uncomment the block below.
+     No Google Fonts: spec 9.2 forbids third-party font requests. */
+  --display: 'New York', 'Source Serif 4', ui-serif, 'Iowan Old Style',
+             Palatino, Georgia, serif;
+  --body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+             'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono:    ui-monospace, 'SF Mono', SFMono-Regular, Menlo,
+             Consolas, monospace;
 
-  --pad-x: clamp(1.25rem, 4vw, 2.9rem);
-  --radius: 4px;
-  --nav-h: 74px;
+  /* ---- RHYTHM (spec 2.4) ---- */
+  --maxw:  1120px;
+  --pad-x: 46px;
+  --pad-y: 56px;
+  --r-btn:  3px;
+  --r-card: 5px;
+  --r-img:  2px;
 }
 
+/* Self-hosted display face. Activate when the OFL binaries exist.
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('assets/fonts/SourceSerif4-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('assets/fonts/SourceSerif4-Semibold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('assets/fonts/SourceSerif4-It.woff2') format('woff2');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+*/
+
 /* ============================================================
-   RESET & BASE
+   RESET AND BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-ink);
+  background: var(--ivory);
+  color: var(--charcoal);
   font-family: var(--body);
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 img, svg { max-width: 100%; display: block; }
 a { color: inherit; }
-p { margin: 0 0 0.9rem; }
+p { margin: 0 0 14px; }
 ul { margin: 0; }
+figure { margin: 0; }
 
-/* Green is allowed on titles + wordmark only */
 h1, h2, h3, h4 {
-  font-family: var(--display); font-weight: 600;
-  line-height: 1.08; letter-spacing: -0.015em; margin: 0;
-  color: var(--color-title);
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1.12;
+  margin: 0;
+  color: var(--forest);
 }
-h1 { font-size: var(--h1); }
-h2 { font-size: var(--h2); }
-h3 { font-size: var(--h3); }
 
-.mono { font-family: var(--mono); }
-/* Section eyebrow: forest, Title Case, never uppercased (F3). */
+/* Section eyebrow. v7: sans, uppercase. Supersedes the v4 mono Title
+   Case rule recorded in context.md. Applies to every equivalent
+   label sitewide. */
 .eyebrow {
-  font-family: var(--mono); font-size: 0.72rem;
-  letter-spacing: 0.06em; font-weight: 500;
-  color: var(--forest); margin: 0 0 0.9rem;
+  font-family: var(--body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .75;
+  color: var(--forest);
+  margin: 0 0 12px;
 }
-/* On the forest hero and footer grounds the eyebrow inverts. */
-.eyebrow.on-dark { color: rgba(251, 248, 241, 0.72); }
+.eyebrow.on-dark { color: rgba(251, 248, 241, .96); opacity: .75; }
 
-/* Skip link */
 .skip-link {
-  position: absolute; left: -999px; top: 0;
-  background: var(--forest); color: var(--paper);
-  padding: 0.6rem 1rem; z-index: 100; border-radius: 0 0 var(--radius) 0;
+  position: absolute; left: -999px; top: 0; z-index: 100;
+  background: var(--forest); color: var(--ivory);
+  padding: 10px 16px; border-radius: 0 0 var(--r-btn) 0;
 }
 .skip-link:focus { left: 0; }
 
-/* Visible focus everywhere */
+/* Visible focus on every interactive element. Never removed without
+   a replacement. (spec 9.3) */
 a:focus-visible, button:focus-visible, input:focus-visible,
-textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible {
-  outline: 3px solid var(--color-accent-text);
-  outline-offset: 3px; border-radius: 2px;
+select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.on-forest :focus-visible,
+.hero :focus-visible, .inter :focus-visible, .foot :focus-visible,
+.vhero :focus-visible {
+  outline-color: var(--clay-bright);
 }
 
-/* Section shell */
-.section { padding: var(--space-6) var(--pad-x); }
-.section--tight { padding-block: var(--space-5); }
-.lede { max-width: var(--measure); }
+/* ============================================================
+   LAYOUT SHELL
+   Section backgrounds are full bleed; the content inside them is
+   capped at 1120px and centred. (spec 2.4)
+   ============================================================ */
+.sec { padding: var(--pad-y) var(--pad-x); }
+.wrap { max-width: var(--maxw); margin-inline: auto; }
 
 /* ============================================================
-   HEADER / NAV
+   HEADER (spec 3.1)
    ============================================================ */
 .hdr {
-  position: sticky; top: 0; z-index: 50;
-  background: #fff;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: var(--space-3);
-  padding: 0.9rem var(--pad-x);
-  min-height: var(--nav-h);
+  background: var(--white);
   border-bottom: 1px solid var(--rule);
+  padding: 18px var(--pad-x);
 }
-.wordmark { font-family: var(--display); font-size: 1.5rem; color: var(--color-title); line-height: 1.05; text-decoration: none; }
-.wordmark .slogan {
-  display: block; font-family: var(--display); font-style: italic;
-  font-size: 0.78rem; font-weight: 400; color: var(--color-slogan);
-  letter-spacing: 0.01em; margin-top: 0.2rem;
+.hdr__inner {
+  max-width: var(--maxw); margin-inline: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 18px; flex-wrap: wrap;
 }
-.hdr nav { display: flex; align-items: center; gap: 0.55rem; }
+.wordmark {
+  font-family: var(--display); font-size: 25px; line-height: 1.05;
+  color: var(--forest); text-decoration: none;
+}
+/* The phonetic is a permanent part of the lockup, header and footer.
+   Do not remove it. The old slogan does NOT belong here; it lives in
+   the footer. (spec 3.1) */
+.wordmark .phon {
+  display: block; margin-top: 4px;
+  font-family: var(--mono); font-size: 9.5px;
+  letter-spacing: .22em; color: var(--clay);
+}
+.hdr nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .navbtn {
-  font-size: 0.85rem; color: var(--color-ink); text-decoration: none;
-  padding: 0.55rem 1.05rem; border: 1px solid var(--rule);
-  border-radius: 3px; background: transparent; white-space: nowrap;
+  font-family: var(--body); font-size: 13.5px; color: var(--forest);
+  text-decoration: none; padding: 9px 20px;
+  border: 1px solid var(--rule); border-radius: var(--r-btn);
+  background: transparent; white-space: nowrap;
 }
-.navbtn:hover { border-color: var(--charcoal); }
-.navbtn[aria-current="page"] { background: var(--mineral); border-color: var(--mineral-deep); }
-/* Book button - forest fill / paper label (brand action button) */
+.navbtn:hover { border-color: rgba(30, 51, 40, .4); }
+.navbtn[aria-current="page"] {
+  background: var(--ivory-2); border-color: rgba(30, 51, 40, .28);
+}
 .bookbtn {
-  background: var(--forest); color: var(--paper); text-decoration: none;
-  padding: 0.6rem 1.15rem; border-radius: 3px; font-size: 0.85rem;
+  background: var(--forest); color: var(--ivory); text-decoration: none;
+  font-family: var(--body); font-size: 13.5px; font-weight: 600;
+  padding: 11px 22px; border-radius: var(--r-btn);
   border: 1px solid var(--forest); white-space: nowrap;
 }
-.bookbtn:hover { background: #16261d; }
-
-.nav-toggle-label { display: none; }
-#nav-toggle { display: none; }
+.bookbtn:hover { background: #16261D; }
 
 /* ============================================================
-   BUTTONS (CTAs)
+   BUTTONS
    ============================================================ */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  gap: 0.5rem; font-family: var(--body); font-size: 0.9rem; font-weight: 600;
-  letter-spacing: 0.01em; padding: 0.8rem 1.4rem; border-radius: 3px;
-  border: 1px solid transparent; text-decoration: none; cursor: pointer;
-  transition: transform 0.12s ease, background 0.12s ease;
+  font-family: var(--body); font-weight: 600; font-size: 14.5px;
+  text-decoration: none; cursor: pointer;
+  padding: 14px 26px; border-radius: var(--r-btn);
+  border: 1px solid transparent;
 }
-.btn:active { transform: translateY(1px); }
-/* Primary. v4: the terracotta fill is gone. On an ivory ground the primary
-   is a forest fill with an ivory label (12.3:1). The .btn--orange class name
-   is kept so existing markup keeps working; it is no longer orange. */
-.btn--orange,
 .btn--solid { background: var(--forest); color: var(--ivory); border-color: var(--forest); }
-.btn--orange:hover,
-.btn--solid:hover { background: #16261d; }
-/* On the forest hero the primary inverts: ivory fill, forest label (12.3:1).
-   It carries a border so it still reads as a control against any ground. */
-.hero .btn--orange,
-.hero .btn--solid { background: var(--ivory); color: var(--forest); border-color: var(--ivory); }
-.hero .btn--orange:hover,
-.hero .btn--solid:hover { background: #fff; }
-/* Ghost - charcoal on light grounds, ivory on the forest hero */
-.btn--ghost { background: transparent; color: var(--charcoal); border-color: var(--charcoal); }
-.btn--ghost:hover { background: rgba(42, 42, 40, 0.06); }
-.hero .btn--ghost { color: var(--ivory); border-color: rgba(251, 248, 241, 0.6); }
-.hero .btn--ghost:hover { background: rgba(251, 248, 241, 0.1); border-color: rgba(251, 248, 241, 0.95); }
+.btn--solid:hover { background: #16261D; }
+/* On a forest ground the primary inverts. */
+.on-forest .btn--solid { background: var(--ivory); color: var(--forest); border-color: var(--ivory); }
+.on-forest .btn--solid:hover { background: var(--white); }
+.btn--ghost {
+  background: transparent; color: var(--ivory);
+  border: 1.5px solid rgba(251, 248, 241, .55); padding: 13px 26px;
+}
+.btn--ghost:hover { border-color: rgba(251, 248, 241, .9); background: rgba(251, 248, 241, .08); }
 
 /* ============================================================
-   HERO (forest ground - F5; was mineral)
+   HERO (spec 4.1)
    ============================================================ */
-.hero {
-  background: var(--forest);
-  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
-  padding: clamp(2.75rem, 6vw, 4rem) var(--pad-x);
+.hero { background: var(--forest); }
+.hero__inner {
+  max-width: var(--maxw); margin-inline: auto;
+  display: grid; grid-template-columns: 1.02fr .98fr;
+  min-height: 430px;
 }
-.hero > * { min-width: 0; }
-.hero h1 { font-size: var(--h1); color: var(--ivory); }
-.hero .sub { font-size: 1.03rem; color: rgba(251, 248, 241, 0.8); max-width: 50ch; margin-top: 1.1rem; }
-.hero .eyebrow { color: rgba(251, 248, 241, 0.72); }
-.btnrow { display: flex; gap: 0.75rem; margin-top: 1.6rem; flex-wrap: wrap; }
-.blueprint { background: transparent; }
-.blueprint svg { width: 100%; height: auto; }
+.hero__inner > * { min-width: 0; }
+.hero .txt {
+  padding: 74px 0 66px var(--pad-x);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero h1 {
+  font-size: 56px; line-height: 1.04; color: var(--ivory); max-width: 11ch;
+}
+.hero .sub {
+  font-family: var(--display); font-style: italic; font-size: 19px;
+  color: rgba(251, 248, 241, .82); margin: 20px 0 0; max-width: 32ch;
+}
+.btnrow { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+
+.hero .imgside { position: relative; overflow: hidden; }
+.hero .imgside img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(.55) sepia(.14) contrast(1.02);
+}
+.hero .imgside::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, #1E3328 0%, rgba(30, 51, 40, .72) 30%, rgba(30, 51, 40, .18) 70%);
+}
+.hero .capt {
+  position: absolute; bottom: 16px; right: 18px; z-index: 2;
+  font-family: var(--mono); font-size: 8.5px; letter-spacing: .16em;
+  color: rgba(251, 248, 241, .55);
+}
 
 /* ============================================================
-   WHY IT MATTERS - quiet epigraph (paper) [percentages removed;
-   the data now lives only in the Research section]
+   AMBIENCE ROWS (spec 4.2)
    ============================================================ */
-.why { background: var(--ivory); border-bottom: 1px solid var(--rule); }
-.why__quote {
-  position: relative; max-width: 30ch; margin: 1.4rem 0 0;
-  font-family: var(--display); font-weight: 500;
-  font-size: clamp(1.5rem, 1.2rem + 1.8vw, 2.35rem); line-height: 1.2;
-  letter-spacing: -0.01em; color: var(--charcoal); /* epigraph is NOT green (§D) */
-  padding-left: 1.4rem; border-left: 3px solid var(--forest); /* v4: was terracotta */
+.amb { background: var(--ivory); padding: var(--pad-y) var(--pad-x) 30px; }
+.amb h2 { font-size: 32px; }
+.amb .stand {
+  max-width: 64ch; font-size: 15.5px; color: rgba(42, 42, 40, .8);
+  margin-top: 10px;
 }
-.why__cite {
-  margin-top: 1.1rem; font-family: var(--mono); font-size: 0.72rem;
-  letter-spacing: 0.06em; color: var(--charcoal);
+
+.row3 {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: var(--r-card); margin-top: 22px; overflow: hidden;
 }
-/* Epigraph sits beside the diffuser drawing */
-.why__grid {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-  gap: clamp(1.5rem, 4vw, 3.25rem); align-items: center;
+.rowhead {
+  display: grid; grid-template-columns: 190px 1fr auto;
+  gap: 26px; align-items: center; padding: 26px 28px;
 }
-.why__grid > * { min-width: 0; }
-.diffuser { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem 1rem 0.6rem; }
+.rowhead > * { min-width: 0; }
+.rowhead .nm { font-family: var(--display); font-size: 26px; color: var(--forest); }
+/* Music has no image and no substitute. The slot stays empty until a
+   real photograph is supplied. (spec 4.2, 10.2, 13) */
+.rowimg {
+  width: 158px; height: 110px; object-fit: cover; display: block;
+  margin-top: 12px; border: 1px solid var(--rule); border-radius: var(--r-img);
+}
+.rowhead .what {
+  font-size: 14px; color: rgba(42, 42, 40, .78); max-width: 56ch; margin: 0;
+}
+
+/* Expander toggle. A real button, square corners, mineral when open. */
+.see {
+  font-family: var(--body); font-size: 12px; font-weight: 600;
+  letter-spacing: .03em; color: var(--forest);
+  background: transparent; border: 1px solid rgba(30, 51, 40, .35);
+  border-radius: 0; padding: 9px 16px; white-space: nowrap; cursor: pointer;
+}
+.see[aria-expanded="true"] { background: var(--mineral); }
+.see .sign { display: inline-block; margin-left: 6px; }
+
+/* Expander panel. Present in the DOM whether open or closed, so it is
+   readable by search engines and screen readers. Collapsed with
+   max-height, never with display:none injected after load. The whole
+   collapse is scoped under .js: with JavaScript off every panel is
+   simply open. (spec 4.2) */
+.expander {
+  background: var(--mineral); border-top: 1px solid var(--rule);
+  padding: 26px 28px;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px;
+}
+.expander > * { min-width: 0; }
+.js .exp {
+  max-height: 0; overflow: hidden; visibility: hidden;
+  transition: max-height 250ms ease, visibility 0s linear 250ms;
+}
+.js .exp.is-open {
+  visibility: visible;
+  transition: max-height 250ms ease, visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .exp, .js .exp.is-open { transition: none; }
+}
+.expander h4 { font-size: 16px; }
+.expander .src {
+  font-family: var(--mono); font-size: 9.5px; color: var(--forest-mid);
+  margin-top: 12px; line-height: 1.6;
+}
+.exnote { font-size: 12.5px; color: rgba(42, 42, 40, .72); line-height: 1.6; margin: 0; }
+.exnote + .exnote { margin-top: 10px; }
+
+/* Diverging scent ladder, zero at centre. */
+.bars { margin-top: 14px; }
+.bar {
+  display: grid; grid-template-columns: 128px 1fr 52px;
+  align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.bar > * { min-width: 0; }
+/* forest-mid on mineral is 6.56:1. The mockup's rgba(42,42,40,.65)
+   measured 4.22:1 on this ground and failed. */
+.bar .bl { font-family: var(--mono); font-size: 9.5px; color: var(--forest-mid); line-height: 1.35; }
+.bar .track { height: 15px; background: rgba(30, 51, 40, .09); border-radius: var(--r-img); position: relative; overflow: hidden; }
+.bar .fill { position: absolute; top: 0; bottom: 0; border-radius: var(--r-img); }
+.bar .val { font-family: var(--display); font-size: 14px; color: var(--forest); text-align: right; }
+
+/* Music: congruent versus incongruent pair. */
+.duo { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.duo > div { flex: 1 1 180px; min-width: 0; border-radius: var(--r-btn); padding: 12px 13px; }
+.duo .yes { background: rgba(108, 160, 133, .28); border: 1px solid rgba(30, 51, 40, .2); }
+.duo .no  { background: rgba(30, 51, 40, .06); border: 1px solid rgba(30, 51, 40, .2); }
+.duo b { display: block; font-size: 12.5px; margin-bottom: 4px; color: var(--forest); }
+.duo p { margin: 0; font-size: 12px; line-height: 1.55; color: rgba(42, 42, 40, .78); }
+
+/* Climate: TWO bars. Never add a third for a hot condition; the study
+   ran two and neither was uncomfortable. (spec 11.2) */
+.cbars { margin-top: 14px; }
+.cbar { display: grid; grid-template-columns: 128px 1fr 64px; align-items: center; gap: 10px; margin-bottom: 10px; }
+.cbar > * { min-width: 0; }
+.cbar .cl { font-family: var(--mono); font-size: 9.5px; color: var(--forest-mid); line-height: 1.4; }
+.cbar .cl b { display: block; font-weight: 600; }
+.cbar .track { height: 20px; background: rgba(30, 51, 40, .09); border-radius: var(--r-img); position: relative; overflow: hidden; }
+.cbar .fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: var(--r-img); }
+.cbar .cv { font-family: var(--display); font-size: 14px; color: var(--forest); text-align: right; }
+.caveat { font-size: 11.5px; color: rgba(42, 42, 40, .72); line-height: 1.6; margin-top: 12px; }
+
+/* ============================================================
+   INTERPLAY BAND (spec 4.3)
+   ============================================================ */
+.inter { background: var(--forest); padding: 50px var(--pad-x); }
+.inter .q {
+  font-family: var(--display); font-size: 24px; line-height: 1.35;
+  color: var(--ivory); max-width: 52ch;
+}
+/* One of exactly two places --clay-bright is text, and it is on forest. */
+.inter .q em { color: var(--clay-bright); font-style: italic; }
+.inter .cite {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+  color: rgba(251, 248, 241, .6); margin-top: 16px; line-height: 1.7;
+}
+.inter .btn { margin-top: 24px; }
+
+/* ============================================================
+   VENUES (spec 4.4)
+   ============================================================ */
+.ven { background: var(--ivory); padding: var(--pad-y) var(--pad-x); }
+.ven h2 { font-size: 32px; }
+.ven .stand { font-size: 15px; color: rgba(42, 42, 40, .78); max-width: 62ch; margin-top: 10px; }
+.vgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.vgrid > * { min-width: 0; }
+.vcard {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: var(--r-card); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+/* The whole card is the hit area and the visible link carries the same
+   href. Hover darkens the border only: no lift, no shadow animation. */
+a.vcard { text-decoration: none; color: inherit; }
+a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
+.vcard .draw { background: var(--bp-ground); border-bottom: 1px solid var(--rule); }
+.vcard .bd { padding: 20px 22px; }
+.vcard h3 { font-size: 19px; }
+.vcard p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 12px; }
+.vlink {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  color: var(--clay); border-bottom: 1px solid rgba(168, 85, 38, .4);
+  padding-bottom: 2px; display: inline-block;
+}
+/* Venue pages are held back until Kevin's research exists: a thin venue
+   page is worse than no venue page (spec 8.2, 12.4). Until then the card
+   is not a link and carries no dead arrow. To publish, swap the <div
+   class="vcard"> for <a class="vcard" href="venues/<slug>/"> and
+   uncomment the .vlink span into an anchor. Nothing else changes. */
+.vcard--pending .vlink {
+  color: var(--forest-mid); border-bottom-color: transparent; opacity: .8;
+}
+
+/* ============================================================
+   TESTIMONIALS
+   Component built, rendered disabled. It emits nothing until an
+   approved, signed-off testimonial exists. Never publish a
+   placeholder, a lorem quote or an invented logo. (spec 4.5, 13)
+   ============================================================ */
+.testi[hidden] { display: none; }
+.testi { background: var(--ivory); padding: 0 var(--pad-x) var(--pad-y); }
+.tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tcard {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: var(--r-card); padding: 22px;
+}
+.tcard blockquote { margin: 0; font-family: var(--display); font-size: 17px; color: var(--forest); line-height: 1.4; }
+.tcard .biz { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); margin-top: 14px; }
+.tcard .logo { max-height: 26px; width: auto; margin-top: 12px; }
+.tcard .stars { color: var(--clay); font-size: 13px; margin-top: 8px; letter-spacing: .1em; }
+
+/* ============================================================
+   ABOUT (spec 7)
+   ============================================================ */
+.vhero, .abouthero { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
+.abouthero h1 { color: var(--ivory); font-size: 44px; max-width: 16ch; }
+.abouthero .stand { color: rgba(251, 248, 241, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
+
+.sec--light { background: var(--ivory); }
+.sec--light + .sec--light { border-top: 1px solid var(--rule); }
+.sec h2 { font-size: 32px; }
+.sec .stand { max-width: 64ch; font-size: 15.5px; color: rgba(42, 42, 40, .8); margin-top: 10px; }
+
+/* One or two words in --clay, never the whole line. This sits on a
+   light ground, so it is --clay, not --clay-bright. */
+.hl { color: var(--clay); }
+
+/* The team block. The forest ground encloses the group photograph:
+   the photo sits INSIDE the green section, not on ivory below it. */
+.team { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
+.team h2 { color: var(--ivory); }
+.team .stand { color: rgba(251, 248, 241, .82); }
+.team__group { margin-top: 24px; max-width: 760px; border-radius: var(--r-img); overflow: hidden; }
+.team__cap {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+  color: rgba(251, 248, 241, .75); margin-top: 10px;
+}
+.team__story { color: rgba(251, 248, 241, .82); max-width: 60ch; margin-top: 18px; font-size: 15px; }
+.team h3.sub-h { color: var(--ivory); font-size: 24px; margin-top: 44px; }
+.team__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 22px; }
+.team__grid > * { min-width: 0; }
+.tperson { border-top: 1px solid rgba(251, 248, 241, .22); padding-top: 16px; }
+.tperson .nm { font-family: var(--display); font-size: 19px; color: var(--ivory); }
+.tperson .city { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: rgba(251, 248, 241, .75); margin-top: 6px; }
+.tperson .brings { font-size: 13.5px; color: rgba(251, 248, 241, .82); margin: 10px 0 0; }
+.tperson .langs {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
+  color: rgba(251, 248, 241, .75); margin-top: 10px; line-height: 1.6;
+}
+
+/* The method, moved here from the homepage. */
+.timeline { margin-top: 30px; position: relative; padding-left: 34px; }
+.timeline::before {
+  content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px;
+  width: 2px; background: rgba(30, 51, 40, .22);
+}
+.stage { position: relative; padding-bottom: 26px; max-width: 68ch; }
+.stage:last-child { padding-bottom: 0; }
+.stage::before {
+  content: ""; position: absolute; left: -31px; top: 5px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--forest); border: 3px solid var(--ivory);
+}
+.stage .n { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); }
+.stage h3 { font-family: var(--display); font-size: 19px; margin: 4px 0 6px; }
+.stage p { font-size: 14px; color: rgba(42, 42, 40, .78); margin: 0; }
+
+/* The three artefacts, moved here from the homepage with the method. */
+.artefacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
+.artefacts > * { min-width: 0; }
+.acard { background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 22px; }
+.acard .n { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); }
+.acard h3 { font-family: var(--display); font-size: 19px; margin: 6px 0 0; }
+.acard p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 0; }
+
+/* Scope statement. Its own block, not a footnote. This is a legal
+   boundary, not marketing copy: do not paraphrase or shorten it.
+   (spec 0, 7, 11.5) */
+.scopegrid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px; align-items: start; margin-top: 12px; }
+.scopegrid > * { min-width: 0; }
+.scope {
+  background: var(--white); border: 1px solid var(--rule);
+  border-left: 3px solid var(--forest); border-radius: var(--r-card);
+  padding: 26px 28px; max-width: 74ch;
+}
+.scope p { font-size: 14.5px; color: rgba(42, 42, 40, .82); margin: 0; }
+.diffuser { background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 16px; }
 .diffuser svg { width: 100%; height: auto; }
-.diffuser figcaption {
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em;
-  color: var(--forest-mid); padding: 0.7rem 0.2rem 0.4rem; line-height: 1.55;
+
+/* Markets: United Kingdom, Germany, Greece. */
+.mkgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+.mkgrid > * { min-width: 0; }
+.market {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: var(--r-card); padding: 22px;
 }
-@media (max-width: 900px) { .why__grid { grid-template-columns: minmax(0, 1fr); } }
+.market .country { font-family: var(--display); font-size: 19px; color: var(--forest); margin: 0; }
+.market .cities { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); margin: 8px 0 0; line-height: 1.8; }
+
+/* The direct email line beside the form. */
+.contact-direct { font-size: 13px; color: rgba(42, 42, 40, .78); margin-top: 20px; }
+.contact-direct a { color: var(--clay); }
 
 /* ============================================================
-   CLIMATE CARD - room comparison bars + purchase-intention curve
+   CONTACT FORM (spec 6)
    ============================================================ */
-.cbars { margin-top: 1.2rem; }
-.cbar { display: grid; grid-template-columns: minmax(0, 108px) minmax(0, 1fr) 62px; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; }
-.cbar .cl { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.05em; color: rgba(42, 42, 40, 0.65); line-height: 1.4; }
-.cbar .cl b { display: block; font-weight: 500; color: var(--forest-mid); }
-.cbar .track { height: 20px; background: rgba(30, 51, 40, 0.08); border-radius: 2px; position: relative; overflow: hidden; }
-.cbar .fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 2px; }
-.cbar .cv { font-family: var(--display); font-size: 0.95rem; color: var(--charcoal); text-align: right; }
-.curve { margin-top: 1.4rem; }
-.curve svg { width: 100%; height: auto; }
-.rcaveat { font-size: 0.78rem; color: rgba(42, 42, 40, 0.68); margin-top: 0.9rem; line-height: 1.55; }
-
-/* ============================================================
-   METHOD (ivory ground - F2/F6; was a full terracotta ground)
-   ============================================================ */
-.method { background: var(--ivory); border-bottom: 1px solid var(--rule); }
-.method .intro { color: rgba(42, 42, 40, 0.8); max-width: 60ch; margin-top: 0.7rem; }
-.timeline { margin-top: 2.4rem; position: relative; padding-left: 2.1rem; }
-.timeline::before { content: ""; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px; background: rgba(30, 51, 40, 0.22); }
-.step { position: relative; padding: 0 0 1.8rem 0.5rem; max-width: 68ch; }
-.step:last-child { padding-bottom: 0; }
-.step::before { content: ""; position: absolute; left: -31px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--forest); border: 3px solid var(--ivory); }
-.step .num { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--forest); }
-.step h3 { font-size: 1.15rem; margin: 0.25rem 0 0.35rem; }
-.step p { font-size: 0.95rem; color: rgba(42, 42, 40, 0.8); margin: 0; }
-
-.offers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 3rem; }
-.offers > * { min-width: 0; }
-/* White card on the ivory ground, with a hairline so the edge is visible (F7) */
-.offer { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.6rem 1.5rem; }
-.offer .num { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--forest); }
-.offer h3 { font-size: 1.15rem; margin: 0.5rem 0; }
-.offer p { font-size: 0.88rem; color: rgba(42, 42, 40, 0.78); margin: 0; }
-
-/* ============================================================
-   RESEARCH (paper) - the data lives here, verbatim
-   ============================================================ */
-.research { background: var(--ivory); border-bottom: 1px solid var(--rule); }
-.research .intro { max-width: 62ch; margin-top: 0.7rem; color: rgba(42, 42, 40, 0.82); }
-.rgrid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr) minmax(0, 0.95fr); gap: 1.4rem; margin-top: 2.4rem; }
-.rgrid > * { min-width: 0; }
-.rcard { background: var(--mineral); border-radius: var(--radius); padding: 1.6rem 1.5rem; }
-.rcard .tag { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--forest-mid); }
-.rcard h3 { font-size: 1.05rem; margin: 0.35rem 0 0.5rem; }
-.rcard p { font-size: 0.82rem; color: rgba(42, 42, 40, 0.82); }
-.rcard .src { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--forest-mid); margin-top: 0.9rem; line-height: 1.6; }
-.rnote { font-size: 0.8rem; color: rgba(42, 42, 40, 0.62); margin-top: 1.8rem; max-width: 74ch; }
-
-/* scent bars (diverging from a mid zero line) */
-.bars { margin-top: 1.1rem; }
-.bar { display: grid; grid-template-columns: minmax(0, 100px) minmax(0, 1fr) 46px; align-items: center; gap: 0.6rem; margin-bottom: 0.55rem; }
-.bar .bl { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.03em; color: rgba(42, 42, 40, 0.65); line-height: 1.35; }
-.bar .track { height: 16px; background: rgba(30, 51, 40, 0.08); border-radius: 2px; position: relative; overflow: hidden; }
-.bar .fill { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
-.bar .val { font-family: var(--display); font-size: 0.95rem; color: var(--charcoal); text-align: right; }
-
-/* music congruent / incongruent */
-.duo { display: flex; gap: 0.6rem; margin-top: 1.1rem; }
-.duo > div { flex: 1; min-width: 0; border-radius: 3px; padding: 0.85rem 0.8rem; }
-.duo .yes { background: var(--seafoam); border: 1px solid var(--mineral-deep); }
-.duo .no { background: rgba(30, 51, 40, 0.07); border: 1px solid rgba(30, 51, 40, 0.25); }
-.duo b { font-size: 0.78rem; display: block; margin-bottom: 0.3rem; color: var(--charcoal); }
-.duo p { font-size: 0.74rem; margin: 0; color: rgba(42, 42, 40, 0.78); line-height: 1.5; }
-
-/* climate thermo bars */
-.thermo { display: flex; align-items: flex-end; gap: 0.85rem; margin-top: 1.2rem; height: 120px; }
-.thermo > div { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; text-align: center; }
-.tcol { border-radius: 3px 3px 0 0; margin-top: 0.35rem; }
-.thermo .tv { font-family: var(--display); font-size: 1rem; color: var(--charcoal); }
-.thermo .tl { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.04em; color: rgba(42, 42, 40, 0.6); margin-top: 0.45rem; line-height: 1.4; }
-
-/* ============================================================
-   SELECTED WORK (ivory ground - F6; was seafoam)
-   ============================================================ */
-.work { background: var(--ivory); }
-.workgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 2.1rem; }
-.workgrid > * { min-width: 0; }
-.wtile { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
-.wtile .ph { background: #fff; }
-.wtile .ph svg { width: 100%; height: auto; display: block; }
-.wtile .cap { padding: 0.75rem 0.9rem; }
-.wtile .cap .n { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--forest-mid); }
-.wtile .cap h3 { font-size: 0.95rem; margin: 0.15rem 0 0.1rem; }
-.wtile .cap span { font-size: 0.8rem; color: rgba(42, 42, 40, 0.7); }
-.work__note { font-size: 0.8rem; color: rgba(42, 42, 40, 0.62); margin-top: 1.4rem; max-width: 70ch; }
-
-/* ============================================================
-   FOOTER (forest ground)
-   ============================================================ */
-.foot {
-  background: var(--forest); color: rgba(250, 247, 242, 0.8);
-  padding: var(--space-5) var(--pad-x);
+.contact { background: var(--ivory); padding: var(--pad-y) var(--pad-x); }
+.cgrid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
+.cgrid > * { min-width: 0; }
+.cform { background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 28px 26px; }
+.field { margin-bottom: 16px; }
+.field:last-of-type { margin-bottom: 0; }
+.cf-lab {
+  display: block; font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: .06em; color: var(--forest-mid); margin-bottom: 6px;
 }
-.foot__top { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
-.foot .fm { font-family: var(--display); font-size: 1.15rem; color: var(--paper); }
-/* F2: the blotter mark sits on the forest ground, so it is ivory, not
-   terracotta (8.9:1). This was the one known colour failure. */
-.foot .fm i { display: block; font-size: 0.72rem; color: rgba(251, 248, 241, 0.72); margin-top: 0.2rem; font-style: italic; }
-.foot__links { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid rgba(250, 247, 242, 0.18); display: flex; gap: 0.9rem; flex-wrap: wrap; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; }
-.foot__links a { color: rgba(250, 247, 242, 0.85); text-decoration: none; }
-.foot__links a:hover { color: var(--paper); }
-.foot__legal { margin-top: var(--space-2); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.03em; color: rgba(250, 247, 242, 0.62); }
+.cf-in {
+  width: 100%; font-family: var(--body); font-size: 14px; color: var(--charcoal);
+  background: var(--ivory); border: 1px solid var(--rule);
+  border-radius: var(--r-btn); padding: 11px 12px;
+}
+textarea.cf-in { min-height: 96px; resize: vertical; }
+/* The better dropdown: same box as the other inputs, custom chevron,
+   native select underneath so it stays keyboard and screen-reader
+   operable. */
+select.cf-in {
+  appearance: none; -webkit-appearance: none;
+  padding-right: 38px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%233A5544' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 12px 8px;
+}
+.cf-in:focus { border-color: var(--forest-mid); }
+.cf-in[aria-invalid="true"] { border-color: var(--clay); }
+/* Errors are never colour alone. Every one carries text. (spec 6.2, 9.3) */
+.cf-err { font-size: 12.5px; color: var(--clay); margin: 6px 0 0; }
+.cf-err:empty { display: none; }
+
+.consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; }
+.consent input { margin-top: 3px; flex: none; width: 16px; height: 16px; }
+.consent label { font-size: 13px; color: rgba(42, 42, 40, .82); }
+.cform .btn { margin-top: 18px; width: 100%; }
+/* rgba(42,42,40,.72) on white is 6.35:1. The 11px note must stay
+   legible; the mockup's .62 measured 4.15:1 on ivory and failed. */
+.cf-note { font-size: 11px; color: rgba(42, 42, 40, .72); margin-top: 12px; line-height: 1.6; }
+.cf-note a { color: var(--clay); }
+/* Honeypot. Off-screen rather than display:none so a bot that checks
+   computed style still fills it. Never focusable by a person. */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cf-done {
+  background: var(--mineral); border: 1px solid var(--rule);
+  border-radius: var(--r-card); padding: 26px 28px;
+}
+.cf-done p { margin: 0; font-family: var(--display); font-size: 19px; color: var(--forest); }
+.cf-fail { border-left: 3px solid var(--clay); padding-left: 14px; margin-top: 16px; }
+.cf-fail p { font-size: 13.5px; color: rgba(42, 42, 40, .82); margin: 0; }
+.cf-fail a { color: var(--clay); }
 
 /* ============================================================
-   IMAGE MEDIA SYSTEM - branded [Photo] fallback + duotone
-   A tiny delegated img-onerror handler adds .img--failed so a
-   missing file shows the placeholder, never a broken icon.
+   VENUE PAGES (spec 8) - importance grid
+   Never colour alone. Every cell carries the word High, Medium or
+   Low as text, in --forest, with the colour on a swatch beside it.
+   sage on ivory is 2.83:1, so the word could not be sage. (spec 8.1)
    ============================================================ */
-.media { position: relative; overflow: hidden; border-radius: var(--radius); background: linear-gradient(160deg, var(--paper), var(--mineral)); }
+.vhero h1 { color: var(--ivory); font-size: 44px; max-width: 16ch; }
+.vhero .stand { color: rgba(251, 248, 241, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
+.igrid { width: 100%; border-collapse: collapse; margin-top: 24px; background: var(--white); border: 1px solid var(--rule); }
+.igrid caption { text-align: left; font-size: 13px; color: rgba(42, 42, 40, .78); padding-bottom: 10px; }
+.igrid th, .igrid td { border: 1px solid var(--rule); padding: 12px 14px; text-align: left; }
+.igrid th { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); font-weight: 400; }
+.igrid td { font-size: 13px; color: var(--forest); }
+.rate { display: inline-flex; align-items: center; gap: 8px; }
+.rate .sw { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+.rate--high .sw { background: var(--rate-high); }
+.rate--medium .sw { background: var(--rate-medium); }
+.rate--low .sw { background: var(--rate-low); }
+/* A block whose content has not arrived. Labelled, never invented.
+   Do not fill this with a statistic, percentage or citation that is
+   not in the specification. (spec 8.2, 13) */
+.pending {
+  border: 1px dashed rgba(30, 51, 40, .3); border-radius: var(--r-card);
+  padding: 22px 24px; margin-top: 20px;
+}
+.pending .t { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--forest-mid); margin: 0; }
+.pending p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 0; max-width: 60ch; }
+.pending + .pending { margin-top: 12px; }
+.pending-cell { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); }
+.venue-plan { margin-top: 20px; }
+
+/* ============================================================
+   FOOTER (spec 3.2)
+   ============================================================ */
+.foot { background: var(--forest); padding: 40px var(--pad-x); color: rgba(251, 248, 241, .75); font-size: 13px; }
+.foot__inner { max-width: var(--maxw); margin-inline: auto; }
+/* The slogan's new home. Second and last place --clay-bright is text. */
+.foot .slog {
+  font-family: var(--display); font-style: italic; font-size: 20px;
+  color: var(--clay-bright); margin-bottom: 14px;
+}
+.foot .cols { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.foot .fm { font-family: var(--display); font-size: 17px; color: var(--ivory); }
+/* 55%, not the 50% in the spec: 8.5px at 50% measured 4.38:1 and
+   failed AA. 55% measures 4.97:1. */
+.foot .fm span { font-family: var(--mono); font-size: 8.5px; letter-spacing: .2em; color: rgba(251, 248, 241, .55); margin-left: 10px; }
+.foot .meta { text-align: right; }
+/* The location list is plain text, not links. The email is a mailto. */
+.foot .meta a { color: rgba(251, 248, 241, .9); }
+.foot__links { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(251, 248, 241, .18); display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; }
+.foot__links a { color: rgba(251, 248, 241, .8); text-decoration: none; }
+.foot__links a:hover { color: var(--ivory); }
+
+/* ============================================================
+   DOCUMENT PAGES (privacy, redirect stubs, 404)
+   ============================================================ */
+.doc { padding: var(--pad-y) var(--pad-x); }
+.doc__inner { max-width: 760px; margin-inline: auto; }
+.doc h1 { font-size: 32px; margin-bottom: 16px; }
+.doc h2 { font-size: 19px; margin-top: 28px; margin-bottom: 6px; }
+.doc p, .doc li { color: rgba(42, 42, 40, .88); }
+.doc ul { padding-left: 20px; }
+.doc a { color: var(--clay); }
+.doc__back { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-decoration: none; }
+.doc__cta { margin-top: 34px; }
+.e404 { text-align: center; padding: 90px var(--pad-x); }
+.e404 h1 { font-size: 44px; }
+.e404 p { max-width: 46ch; margin: 14px auto 26px; color: rgba(42, 42, 40, .8); }
+
+/* ============================================================
+   IMAGE MEDIA SYSTEM
+   A delegated img-onerror handler adds .img--failed, so a missing
+   file shows the branded placeholder, never a broken icon.
+   ============================================================ */
+.media { position: relative; overflow: hidden; border-radius: var(--r-img); background: linear-gradient(160deg, var(--ivory), var(--mineral)); }
 .media--3-2 { aspect-ratio: 3 / 2; }
-.media--4-5 { aspect-ratio: 4 / 5; }
-.media--16-9 { aspect-ratio: 16 / 9; }
 .media__ph {
   position: absolute; inset: 0; z-index: 0;
-  display: grid; place-content: center; justify-items: center; gap: 0.5rem;
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em;
-  color: var(--color-accent-text);
+  display: grid; place-content: center; gap: 8px; justify-items: center;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+  color: var(--forest-mid);
 }
-.media__ph::before { content: ""; width: 32px; height: 42px; background: url("favicon.svg") center / contain no-repeat; opacity: 0.7; }
-.media > img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; background: linear-gradient(160deg, var(--paper), var(--mineral)); }
+.media__ph::before { content: ""; width: 32px; height: 42px; background: url("favicon.svg") center / contain no-repeat; opacity: .7; }
+.media > img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
 .media > img.img--failed { display: none; }
-/* Duotone: grayscale blended toward forest; colour on hover */
-.media--duotone > img { filter: grayscale(1) contrast(1.03) brightness(1.04); transition: filter 0.35s ease; }
-.media--duotone::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--forest); mix-blend-mode: color; opacity: 0.5; transition: opacity 0.35s ease; }
+/* Duotone, retuned for the forest ground it now sits on. */
+.media--duotone > img { filter: grayscale(1) contrast(1.04) brightness(1.06); transition: filter .35s ease; }
+.media--duotone::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--forest); mix-blend-mode: color; opacity: .45; transition: opacity .35s ease; }
 .media--duotone:hover > img { filter: none; }
 .media--duotone:hover::after { opacity: 0; }
-.media--plain::after { display: none !important; }
-.media--plain > img { filter: none !important; }
-@media (prefers-reduced-motion: reduce) { .media--duotone > img, .media--duotone::after { transition: none; } }
-figure { margin: 0; }
-.media-cap { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: rgba(42, 42, 40, 0.65); padding: 0.55rem 0.1rem 0; }
-
-/* ============================================================
-   ABOUT - team + prose
-   ============================================================ */
-/* About hero is the forest ground too, matching the home hero (F5). */
-.about-hero { background: var(--forest); }
-.about-hero h1 { color: var(--ivory); }
-.about-hero .lede, .about-hero p { color: rgba(251, 248, 241, 0.78); }
-.about-hero .eyebrow { color: rgba(251, 248, 241, 0.72); }
-.about-hero .lede { font-size: 1.05rem; margin-top: 0.8rem; }
-.team__group { margin: 1.4rem 0 2.4rem; max-width: 760px; }
-.team__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; margin-top: 1.8rem; }
-.team__grid > * { min-width: 0; }
-.card__name { font-family: var(--display); font-weight: 600; font-size: 1.2rem; margin-top: 0.8rem; color: var(--color-title); }
-.card__title { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--forest-mid); margin-top: 0.3rem; }
-.card__bio { margin-top: 0.6rem; color: var(--charcoal); font-size: 0.92rem; }
-.card__langs {
-  margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px solid var(--rule);
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em;
-  color: var(--forest-mid); line-height: 1.6;
+@media (prefers-reduced-motion: reduce) {
+  .media--duotone > img, .media--duotone::after { transition: none; }
 }
-.card__langs b { font-weight: 500; color: rgba(42, 42, 40, 0.6); }
-.opgrid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
-.opgrid > * { min-width: 0; }
-@media (max-width: 700px) { .opgrid { grid-template-columns: minmax(0, 1fr); } }
-.prose { max-width: var(--measure); }
-.prose p { color: var(--charcoal); }
-.oplist { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 0.6rem; }
-.oplist li { padding-left: 1.4rem; position: relative; color: var(--charcoal); }
-.oplist li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 50%; background: var(--forest); }
-.sectorlist { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
-.sectorlist li { font-family: var(--mono); font-size: 0.72rem; background: #fff; border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.75rem; }
-.deliver { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 1.6rem; }
-.deliver > * { min-width: 0; }
 
 /* ============================================================
-   CONTACT (ivory ground - F6) - real form + mailto fallback
-   ============================================================ */
-.contact { background: var(--ivory); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.25rem); padding: clamp(2.75rem, 6vw, 4rem) var(--pad-x); }
-.contact > * { min-width: 0; }
-.contact .lede { font-size: 1.02rem; margin-top: 1rem; max-width: 46ch; }
-.cities { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-.city { display: flex; gap: 0.85rem; align-items: baseline; }
-.city .cc { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--forest-mid); width: 30px; flex: none; }
-.city b { font-family: var(--display); font-weight: 600; color: var(--charcoal); }
-.city span { font-size: 0.82rem; color: rgba(42, 42, 40, 0.68); }
-.cform { background: #fff; border: 1px solid var(--rule); border-radius: 5px; padding: 1.9rem 1.7rem; }
-.cf-lab { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em; color: var(--forest-mid); display: block; margin: 1rem 0 0.4rem; }
-.cf-lab:first-of-type { margin-top: 0; }
-.cf-in { width: 100%; border: 1px solid var(--rule); border-radius: 3px; padding: 0.7rem 0.75rem; font-size: 0.95rem; font-family: var(--body); color: var(--charcoal); background: var(--ivory); }
-textarea.cf-in { min-height: 90px; resize: vertical; }
-.cf-note { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.05em; color: rgba(42, 42, 40, 0.6); margin-top: 1rem; }
-
-/* ============================================================
-   MARKETS - blueprint node diagram + market blocks
-   ============================================================ */
-.market-hero { background: var(--ivory); }
-.market-hero .lede { font-size: 1.02rem; margin-top: 0.8rem; }
-.markets { background: var(--ivory); border-bottom: 1px solid var(--rule); }
-.opsfig { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2rem); margin: 2rem 0 0; }
-.opsfig svg { width: 100%; height: auto; max-height: 280px; }
-.opsfig figcaption { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em; color: rgba(42, 42, 40, 0.66); margin-top: 0.8rem; }
-/* v4: market blocks are cards inside About, not standalone page sections. */
-.mkgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 1.9rem; }
-.mkgrid > * { min-width: 0; }
-.market { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.6rem 1.5rem; }
-.market__head { display: block; margin-bottom: 0.9rem; }
-.market__country { display: block; font-family: var(--display); font-weight: 600; font-size: 1.3rem; color: var(--color-title); margin-top: 0.35rem; }
-.market__city { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--forest-mid); }
-.market__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-.market__grid > * { min-width: 0; }
-.market__label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em; color: var(--forest-mid); margin-bottom: 0.5rem; }
-.market__note { margin-top: 0.6rem; max-width: 52ch; color: var(--charcoal); }
-
-/* ============================================================
-   DOC PAGE (privacy)
-   ============================================================ */
-.doc { padding: var(--space-5) var(--pad-x); }
-.doc__inner { max-width: 760px; margin-inline: auto; }
-.doc h1 { font-size: var(--h2); margin-bottom: 1.2rem; }
-.doc h2 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 0.4rem; color: var(--color-title); }
-.doc p, .doc li { max-width: var(--measure); color: var(--charcoal); }
-.doc ul { padding-left: 1.2rem; }
-.doc a { color: var(--color-accent-text); }
-.doc__back { font-family: var(--mono); font-size: 0.78rem; text-decoration: none; letter-spacing: 0.04em; }
-
-/* ============================================================
-   RESPONSIVE
+   RESPONSIVE. ONE breakpoint (spec 2.5).
+   All multi-column grids collapse to one. Hero text stacks above
+   the image. Hero H1 drops 56px to 38px. Section padding to 26px.
+   The header wraps and all three nav items stay visible; there is
+   no hamburger.
    ============================================================ */
 @media (max-width: 900px) {
-  .hero, .contact { grid-template-columns: minmax(0, 1fr); }
-  .rgrid { grid-template-columns: minmax(0, 1fr); }
-  .workgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .team__grid, .deliver { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .market__grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  :root { --pad-x: 26px; }
 
-  /* mobile nav: collapse behind a toggle */
-  .nav-toggle-label {
-    display: inline-flex; align-items: center; margin-left: auto;
-    background: transparent; border: 1px solid var(--rule); border-radius: 3px;
-    padding: 0.5rem 0.8rem; font-family: var(--mono); font-size: 0.8rem;
-    cursor: pointer; color: var(--charcoal);
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero .txt { padding: 46px var(--pad-x) 40px; order: 1; }
+  .hero .imgside { order: 2; min-height: 240px; }
+  .hero .imgside::after {
+    background: linear-gradient(180deg, rgba(30, 51, 40, .72) 0%, rgba(30, 51, 40, .18) 70%);
   }
-  .hdr nav {
-    position: absolute; top: var(--nav-h); left: 0; right: 0;
-    flex-direction: column; align-items: stretch; gap: 0;
-    background: #fff; padding: 0.5rem var(--pad-x) 1rem;
-    border-bottom: 1px solid var(--rule);
-  }
-  .hdr nav a { width: 100%; text-align: left; }
-  .navbtn { border-color: transparent; border-bottom: 1px solid var(--rule); border-radius: 0; padding: 0.75rem 0.2rem; }
-  .bookbtn { margin-top: 0.6rem; text-align: center; }
-  #nav-toggle:not(:checked) ~ nav { display: none; }
-}
+  .hero h1 { font-size: 38px; max-width: none; }
 
-@media (max-width: 560px) {
-  .offers { grid-template-columns: minmax(0, 1fr); }
-  .workgrid, .team__grid, .deliver { grid-template-columns: minmax(0, 1fr); }
-  .duo { flex-direction: column; }
-  .foot__top { flex-direction: column; align-items: flex-start; }
+  .rowhead { grid-template-columns: 1fr; gap: 14px; }
+  .expander { grid-template-columns: 1fr; gap: 22px; }
+  .vgrid, .tgrid, .mkgrid, .team__grid, .cgrid,
+  .artefacts, .scopegrid { grid-template-columns: 1fr; }
+  .cgrid { gap: 28px; }
+  .bar { grid-template-columns: 104px 1fr 46px; }
+  .cbar { grid-template-columns: 104px 1fr 58px; }
+
+  .hdr__inner { justify-content: flex-start; }
+  .hdr nav { width: 100%; }
+
+  .foot .cols { flex-direction: column; }
+  .foot .meta { text-align: left; }
+
+  .amb h2, .ven h2, .sec h2 { font-size: 26px; }
+  .abouthero h1, .vhero h1 { font-size: 34px; }
+  .igrid, .igrid thead, .igrid tbody, .igrid th, .igrid td, .igrid tr { display: block; }
+  .igrid thead { display: none; }
+  .igrid td { border-top: none; }
+  .igrid tr { border-top: 1px solid var(--rule); padding: 6px 0; }
+  .igrid td::before { content: attr(data-th) "  "; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); }
 }
 
 /* ============================================================
    MOTION
-   Restrained scroll-reveal and hover. Elements opt in with
-   data-animate (and an optional data-anim-delay in ms); motion.js
-   only adds .in. Every hiding rule is scoped under .js-motion, so
-   with JavaScript off nothing is ever hidden. Only transform and
-   opacity animate; nothing autoplays.
+   Every hiding rule is scoped under .js-motion, so with JavaScript
+   off nothing is ever hidden. Only transform and opacity animate.
    ============================================================ */
 .js-motion [data-animate] { opacity: 0; transform: translateY(16px); }
 .js-motion [data-animate].in {
   opacity: 1; transform: none;
-  transition: opacity 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
-              transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: opacity 420ms cubic-bezier(.22, .61, .36, 1),
+              transform 420ms cubic-bezier(.22, .61, .36, 1);
 }
-
-/* Research ladder bars grow to width on first entry. The −17% bar is
-   anchored right:50%, so it grows leftward from the zero line. */
-.js-motion .bars .fill { transform: scaleX(0); transform-origin: left center; }
-.js-motion .bars .fill.neg { transform-origin: right center; }
-.js-motion [data-animate].in .fill {
-  transform: scaleX(1);
-  transition: transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.js-motion [data-animate].in .bar:nth-child(2) .fill { transition-delay: 70ms; }
-.js-motion [data-animate].in .bar:nth-child(3) .fill { transition-delay: 140ms; }
-.js-motion [data-animate].in .bar:nth-child(4) .fill { transition-delay: 210ms; }
-.js-motion [data-animate].in .bar:nth-child(5) .fill { transition-delay: 280ms; }
-
-/* Hover lift on tiles and cards */
-.wtile, .offer, .market, .card, .rcard {
-  transition: transform 220ms ease-out, box-shadow 220ms ease-out;
-}
-.wtile:hover, .offer:hover, .market:hover, .card:hover {
-  transform: translateY(-4px); box-shadow: 0 10px 26px rgba(30, 51, 40, 0.13);
-}
-.btn:hover, .bookbtn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30, 51, 40, 0.22); }
-.btn { transition: transform 180ms ease-out, box-shadow 180ms ease-out, background 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out; }
-.bookbtn { transition: transform 180ms ease-out, box-shadow 180ms ease-out, background 180ms ease-out; }
-
-/* Nav links: colour shift plus an underline drawn from the left */
-.navbtn { position: relative; transition: background 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out; }
-.navbtn::after {
-  content: ""; position: absolute; left: 1.05rem; right: 1.05rem; bottom: 0.3rem;
-  height: 1px; background: var(--forest);
-  transform: scaleX(0); transform-origin: left center;
-  transition: transform 220ms ease-out;
-}
-.navbtn:hover::after, .navbtn[aria-current="page"]::after { transform: scaleX(1); }
 
 @media (prefers-reduced-motion: reduce) {
   .js-motion [data-animate], .js-motion [data-animate].in {
     opacity: 1; transform: none; transition: none;
   }
-  .js-motion .bars .fill, .js-motion [data-animate].in .fill {
-    transform: scaleX(1); transition: none; transition-delay: 0s;
-  }
-  .wtile, .offer, .market, .card, .rcard, .btn, .bookbtn, .navbtn, .navbtn::after { transition: none; }
-  .wtile:hover, .offer:hover, .market:hover, .card:hover,
-  .btn:hover, .bookbtn:hover, .btn:active { transform: none; }
 }
-
-/* Market cards collapse with the other card grids */
-@media (max-width: 900px) { .mkgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .mkgrid { grid-template-columns: minmax(0, 1fr); } }
