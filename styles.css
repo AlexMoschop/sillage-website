@@ -46,6 +46,14 @@
    NEVER pure white or pure black as a type colour. --white is a
    legitimate BACKGROUND for the header and cards only.
 
+   PHONETIC. The lockup reads "SEE YAZH", set by the owner on
+   2026-07-31. It SUPERSEDES the older hyphenated spelling given in
+   sections 3.1, 3.2 and 11.6 of the specification, which is why a grep
+   for that spelling should now return nothing. It matches the domain,
+   seeyazh.com. It is still a permanent part of the wordmark lockup in
+   both the header and the footer; do not remove it, and keep the two
+   spellings from drifting apart again.
+
    TYPE. Eyebrows are sans, uppercase: --body 12.5px, weight 600,
    letter-spacing .04em, opacity .75, colour --forest. This
    SUPERSEDES the v4 decision recorded in context.md, which made
@@ -518,7 +526,12 @@ a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
 /* The team block. The forest ground encloses the group photograph:
    the photo sits INSIDE the green section, not on ivory below it. */
 .team { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
-.team h2 { color: var(--ivory); }
+/* "Three noses, one method." lives on this green ground from v7.1, in
+   --ivory, matching every other section heading at 32px. It is NOT
+   #FFFFFF: pure white is never a type colour here, and --ivory is the
+   white variant the homepage H1 already uses on this exact ground
+   (12.70:1). No clay highlight, because clay on forest is dark on dark. */
+.team h2 { color: var(--ivory); font-size: 32px; }
 .team .stand { color: rgba(251, 248, 241, .82); }
 .team__group { margin-top: 24px; max-width: 760px; border-radius: var(--r-img); overflow: hidden; }
 .team__cap {
@@ -773,7 +786,7 @@ select.cf-in {
   .foot .cols { flex-direction: column; }
   .foot .meta { text-align: left; }
 
-  .amb h2, .ven h2, .sec h2 { font-size: 26px; }
+  .amb h2, .ven h2, .sec h2, .team h2 { font-size: 26px; }
   .abouthero h1, .vhero h1 { font-size: 34px; }
   .igrid, .igrid thead, .igrid tbody, .igrid th, .igrid td, .igrid tr { display: block; }
   .igrid thead { display: none; }
