@@ -318,14 +318,31 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 }
 .btnrow { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
 
+/* Hero photograph.
+   OWNER OVERRIDE of spec 4.1, 2026-08-01. The spec asked for
+   filter: saturate(.55) sepia(.14) contrast(1.02) plus a gradient
+   running to 70% of the width. Together those did more than pull the
+   image toward the palette: they drained it, and roughly the left third
+   of the photograph disappeared into flat green. The picture is the only
+   thing in the hero carrying any warmth, so it now keeps its colour.
+
+   What is kept is the PURPOSE of both: the image still feathers into the
+   green so there is no hard seam where the two columns meet, and it still
+   sits in the brand's register. But the feather is now a soft EDGE, about
+   a third of the image at most, instead of a curtain over half of it.
+   Past 34% the photograph is completely clean. */
 .hero .imgside { position: relative; overflow: hidden; }
 .hero .imgside img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: saturate(.55) sepia(.14) contrast(1.02);
+  filter: saturate(.95) contrast(1.05) brightness(1.02);
 }
 .hero .imgside::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg, #1E3328 0%, rgba(30, 51, 40, .72) 30%, rgba(30, 51, 40, .18) 70%);
+  background: linear-gradient(90deg,
+    rgba(30, 51, 40, .88) 0%,
+    rgba(30, 51, 40, .46) 7%,
+    rgba(30, 51, 40, .14) 19%,
+    rgba(30, 51, 40, 0) 34%);
 }
 .hero .capt {
   position: absolute; bottom: 16px; right: 18px; z-index: 2;
@@ -353,12 +370,22 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 }
 .rowhead > * { min-width: 0; }
 .rowhead .nm { font-family: var(--display); font-size: 26px; color: var(--forest); }
-/* Music has no image and no substitute. The slot stays empty until a
-   real photograph is supplied. (spec 4.2, 10.2, 13) */
 .rowimg {
   width: 158px; height: 110px; object-fit: cover; display: block;
   margin-top: 12px; border: 1px solid var(--rule); border-radius: var(--r-img);
 }
+/* The Music slot. It held nothing until 2026-08-01, because section 10.2
+   had no photograph for it and section 13 forbids stock. At the owner's
+   instruction it now carries a DRAWING in the site's own blueprint
+   language, sized and framed exactly like the two photographs beside it
+   so the row still reads as three equal cards. It is not a photograph and
+   is not pretending to be one; swap it for a real one when it exists. */
+.rowdraw {
+  width: 158px; height: 110px; margin-top: 12px;
+  border: 1px solid var(--rule); border-radius: var(--r-img);
+  overflow: hidden; background: var(--bp-ground);
+}
+.rowdraw svg { display: block; width: 100%; height: 100%; }
 .rowhead .what {
   font-size: 14px; color: rgba(42, 42, 40, .78); max-width: 56ch; margin: 0;
 }
@@ -532,7 +559,15 @@ a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
    (12.70:1). No clay highlight, because clay on forest is dark on dark. */
 .team h2 { color: var(--ivory); font-size: 32px; }
 .team .stand { color: rgba(251, 248, 241, .82); }
-.team__group { margin-top: 24px; max-width: 760px; border-radius: var(--r-img); overflow: hidden; }
+/* The group photograph is in full colour too, for the same reason as the
+   portraits below it: the duotone read as a green smear on a green ground.
+   Same light grade, same hairline to seat it on the panel. */
+.team__group {
+  margin-top: 24px; max-width: 760px;
+  border-radius: var(--r-img); overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(251, 248, 241, .16);
+}
+.team__group img { filter: saturate(1.04) contrast(1.03); }
 .team__cap {
   font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
   color: rgba(251, 248, 241, .75); margin-top: 10px;
@@ -543,31 +578,39 @@ a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
 .team__grid > * { min-width: 0; }
 /* Individual portraits, restored 2026-07-31 at the owner's instruction.
    Cropped 4:5 around the face upstream, so object-fit has nothing left to
-   cut off. Same grayscale-plus-forest treatment as the group photograph
-   above them, but a lighter blend: at this size a heavy tint turns a face
-   to mud. Colour returns on hover and on keyboard focus within the card,
-   so a keyboard user gets the same affordance as a mouse user. */
+   cut off, and served at the largest size the source actually contains.
+
+   IN FULL COLOUR, on purpose. These were briefly grayscale with a forest
+   blend over them, matching the old duotone treatment. On a green ground,
+   at this size, that turned three faces a flat sickly green. A photograph
+   of a real person is the one thing on this site that should look like
+   itself. The grade below is a light lift only: a touch of contrast and
+   warmth, nothing that changes how anyone looks.
+
+   A hairline and a soft inset shadow seat the picture on the green so it
+   reads as a photograph and not as a hole cut in the panel. */
 .tphoto {
   aspect-ratio: 4 / 5; position: relative; overflow: hidden;
-  border-radius: var(--r-img); background: rgba(251, 248, 241, .06);
+  border-radius: var(--r-img);
+  background: rgba(251, 248, 241, .06);
+  box-shadow: inset 0 0 0 1px rgba(251, 248, 241, .16);
   margin-bottom: 14px;
 }
 .tphoto img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(1) contrast(1.04) brightness(1.02);
-  transition: filter .35s ease;
-}
-.tphoto::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: var(--forest); mix-blend-mode: color; opacity: .3;
-  transition: opacity .35s ease;
+  filter: saturate(1.04) contrast(1.03);
+  transform: scale(1.001);           /* kills a sub-pixel edge seam */
+  transition: transform .5s ease, filter .5s ease;
 }
 .tperson:hover .tphoto img,
-.tperson:focus-within .tphoto img { filter: none; }
-.tperson:hover .tphoto::after,
-.tperson:focus-within .tphoto::after { opacity: 0; }
+.tperson:focus-within .tphoto img {
+  transform: scale(1.03);
+  filter: saturate(1.1) contrast(1.05);
+}
 @media (prefers-reduced-motion: reduce) {
-  .tphoto img, .tphoto::after { transition: none; }
+  .tphoto img { transition: none; }
+  .tperson:hover .tphoto img,
+  .tperson:focus-within .tphoto img { transform: scale(1.001); }
 }
 .tperson .nm { font-family: var(--display); font-size: 19px; color: var(--ivory); }
 .tperson .city { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: rgba(251, 248, 241, .75); margin-top: 6px; }
