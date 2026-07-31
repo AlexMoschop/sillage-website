@@ -36,17 +36,23 @@
  *
  * ------------------------------------------------------------
  * SERVER SETUP. Done on 2026-07-31; this is the record, not a to-do.
+ * Re-done on 2026-08-01 for the seeyazh.com move; see the note below.
  *
  * The config lives ONE DIRECTORY ABOVE THE WEB ROOT, because that is
  * what dirname(__DIR__) resolves to below. It is NOT in $HOME. Getting
  * that wrong is silent: the endpoint just answers "not_configured"
- * forever. On this account the real path is
+ * forever.
  *
- *   ~/domains/sillage.moschopoulos.com/sillage-private/
+ * THAT PATH IS DERIVED FROM THE DOMAIN, so it moves when the site does.
+ * The v8 migration to seeyazh.com is exactly the case that breaks it: a
+ * config sitting beside the old web root is invisible from the new one.
+ * On this account the live path is now
  *
- * while the web root is    ~/domains/sillage.moschopoulos.com/public_html/
+ *   ~/domains/seeyazh.com/sillage-private/
  *
- *   PRIV=~/domains/sillage.moschopoulos.com/sillage-private
+ * while the web root is    ~/domains/seeyazh.com/public_html/
+ *
+ *   PRIV=~/domains/seeyazh.com/sillage-private
  *   mkdir -p $PRIV/submissions $PRIV/ratelimit
  *   chmod 700 $PRIV $PRIV/submissions $PRIV/ratelimit
  *   php -r 'echo bin2hex(random_bytes(32)), "\n";'   # generate ON the server
@@ -55,10 +61,12 @@
  *
  *   <?php return array(
  *     'to'      => 'info@seeyazh.com',
- *     'from'    => 'website@sillage.moschopoulos.com',  // must be a real
- *              // mailbox on the domain the mail is SENT from, or SPF and
- *              // DMARC drop it. Not the seeyazh.com address: the site is
- *              // served from sillage.moschopoulos.com today.
+ *     'from'    => 'website@seeyazh.com',  // must be a real mailbox on the
+ *              // domain the mail is SENT from, or SPF and DMARC drop it.
+ *              // Before v8 this was website@sillage.moschopoulos.com, on a
+ *              // domain carrying NO SPF and NO MX at all. seeyazh.com has
+ *              // SPF, DKIM and DMARC, so sending from it is strictly better.
+ *              // The mailbox must actually exist; create it in hPanel first.
  *     'key_hex' => '<the 64-character hex string printed above>',
  *     'store'   => '<absolute path>/submissions',
  *     'rate'    => '<absolute path>/ratelimit',

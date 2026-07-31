@@ -13,13 +13,13 @@
 
   <title>Sillage &middot; sensory identity for boutique wellness and hospitality</title>
   <meta name="description" content="Ambience is never neutral. Sillage advises on scent, aligns the music to it, and trials freestanding climate and diffusion equipment, with the published evidence behind every recommendation." />
-  <link rel="canonical" href="https://sillage.moschopoulos.com/" />
+  <link rel="canonical" href="https://www.seeyazh.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Sillage &middot; ambience is never neutral" />
   <meta property="og:description" content="A room speaks before anyone in it says a word. Sensory identity for boutique wellness and hospitality businesses." />
-  <meta property="og:image" content="og-image.png" />
-  <meta property="og:url" content="https://sillage.moschopoulos.com/" />
+  <meta property="og:image" content="https://www.seeyazh.com/og-image.png" />
+  <meta property="og:url" content="https://www.seeyazh.com/" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -32,7 +32,7 @@
     "@type": "ProfessionalService",
     "name": "Sillage",
     "description": "Sensory identity consultancy for boutique wellness and hospitality businesses. Advises on scent, aligns music to it, and trials freestanding climate and diffusion equipment.",
-    "url": "https://sillage.moschopoulos.com/",
+    "url": "https://www.seeyazh.com/",
     "areaServed": [
       { "@type": "City", "name": "Reading" },
       { "@type": "City", "name": "Milton Keynes" },
@@ -148,43 +148,33 @@
           <div class="rowhead">
             <div>
               <span class="nm">Music</span>
-              <!-- OWNER INSTRUCTION 2026-08-01: this slot is no longer empty.
-                   It is a DRAWING, not a photograph and not stock. Section
-                   10.2 wanted "a room's soft furnishings and materials"
-                   rather than anything literal, because acoustics live in
-                   surfaces; section 13 forbids stock imagery. So this is the
-                   site's own blueprint language, the same vocabulary as the
-                   venue plans: the room, the soft surfaces that absorb, the
-                   two sources, and the coverage that has to agree with the
-                   scent. Replace it with a real photograph when one exists. -->
-              <div class="rowdraw">
-                <svg viewBox="0 0 200 139" width="100%" role="img"
-                     aria-label="Blueprint plan of a room showing two sound sources, their overlapping coverage, and the soft furnishings that absorb it.">
-                  <rect width="200" height="139" fill="#FCFAF4"/>
-                  <g stroke="#5E8B93" stroke-width=".35" opacity=".3">
-                    <path d="M50 0V139M100 0V139M150 0V139M0 46H200M0 93H200"/>
-                  </g>
-                  <rect x="18" y="14" width="164" height="94" fill="none" stroke="#5E8B93" stroke-width="1.3"/>
-                  <g fill="none" stroke="#A85526" stroke-width="1" stroke-dasharray="2 3" opacity=".95">
-                    <circle cx="35" cy="31" r="20"/><circle cx="35" cy="31" r="33"/><circle cx="35" cy="31" r="46"/>
-                    <circle cx="166" cy="92" r="18"/><circle cx="166" cy="92" r="30"/>
-                  </g>
-                  <g stroke="#1E3328" stroke-width="1.2" fill="#FCFAF4">
-                    <rect x="30" y="24" width="10" height="14" rx="1"/>
-                    <rect x="161" y="85" width="10" height="14" rx="1"/>
-                  </g>
-                  <g fill="#1E3328"><circle cx="35" cy="31" r="1.7"/><circle cx="166" cy="92" r="1.7"/></g>
-                  <g stroke="#5E8B93" stroke-width="1.1" fill="none">
-                    <rect x="62" y="74" width="56" height="22" rx="3"/>
-                    <path d="M62 82h56M76 74v22M104 74v22"/>
-                  </g>
-                  <g stroke="#6CA085" stroke-width=".7" opacity=".85">
-                    <path d="M64 46l14 14M74 46l14 14M84 46l14 14M94 46l14 14M104 46l14 14M114 46l14 14"/>
-                  </g>
-                  <rect x="60" y="44" width="70" height="18" fill="none" stroke="#5E8B93" stroke-width=".9"/>
-                  <text x="20" y="128" font-family="ui-monospace,Menlo,monospace" font-size="6.4" letter-spacing="1.3" fill="#3A5544">SOFT SURFACES &#183; COVERAGE PLAN</text>
-                </svg>
-              </div>
+              <!-- OWNER INSTRUCTION 2026-08-01: the Music slot, which spec
+                   4.2 and 10.2 had left deliberately empty, now carries a
+                   real photograph. It briefly held a blueprint drawing; the
+                   owner asked for something actually about music, matching
+                   the other two row photographs.
+
+                   SOURCE AND LICENCE, so this is auditable later:
+                     unsplash.com/photos/XnofrKsG_2w
+                     Courtney Cook (@courtneymcook)
+                     Unsplash License: free for commercial use, no
+                     attribution required.
+                   This is stock, which spec 13 forbids, so it is an explicit
+                   owner override and sits under the same standing note as the
+                   hero and row images (spec 10.3): replace it with Sillage's
+                   own photography when that exists.
+
+                   Cropped deliberately: the full frame carries a maker's
+                   wordmark on the platter mat and a second logo on the body.
+                   Neither is in this crop. Do not re-crop wider without
+                   checking that again; a third-party brand has no business
+                   on a client's site. -->
+              <picture>
+                <source srcset="assets/img/rows/music-turntable.webp" type="image/webp" />
+                <img class="rowimg" src="assets/img/rows/music-turntable.jpg"
+                     width="1050" height="731" loading="lazy"
+                     alt="A turntable tonearm resting over the platter, on a wooden table in soft window light." />
+              </picture>
             </div>
             <p class="what">Music sets the pace of a room, and it either works with your scent or against it. When the two match in energy, customers rate the space higher, stay longer and buy more; when they clash, the room reads worse than silence. We audit what is playing and align it to the prescription.</p>
             <button class="see" type="button" aria-expanded="false" aria-controls="ev-music">See the evidence<span class="sign" aria-hidden="true">+</span></button>
