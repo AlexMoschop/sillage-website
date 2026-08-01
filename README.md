@@ -125,13 +125,21 @@ fallback path that the GitHub Pages copy also takes.
 
 ## Publishing
 
-The site is live on **two** hosts, which serve identical content. Either one can carry the
-site alone, so if one breaks the other is the fallback.
+The real address is **https://www.seeyazh.com**. The site is live on **two** hosts,
+which serve identical content, so if one breaks the other is the fallback.
 
 | Host | URL | How it updates |
 |------|-----|----------------|
-| GitHub Pages | https://alexmoschop.github.io/sillage-website/ | Automatic, about a minute after you push to `master`. |
-| Hostinger | https://sillage.moschopoulos.com | One command, see below. |
+| Hostinger (primary) | https://www.seeyazh.com | One command, see below. |
+| GitHub Pages (fallback) | https://alexmoschop.github.io/sillage-website/ | Automatic, about a minute after you push to `master`. |
+
+`seeyazh.com` without the `www` redirects to the `www` address, which is the canonical
+one. The old preview address, `sillage.moschopoulos.com`, is retired: it still answers,
+but every path 301s to the same path here, so old links keep working.
+
+Because the canonical tags name `www.seeyazh.com`, the GitHub Pages copy now declares
+itself a duplicate of the real site. That is deliberate — Pages is the rollback, not a
+second published address.
 
 ### To publish a change
 1. Save your edit, then commit and push:
