@@ -1,21 +1,34 @@
 # Sillage - website
 
 A small marketing site for the Sillage sensory-identity consultancy: **Home**, **About**
-(which carries the team, the method, the scope statement, the markets and the enquiry form)
-and a **Privacy** page, plus a **404** page and three **venue** pages that are built but not
-yet published. It is **plain HTML and hand-written CSS** with a little vanilla JavaScript,
-and one small PHP file for the contact form. No framework, no build step, no npm.
+(the team, the markets and the enquiry form), three **venue** pages, and a **Privacy** page,
+plus a **404** page. It is **plain HTML and hand-written CSS** with a little vanilla
+JavaScript, and one small PHP file for the contact form. No framework, no build step, no npm.
 
-**v7 "Ambience" rebuilt this site against a written build specification.** If anything in this
-README disagrees with `styles.css`, the comment block at the top of `styles.css` wins: it is
-the current statement of the colour, type and layout rules.
+**v7 "Ambience" rebuilt this site against a written build specification. v8 is a round of
+owner changes on top of it** (2026-08-02) and, where the two disagree, v8 wins. If anything
+in this README disagrees with `styles.css`, the comment block at the top of `styles.css`
+wins: it is the current statement of the colour, type and layout rules.
+
+### What v8 changed
+- **Header** is forest green, edge to edge and symmetric, with an **orange** evaluation
+  button. **Hero photograph runs to the right-hand edge of the screen** on desktop.
+- **About is a light page.** Both green bands are gone; type is charcoal with orange accents.
+- **Photographs are colour files shown in grayscale by CSS**, lifting to colour on hover.
+  They used to be monochrome in the file, which a hover cannot undo.
+- **The monospace face is gone sitewide.** `--mono` became `--label`, a sans stack.
+- **Deleted:** the five-stage method and the three artefacts, and the scope statement, both
+  from About. Recoverable verbatim at `4e0ef31`.
+- **Locations are Reading, London and Milton Keynes only.** Hannover and Thessaloniki are
+  off the site, and the markets block is now three city cards with photographs.
+- **The three venue pages are published** and the homepage cards link to them.
 
 ## Files
 
 | File | What it is |
 |------|------------|
 | `index.html` | Homepage - hero, the three ambience rows with their evidence expanders, the interplay band, venues, and a testimonials block that is built but switched off. |
-| `about.html` | The team, the five-stage method, the three artefacts, the **scope statement**, the markets, and the **enquiry form**. Markets and Contact merged in here in v4; the method moved here in v7. |
+| `about.html` | The team, the markets and the **enquiry form**. Markets and Contact merged in here in v4. The method and the scope statement were deleted in v8. |
 | `markets.html` | Redirect stub only. Sends visitors to `about.html#markets`; kept so old links still work. |
 | `contact.html` | Redirect stub only. Sends visitors to `about.html#contact`; kept so old links still work. |
 | `privacy.html` | Privacy policy (required - this is a live UK/EU business). |
@@ -23,11 +36,12 @@ the current statement of the colour, type and layout rules.
 | `ui.js` | The evidence expanders, moving focus to the first form field, and the contact form validation and submit. Replaced `booking.js`, deleted in v7. |
 | `contact.php` | The contact form server endpoint. **The only server-side file on the site.** See edit #1. |
 | `404.html` | Styled "page not found", links back to the homepage. |
-| `venues/` | Three venue pages, **built but not published**. See edit #7. |
+| `venues/` | Three venue pages: `wellness/`, `personal-care/`, `business-premises/`. **Published in v8.** Generated from one template. See edit #7. |
 | `motion.js` | Scroll-reveal. Adds a class when an element scrolls into view; the animating is all in `styles.css`. |
 | `favicon.svg` | The browser-tab icon (the blotter mark). |
 | `og-image.png` | The picture shown when the site is shared on social media. |
-| `assets/img/team/` | Team photos. `group.jpg`, `headshot-curly.jpg` (Kevin), `presenting.jpg` (Prithvish), `headshot-gold-glasses.jpg` (Alexandros) are live. `portrait-1/2/3.jpg` are leftovers from the v3 mockup and are no longer referenced. |
+| `assets/img/team/` | Team photos, **in colour** since v8: `group-session.jpg`, `kevin-kegel.jpg`, `prithvish-patil.jpg`, `alexandros-moschopoulos.jpg`. |
+| `assets/img/markets/` | City photographs for the markets block: `reading.jpg`, `london.jpg`, `milton-keynes.jpg`, each with a `.webp`. **Two are share-alike and the credit line in `about.html` is a licence condition.** |
 
 ---
 
@@ -86,14 +100,19 @@ fallback path that the GitHub Pages copy also takes.
 - Change text **between** the tags (e.g. the homepage headline lives inside `<h1>…</h1>`). Save, refresh.
 
 ### 4. Edit the team (About page)
-- **File:** `about.html`, the `TEAM CARDS` block. All three cards are filled: Kevin Kegel (Reading),
-  Prithvish Patil (Milton Keynes), Alexandros Moschopoulos (Thessaloniki), each with course, society
-  role, remit and languages.
+- **File:** `about.html`, the team block. All three cards are filled: Kevin Kegel (Reading),
+  Prithvish Patil (Milton Keynes), Alexandros Moschopoulos (no city, see below), each with
+  remit and languages.
+- ⚠️ **Alexandros's card has no city.** Thessaloniki came off the site in v8 with the rest of
+  the location changes, and inventing a UK city for a real person was not an option, so that
+  slot carries his role instead. Put a city back when he supplies one.
 - ⚠️ Courses and society roles are **facts about real people**. They came from each founder's own
   LinkedIn plus the owner's corrections (checked 26 July 2026). When a course finishes or a role
   changes, update the card; don't let it go stale.
 - Photos go in `assets/img/team/` at 4:5 for portraits and 3:2 for the group. Missing photos show a
   tasteful `[Photo]` tile, never a broken icon.
+- ⚠️ **Keep them in COLOUR.** The grayscale is a CSS filter (`.photo-bw` in `styles.css`) so it
+  can lift on hover. Re-grade a file to monochrome and the hover reveal silently does nothing.
 - To add a person, copy a whole `<article class="card">` and keep the `data-anim-delay` steps 80ms apart.
 
 ### 5. Set the contact names
@@ -110,13 +129,20 @@ fallback path that the GitHub Pages copy also takes.
 - The Music row has **no image on purpose**, and stays that way until a real photograph exists.
   Do not put a stock image there.
 
-### 7. Venue pages (built, not published)
+### 7. Venue pages (published in v8)
 - **Files:** `venues/wellness/`, `venues/personal-care/`, `venues/business-premises/`.
-- They are **deliberately empty of research**, because a thin venue page is worse than no venue
-  page. Every content block is a labelled "pending" box. **Do not fill them with an invented
-  statistic, percentage or citation.**
-- The homepage venue cards are therefore **not links yet**. Each card carries a comment saying
-  exactly what to change to publish it, once the research lands.
+- All three are **generated from one template** so they cannot drift apart. The generator is
+  not in the repo; the pages are the artefact. To change all three, change them consistently.
+- Kevin's per-venue research **still has not arrived.** The pages were not published as the v7
+  template stood: its importance grid and its four empty "pending" citation boxes are gone.
+  What is there instead is copy already published on the homepage venue cards, descriptions of
+  what Sillage itself does area by area, and the three cited findings this site already
+  publishes, reproduced **verbatim** and labelled as general service and retail findings.
+- ⚠️ **Do not add a percentage, a statistic or a citation to a venue page that is not already
+  sourced somewhere on this site.** The whole premise of the brand is that a client can check
+  every number. The closing note in the evidence section ("not from wellness specifically") is
+  what keeps those figures honestly used; do not delete it to make the page read stronger.
+- When the research lands it replaces the "What the evidence says" section, with its own sources.
 
 ### 8. Fill in the privacy policy
 - **File:** `privacy.html` - replace every `[BRACKETED]` field before launch.
@@ -177,8 +203,10 @@ publish it.)*
   SVG, no images and no libraries. In v7 it moved off the homepage hero, which is now a
   photograph, onto the venue template where it is the venue plan. Reuse that language for any
   new illustration, and keep blueprint drawings as inline SVG rather than raster.
-- **Fonts:** on Apple hardware the display face resolves natively to *New York* and the body to
-  *SF Pro Text*, which Apple licences for use on Apple platforms. Those faces are **deliberately
+- **Fonts:** there is **no monospace face on this site.** Every label, eyebrow, citation and
+  drawing callout was mono until v8 and is now sans, via `--label`. Do not reintroduce a
+  monospace stack. On Apple hardware the display face resolves natively to *New York* and the
+  body to *SF Pro Text*, which Apple licences for use on Apple platforms. Those faces are **deliberately
   not self-hosted**: that licence does not cover redistributing them as webfonts to arbitrary
   browsers, and the build specification was wrong to ask for it. Everywhere else the stack
   currently falls back to Georgia. To close that gap, self-host **Source Serif 4 (SIL OFL)**:

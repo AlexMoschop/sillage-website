@@ -96,11 +96,9 @@
   --charcoal:     #2A2A28;  /* body ink                                   */
   --rule:         rgba(30, 51, 40, .14);  /* all hairline borders         */
 
-  /* Ratings on venue pages. Colour is carried by a swatch; the word
-     High / Medium / Low is always present as text in --forest. */
-  --rate-high:    #A8492F;
-  --rate-medium:  var(--plum);
-  --rate-low:     var(--sage);
+  /* --rate-high / --rate-medium / --rate-low were removed in v8 with the venue
+     importance grid they coloured. See the VENUE PAGES block for what happened
+     to that grid and how to bring it back if the research ever lands. */
 
   /* Blueprint drawing inks. Line work only, never type on a page. */
   --bp-line:      #5E8B93;
@@ -118,13 +116,23 @@
      the stack currently falls through to Georgia, an upright serif
      present on Windows, macOS and Android. When the woff2 files
      land, drop them in assets/fonts/ and uncomment the block below.
-     No Google Fonts: spec 9.2 forbids third-party font requests. */
+     No Google Fonts: spec 9.2 forbids third-party font requests.
+
+     THE MONOSPACE FACE IS GONE (v8, owner instruction 2026-08-02).
+     Every label, eyebrow, citation, caption and drawing callout used to be
+     set in ui-monospace / SF Mono / Menlo / Consolas. The owner asked for it
+     to be removed sitewide and replaced with a sans face, so --mono no longer
+     exists and --label took its place: same job, same uppercase-and-tracked
+     treatment, sans letterforms. Do not reintroduce a monospace stack; if a
+     new label needs a face, it uses --label. The tracking is wider than the
+     mono version carried because a proportional face needs it to read as a
+     label rather than as body copy. */
   --display: 'New York', 'Source Serif 4', ui-serif, 'Iowan Old Style',
              Palatino, Georgia, serif;
   --body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text',
              'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --mono:    ui-monospace, 'SF Mono', SFMono-Regular, Menlo,
-             Consolas, monospace;
+  --label:   -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+             'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* ---- RHYTHM (spec 2.4) ---- */
   --maxw:  1120px;
@@ -217,6 +225,7 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   border-radius: 2px;
 }
 .on-forest :focus-visible,
+.hdr :focus-visible,
 .hero :focus-visible, .inter :focus-visible, .foot :focus-visible,
 .vhero :focus-visible {
   outline-color: var(--clay-bright);
@@ -233,46 +242,70 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 /* ============================================================
    HEADER (spec 3.1)
    ============================================================ */
+/* v8, owner instruction 2026-08-02. The header was white on a hairline. It is
+   now the SAME forest as the hero band behind "Ambience is never neutral.", so
+   the top of the page reads as one green field rather than as a white strip
+   sitting on a green one.
+
+   It also runs EDGE TO EDGE. The inner row used to be capped at --maxw and
+   centred, which on a wide screen parked the wordmark and the nav well inside
+   the page with unequal-looking air beside them. max-width is gone, so the
+   only thing setting the gutters is --pad-x on both sides: the lockup sits
+   --pad-x from the left edge and the nav --pad-x from the right, symmetrically,
+   at every width. Do not put the cap back.
+
+   Measured on what ships, all against forest #1E3328:
+     ivory ................... 12.70  pass
+     ivory 92% (nav labels) ... 11.02  pass
+     clay-bright (phonetic) .... 5.84  pass
+     forest on clay-bright ..... 5.84  pass  (the evaluation button) */
 .hdr {
-  background: var(--white);
-  border-bottom: 1px solid var(--rule);
-  padding: 18px var(--pad-x);
+  background: var(--forest);
+  border-bottom: 1px solid rgba(251, 248, 241, .14);
+  padding: 16px var(--pad-x);
 }
 .hdr__inner {
-  max-width: var(--maxw); margin-inline: auto;
   display: flex; align-items: center; justify-content: space-between;
   gap: 18px; flex-wrap: wrap;
 }
 .wordmark {
   font-family: var(--display); font-size: 25px; line-height: 1.05;
-  color: var(--forest); text-decoration: none;
+  color: var(--ivory); text-decoration: none;
 }
 /* The phonetic is a permanent part of the lockup, header and footer.
    Do not remove it. The old slogan does NOT belong here; it lives in
    the footer. (spec 3.1) */
+/* On forest the phonetic takes --clay-bright, not --clay: clay is a light-ground
+   accent and measures dark on dark here. This is a THIRD sanctioned text use of
+   --clay-bright, alongside the footer slogan and the word "agreement"; the rule
+   at the top of this file counts them, so keep that count true. */
 .wordmark .phon {
-  display: block; margin-top: 4px;
-  font-family: var(--mono); font-size: 9.5px;
-  letter-spacing: .22em; color: var(--clay);
+  display: block; margin-top: 5px;
+  font-family: var(--label); font-size: 10px; font-weight: 600;
+  letter-spacing: .26em; color: var(--clay-bright);
 }
 .hdr nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .navbtn {
-  font-family: var(--body); font-size: 13.5px; color: var(--forest);
+  font-family: var(--body); font-size: 13.5px; color: rgba(251, 248, 241, .92);
   text-decoration: none; padding: 9px 20px;
-  border: 1px solid var(--rule); border-radius: var(--r-btn);
+  border: 1px solid rgba(251, 248, 241, .3); border-radius: var(--r-btn);
   background: transparent; white-space: nowrap;
 }
-.navbtn:hover { border-color: rgba(30, 51, 40, .4); }
+.navbtn:hover { border-color: rgba(251, 248, 241, .7); }
 .navbtn[aria-current="page"] {
-  background: var(--ivory-2); border-color: rgba(30, 51, 40, .28);
+  background: rgba(251, 248, 241, .14); border-color: rgba(251, 248, 241, .55);
+  color: var(--ivory);
 }
+/* The evaluation button is ORANGE (owner instruction 2026-08-02). It carries
+   --forest as its type, not ivory: --clay-bright is a fill colour, and forest
+   on it measures 5.84:1 where ivory on it would be 2.17:1 and fail. */
 .bookbtn {
-  background: var(--forest); color: var(--ivory); text-decoration: none;
+  background: var(--clay-bright); color: var(--forest); text-decoration: none;
   font-family: var(--body); font-size: 13.5px; font-weight: 600;
   padding: 11px 22px; border-radius: var(--r-btn);
-  border: 1px solid var(--forest); white-space: nowrap;
+  border: 1px solid var(--clay-bright); white-space: nowrap;
 }
-.bookbtn:hover { background: #16261D; }
+.bookbtn:hover { background: #F6A97A; border-color: #F6A97A; }
 
 /* ============================================================
    BUTTONS
@@ -298,19 +331,38 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 /* ============================================================
    HERO (spec 4.1)
    ============================================================ */
+/* FULL-BLEED HERO (v8, owner instruction 2026-08-02).
+   The hero row used to be capped at --maxw and centred, so on a wide screen the
+   photograph stopped dead 160px or more short of the right-hand edge with a
+   band of flat green beyond it. The row is now the FULL viewport width and the
+   photograph runs to the screen edge.
+
+   The text still lines up with every other section on the page. The left
+   column is sized to "half the slack outside the 1120px content column, plus
+   48% of that column", and .txt then pads itself by exactly the slack, which
+   is where a .wrap would have started. Percentages resolve against different
+   boxes in those two places (the grid container, then the grid area), which is
+   why the two expressions look different but land on the same edge. Check it
+   at 1120, 1440 and 1920 after touching either one.
+
+   The picture takes whatever is left, so it grows with the screen while the
+   copy column stays a fixed, readable measure. */
 .hero { background: var(--forest); }
 .hero__inner {
-  max-width: var(--maxw); margin-inline: auto;
-  display: grid; grid-template-columns: 1.02fr .98fr;
-  min-height: 430px;
+  display: grid;
+  grid-template-columns:
+    minmax(0, calc((100% - var(--maxw)) / 2 + var(--maxw) * .48))
+    minmax(0, 1fr);
+  min-height: 520px;
 }
 .hero__inner > * { min-width: 0; }
 .hero .txt {
-  padding: 74px 0 66px var(--pad-x);
+  padding: 78px 42px 74px;
+  padding-left: max(var(--pad-x), calc(100% - var(--maxw) * .48));
   display: flex; flex-direction: column; justify-content: center;
 }
 .hero h1 {
-  font-size: 56px; line-height: 1.04; color: var(--ivory); max-width: 11ch;
+  font-size: 58px; line-height: 1.03; color: var(--ivory); max-width: 11ch;
 }
 .hero .sub {
   font-family: var(--display); font-style: italic; font-size: 19px;
@@ -336,18 +388,24 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   width: 100%; height: 100%; object-fit: cover; display: block;
   filter: saturate(.95) contrast(1.05) brightness(1.02);
 }
+/* The feather is stated in percentages of the image, and the image got wider in
+   v8, so the stops were pulled in to keep the FEATHER the same real width. Past
+   26% the photograph is completely clean. */
 .hero .imgside::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
+  /* The first stop is fully opaque, not .88. At .88 the leftmost column of the
+     image showed 12% through against solid green, which read as a faint
+     vertical seam exactly where the two halves meet. */
   background: linear-gradient(90deg,
-    rgba(30, 51, 40, .88) 0%,
-    rgba(30, 51, 40, .46) 7%,
-    rgba(30, 51, 40, .14) 19%,
-    rgba(30, 51, 40, 0) 34%);
+    rgba(30, 51, 40, 1) 0%,
+    rgba(30, 51, 40, .5) 6%,
+    rgba(30, 51, 40, .15) 15%,
+    rgba(30, 51, 40, 0) 26%);
 }
 .hero .capt {
-  position: absolute; bottom: 16px; right: 18px; z-index: 2;
-  font-family: var(--mono); font-size: 8.5px; letter-spacing: .16em;
-  color: rgba(251, 248, 241, .55);
+  position: absolute; bottom: 16px; right: 20px; z-index: 2;
+  font-family: var(--label); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .18em; color: rgba(251, 248, 241, .62);
 }
 
 /* ============================================================
@@ -415,7 +473,7 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 }
 .expander h4 { font-size: 16px; }
 .expander .src {
-  font-family: var(--mono); font-size: 9.5px; color: var(--forest-mid);
+  font-family: var(--label); font-size: 9.5px; color: var(--forest-mid);
   margin-top: 12px; line-height: 1.6;
 }
 .exnote { font-size: 12.5px; color: rgba(42, 42, 40, .72); line-height: 1.6; margin: 0; }
@@ -430,7 +488,7 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 .bar > * { min-width: 0; }
 /* forest-mid on mineral is 6.56:1. The mockup's rgba(42,42,40,.65)
    measured 4.22:1 on this ground and failed. */
-.bar .bl { font-family: var(--mono); font-size: 9.5px; color: var(--forest-mid); line-height: 1.35; }
+.bar .bl { font-family: var(--label); font-size: 9.5px; color: var(--forest-mid); line-height: 1.35; }
 .bar .track { height: 15px; background: rgba(30, 51, 40, .09); border-radius: var(--r-img); position: relative; overflow: hidden; }
 .bar .fill { position: absolute; top: 0; bottom: 0; border-radius: var(--r-img); }
 .bar .val { font-family: var(--display); font-size: 14px; color: var(--forest); text-align: right; }
@@ -448,7 +506,7 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 .cbars { margin-top: 14px; }
 .cbar { display: grid; grid-template-columns: 128px 1fr 64px; align-items: center; gap: 10px; margin-bottom: 10px; }
 .cbar > * { min-width: 0; }
-.cbar .cl { font-family: var(--mono); font-size: 9.5px; color: var(--forest-mid); line-height: 1.4; }
+.cbar .cl { font-family: var(--label); font-size: 9.5px; color: var(--forest-mid); line-height: 1.4; }
 .cbar .cl b { display: block; font-weight: 600; }
 .cbar .track { height: 20px; background: rgba(30, 51, 40, .09); border-radius: var(--r-img); position: relative; overflow: hidden; }
 .cbar .fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: var(--r-img); }
@@ -466,7 +524,7 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 /* One of exactly two places --clay-bright is text, and it is on forest. */
 .inter .q em { color: var(--clay-bright); font-style: italic; }
 .inter .cite {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+  font-family: var(--label); font-size: 10px; letter-spacing: .08em;
   color: rgba(251, 248, 241, .6); margin-top: 16px; line-height: 1.7;
 }
 .inter .btn { margin-top: 24px; }
@@ -486,25 +544,22 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 }
 /* The whole card is the hit area and the visible link carries the same
    href. Hover darkens the border only: no lift, no shadow animation. */
-a.vcard { text-decoration: none; color: inherit; }
+a.vcard { text-decoration: none; color: inherit; transition: border-color 180ms ease; }
 a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
+a.vcard:hover .vlink { border-bottom-color: var(--clay); }
 .vcard .draw { background: var(--bp-ground); border-bottom: 1px solid var(--rule); }
 .vcard .bd { padding: 20px 22px; }
 .vcard h3 { font-size: 19px; }
 .vcard p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 12px; }
 .vlink {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  font-family: var(--label); font-size: 10px; letter-spacing: .1em;
   color: var(--clay); border-bottom: 1px solid rgba(168, 85, 38, .4);
   padding-bottom: 2px; display: inline-block;
 }
-/* Venue pages are held back until Kevin's research exists: a thin venue
-   page is worse than no venue page (spec 8.2, 12.4). Until then the card
-   is not a link and carries no dead arrow. To publish, swap the <div
-   class="vcard"> for <a class="vcard" href="venues/<slug>/"> and
-   uncomment the .vlink span into an anchor. Nothing else changes. */
-.vcard--pending .vlink {
-  color: var(--forest-mid); border-bottom-color: transparent; opacity: .8;
-}
+/* v8: the venue pages are PUBLISHED and every card is a link, so the
+   .vcard--pending state that used to grey out the arrow is gone. What the
+   pages must never do is carry an invented per-venue statistic; see the
+   comment at the top of venues/wellness/index.html. */
 
 /* ============================================================
    TESTIMONIALS
@@ -520,16 +575,37 @@ a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
   border-radius: var(--r-card); padding: 22px;
 }
 .tcard blockquote { margin: 0; font-family: var(--display); font-size: 17px; color: var(--forest); line-height: 1.4; }
-.tcard .biz { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); margin-top: 14px; }
+.tcard .biz { font-family: var(--label); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); margin-top: 14px; }
 .tcard .logo { max-height: 26px; width: auto; margin-top: 12px; }
 .tcard .stars { color: var(--clay); font-size: 13px; margin-top: 8px; letter-spacing: .1em; }
 
 /* ============================================================
    ABOUT (spec 7)
    ============================================================ */
-.vhero, .abouthero { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
-.abouthero h1 { color: var(--ivory); font-size: 44px; max-width: 16ch; }
-.abouthero .stand { color: rgba(251, 248, 241, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
+.vhero { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
+
+/* ABOUT IS A LIGHT PAGE NOW (v8, owner instruction 2026-08-02).
+   Both green bands are gone: the "About Sillage" hero and the team block that
+   used to enclose the photographs. The ground is white, the type is the body
+   ink rather than forest, and the accent work is orange.
+
+   "Black" here means --charcoal #2A2A28, not #000000. Pure black as a type
+   colour is a standing rule at the top of this file and this did not repeal it;
+   at this size the two are indistinguishable and the charcoal is kinder to read
+   against a warm white.
+
+   Measured on what ships:
+     charcoal on white ........ 14.55  pass
+     charcoal 82% on white .... 10.32  pass
+     clay on white ............. 5.26  pass   (eyebrows, accents, rules)
+     forest on white .......... 13.42  pass   (headings still forest) */
+.abouthero {
+  background: var(--white); padding: 52px var(--pad-x) 34px;
+  border-bottom: 1px solid var(--rule);
+}
+.abouthero .eyebrow { color: var(--clay); opacity: 1; }
+.abouthero h1 { color: var(--charcoal); font-size: 46px; max-width: 16ch; }
+.abouthero .stand { color: rgba(42, 42, 40, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
 
 .sec--light { background: var(--ivory); }
 /* Two 56px paddings back to back put 112px of nothing between one block and
@@ -547,146 +623,162 @@ a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
    light ground, so it is --clay, not --clay-bright. */
 .hl { color: var(--clay); }
 
-/* The team block. The forest ground encloses the group photograph:
-   the photo sits INSIDE the green section, not on ivory below it. */
-.team { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
-/* "Three noses, one method." lives on this green ground from v7.1, in
-   --ivory, matching every other section heading at 32px. It is NOT
-   #FFFFFF: pure white is never a type colour here, and --ivory is the
-   white variant the homepage H1 already uses on this exact ground
-   (12.70:1). No clay highlight, because clay on forest is dark on dark. */
-.team h2 { color: var(--ivory); font-size: 32px; }
-.team .stand { color: rgba(251, 248, 241, .82); }
-/* The group photograph BLENDS into the forest ground rather than sitting
-   on it as a rectangle. The hairline that used to frame it is gone: a hard
-   border is the opposite of blending. Instead the forest is painted back
-   over the bottom and both side edges, so the picture dissolves into the
-   panel it lives in. The bottom carries most of it, because that is where
-   the caption follows and the seam would otherwise be most obvious.
+/* THE TEAM BLOCK, on white from v8. It was a forest band that enclosed the
+   group photograph; the owner asked for the green to go, so the whole About
+   page is now one light field and the photographs sit on it directly.
 
-   Graded monochrome in the file itself, like the three portraits, so all
-   four photographs on this page read as one set. */
+   Spacing was pulled in at the same time. The picture used to be 20px below
+   the heading and the caption 10px below the picture, inside 56px section
+   padding, which left the heading, the photograph and the caption reading as
+   three unrelated things. They now sit close enough to read as one unit. */
+.team { background: var(--white); padding: 40px var(--pad-x) 46px; }
+.team h2 { color: var(--forest); font-size: 32px; }
+.team .stand { color: rgba(42, 42, 40, .82); }
+
+/* The group photograph. The gradient that used to feather its edges into the
+   green is DELETED (owner instruction 2026-08-02): there is no green left for
+   it to dissolve into, and the owner asked for the fade to go regardless. What
+   remains is a plain rectangle with a hairline.
+
+   The FILE is in colour. The monochrome is applied here in CSS instead of being
+   baked in, which is the whole point of the v8 change: a filter can lift on
+   hover, a converted file cannot. See .tphoto img below. */
+/* 1105px is the native width of the crop; the picture is never upscaled past
+   it. At 620px it left the right half of the column empty and read as a
+   thumbnail rather than as the lead image of the page. */
 .team__group {
   position: relative;
-  margin-top: 20px; max-width: 560px;
+  margin-top: 12px; max-width: 1105px;
   border-radius: var(--r-img); overflow: hidden;
-}
-.team__group::after {
-  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-  background:
-    linear-gradient(to bottom,
-      rgba(30, 51, 40, 0) 46%,
-      rgba(30, 51, 40, .40) 76%,
-      rgba(30, 51, 40, .92) 100%),
-    linear-gradient(to right,
-      rgba(30, 51, 40, .55) 0%,
-      rgba(30, 51, 40, 0) 13%,
-      rgba(30, 51, 40, 0) 87%,
-      rgba(30, 51, 40, .55) 100%);
+  box-shadow: inset 0 0 0 1px var(--rule);
 }
 .team__cap {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
-  color: rgba(251, 248, 241, .75); margin-top: 10px;
+  font-family: var(--label); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--clay); margin-top: 8px;
 }
 /* The portrait row is capped so the three pictures are noticeably smaller
    than the full column width, without leaving dead space beside them. */
-.team__grid { max-width: 900px; }
-.team__story { color: rgba(251, 248, 241, .82); max-width: 60ch; margin-top: 18px; font-size: 15px; }
-.team h3.sub-h { color: var(--ivory); font-size: 24px; margin-top: 30px; }
-.team__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 18px; }
+.team h3.sub-h { color: var(--forest); font-size: 24px; margin-top: 34px; }
+.team__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 22px; margin-top: 14px; max-width: 900px;
+}
 .team__grid > * { min-width: 0; }
-/* Individual portraits, restored 2026-07-31 at the owner's instruction.
-   Cropped 4:5 around the face upstream, so object-fit has nothing left to
-   cut off, and served at the largest size the source actually contains.
+/* GRAYSCALE THAT LIFTS ON HOVER (v8, owner instruction 2026-08-02).
+   Until v7.4 the monochrome was baked into the JPEG. The owner asked for the
+   grayscale to disappear on hover, which a converted file cannot do, so every
+   photograph in this set was rebuilt IN COLOUR from the original camera file
+   and the conversion moved here into .photo-bw.
 
-   MONOCHROME, graded in the FILE, not with a CSS filter. The earlier
-   grayscale looked dead because it was a flat desaturation with a forest
-   blend on top: every tone bunched in the middle and went green. These are
-   converted with a real black and white point set per image, then contrast,
-   then an unsharp mask. Prithvish's frame is a soft candid, so his gets a
-   much stronger sharpen than the other two.
+   Applies to the three portraits, the group photograph and the three city
+   pictures in the markets block, so all seven behave identically.
 
-   Doing it in the file rather than in CSS means the three photographs, which
-   were taken in three completely different conditions, arrive already
-   matched to each other instead of relying on the browser to do it.
+   Hover is a progressive nicety, never the only way to see something: the
+   pictures are legible in grayscale and no alt text depends on colour. A
+   keyboard or a touchscreen simply keeps the grayscale, which is fine.
 
-   A hairline seats the picture on the green so it reads as a photograph
-   and not as a hole cut in the panel. */
+   :focus-within is in the selector deliberately even though nothing inside a
+   card is focusable TODAY, so that the day one of these cards gains a link the
+   keyboard reveal already works. It is not currently reachable; do not cite it
+   as the accessible equivalent of the hover. */
+.photo-bw img {
+  filter: grayscale(1) contrast(1.03);
+  transform: scale(1.001);           /* kills a sub-pixel edge seam */
+  transition: filter 450ms ease, transform 500ms ease;
+}
+.photo-bw:hover img,
+.photo-bw:focus-within img,
+.tperson:hover .photo-bw img,
+.tperson:focus-within .photo-bw img {
+  filter: grayscale(0) contrast(1);
+  transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-bw img { transition: filter 450ms ease; }
+  .photo-bw:hover img, .photo-bw:focus-within img,
+  .tperson:hover .photo-bw img, .tperson:focus-within .photo-bw img {
+    transform: scale(1.001);
+  }
+}
+
+/* Individual portraits. Cropped 4:5 around the face upstream, so object-fit
+   has nothing left to cut off, and served at the largest size the source
+   actually contains, never upscaled. A hairline seats each picture on the
+   white so it reads as a photograph and not as a hole cut in the page. */
 .tphoto {
   aspect-ratio: 4 / 5; position: relative; overflow: hidden;
   border-radius: var(--r-img);
-  background: rgba(251, 248, 241, .06);
-  box-shadow: inset 0 0 0 1px rgba(251, 248, 241, .16);
-  margin-bottom: 12px;
+  background: var(--ivory-2);
+  box-shadow: inset 0 0 0 1px var(--rule);
+  margin-bottom: 10px;
 }
-.tphoto img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transform: scale(1.001);           /* kills a sub-pixel edge seam */
-  transition: transform .5s ease;
+.tphoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tperson .nm { font-family: var(--display); font-size: 19px; color: var(--forest); }
+.tperson .city {
+  font-family: var(--label); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .1em; color: var(--clay); margin-top: 4px;
 }
-.tperson:hover .tphoto img,
-.tperson:focus-within .tphoto img { transform: scale(1.03); }
-@media (prefers-reduced-motion: reduce) {
-  .tphoto img { transition: none; }
-  .tperson:hover .tphoto img,
-  .tperson:focus-within .tphoto img { transform: scale(1.001); }
-}
-.tperson .nm { font-family: var(--display); font-size: 19px; color: var(--ivory); }
-.tperson .city { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: rgba(251, 248, 241, .75); margin-top: 6px; }
-.tperson .brings { font-size: 13.5px; color: rgba(251, 248, 241, .82); margin: 10px 0 0; }
+.tperson .brings { font-size: 13.5px; color: rgba(42, 42, 40, .82); margin: 8px 0 0; }
 .tperson .langs {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
-  color: rgba(251, 248, 241, .75); margin-top: 10px; line-height: 1.6;
+  font-family: var(--label); font-size: 11px; letter-spacing: .04em;
+  color: var(--forest-mid); margin-top: 8px; line-height: 1.6;
 }
 
-/* The method, moved here from the homepage. */
-.timeline { margin-top: 22px; position: relative; padding-left: 34px; }
-.timeline::before {
-  content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px;
-  width: 2px; background: rgba(30, 51, 40, .22);
-}
-.stage { position: relative; padding-bottom: 20px; max-width: 68ch; }
-.stage:last-child { padding-bottom: 0; }
-.stage::before {
-  content: ""; position: absolute; left: -31px; top: 5px;
-  width: 14px; height: 14px; border-radius: 50%;
-  background: var(--forest); border: 3px solid var(--ivory);
-}
-.stage .n { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); }
-.stage h3 { font-family: var(--display); font-size: 19px; margin: 4px 0 6px; }
-.stage p { font-size: 14px; color: rgba(42, 42, 40, .78); margin: 0; }
-
-/* The three artefacts, moved here from the homepage with the method. */
-.artefacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
-.artefacts > * { min-width: 0; }
-.acard { background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 22px; }
-.acard .n { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); }
-.acard h3 { font-family: var(--display); font-size: 19px; margin: 6px 0 0; }
-.acard p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 0; }
-
-/* Scope statement. Its own block, not a footnote. This is a legal
-   boundary, not marketing copy: do not paraphrase or shorten it.
-   (spec 0, 7, 11.5) */
-.scopegrid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px; align-items: start; margin-top: 12px; }
-.scopegrid > * { min-width: 0; }
-.scope {
-  background: var(--white); border: 1px solid var(--rule);
-  border-left: 3px solid var(--forest); border-radius: var(--r-card);
-  padding: 26px 28px; max-width: 74ch;
-}
-.scope p { font-size: 14.5px; color: rgba(42, 42, 40, .82); margin: 0; }
+/* DELETED IN v8, at the owner's instruction of 2026-08-02:
+     - the five-stage method timeline (.timeline, .stage) and the three
+       artefact cards (.artefacts, .acard), which lived in About #method;
+     - the "What we do, and what we do not" scope block (.scopegrid, .scope),
+       which lived in About #scope.
+   Their rules are gone rather than left behind for something to reapply by
+   habit. The scope wording was a legal boundary and is preserved in git
+   history at 4e0ef31; if it comes back it comes back VERBATIM, never
+   paraphrased. .diffuser survives because the venue pages use it. */
 .diffuser { background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 16px; }
 .diffuser svg { width: 100%; height: auto; }
 
-/* Markets: United Kingdom, Germany, Greece. */
+/* MARKETS. Three UK cities, one card each (v8). This replaces the three
+   country cards, United Kingdom / Germany / Greece, that stood here until
+   2026-08-02: Hannover and Thessaloniki came off the site at the owner's
+   instruction and the United Kingdom was expanded into its three cities, so
+   Reading, London and Milton Keynes each get the tab Germany and Greece used
+   to have.
+
+   Each card now carries a photograph of the city. Licences and sources are in
+   the header comment of the script that built them; two of the three are
+   share-alike and the credit line under the grid is a CONDITION OF USE, not
+   decoration. Do not delete it while the pictures are still there. */
 .mkgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
 .mkgrid > * { min-width: 0; }
 .market {
   background: var(--white); border: 1px solid var(--rule);
-  border-radius: var(--r-card); padding: 22px;
+  border-radius: var(--r-card); overflow: hidden;
 }
-.market .country { font-family: var(--display); font-size: 19px; color: var(--forest); margin: 0; }
-.market .cities { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); margin: 8px 0 0; line-height: 1.8; }
+.market .mkimg {
+  aspect-ratio: 3 / 2; position: relative; overflow: hidden;
+  background: var(--ivory-2); border-bottom: 1px solid var(--rule);
+}
+.market .mkimg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.market .bd { padding: 18px 20px 20px; }
+.market .country { font-family: var(--display); font-size: 21px; color: var(--forest); margin: 0; }
+.market .cities {
+  font-family: var(--label); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; color: var(--clay); margin: 5px 0 0;
+}
+.market .note { font-size: 13px; color: rgba(42, 42, 40, .8); margin: 9px 0 0; }
+.mkcredit {
+  font-family: var(--label); font-size: 10.5px; letter-spacing: .02em;
+  color: rgba(42, 42, 40, .66); margin-top: 14px; line-height: 1.7;
+}
+.mkcredit a { color: var(--clay); }
+
+/* .stand is styled by `.sec .stand`, and .contact is not a .sec, so the
+   standfirst beside the form was falling back to a bare <p> and sitting hard
+   against its heading. It now matches every other standfirst on the site. */
+.contact .stand {
+  max-width: 52ch; font-size: 15.5px;
+  color: rgba(42, 42, 40, .8); margin-top: 12px;
+}
 
 /* The direct email line beside the form. */
 .contact-direct { font-size: 13px; color: rgba(42, 42, 40, .78); margin-top: 20px; }
@@ -702,7 +794,7 @@ a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
 .field { margin-bottom: 16px; }
 .field:last-of-type { margin-bottom: 0; }
 .cf-lab {
-  display: block; font-family: var(--mono); font-size: 10.5px;
+  display: block; font-family: var(--label); font-size: 10.5px;
   letter-spacing: .06em; color: var(--forest-mid); margin-bottom: 6px;
 }
 .cf-in {
@@ -749,35 +841,87 @@ select.cf-in {
 .cf-fail a { color: var(--clay); }
 
 /* ============================================================
-   VENUE PAGES (spec 8) - importance grid
-   Never colour alone. Every cell carries the word High, Medium or
-   Low as text, in --forest, with the colour on a swatch beside it.
-   sage on ivory is 2.83:1, so the word could not be sage. (spec 8.1)
+   VENUE PAGES (spec 8), published in v8.
+
+   The v7 template's colour-coded importance grid (.igrid, .rate) and its
+   labelled "pending" boxes (.pending, .pending-cell) are GONE, along with
+   the --rate-* variables they used. Those existed to hold the shape of
+   research that had not arrived; the pages now carry what the site can
+   actually source, so an empty grid would have been the only thing on them
+   that was not real.
+
+   If per-venue research does land and the grid comes back, it comes back
+   with its accessibility rule intact: never colour alone. Every cell carried
+   the word High, Medium or Low as text in --forest, with the colour on a
+   swatch beside it, because --sage on ivory is 2.83:1 and could never be the
+   word itself. That version is in git at 4e0ef31 on branch v7-ambience.
    ============================================================ */
 .vhero h1 { color: var(--ivory); font-size: 44px; max-width: 16ch; }
 .vhero .stand { color: rgba(251, 248, 241, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
-.igrid { width: 100%; border-collapse: collapse; margin-top: 24px; background: var(--white); border: 1px solid var(--rule); }
-.igrid caption { text-align: left; font-size: 13px; color: rgba(42, 42, 40, .78); padding-bottom: 10px; }
-.igrid th, .igrid td { border: 1px solid var(--rule); padding: 12px 14px; text-align: left; }
-.igrid th { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); font-weight: 400; }
-.igrid td { font-size: 13px; color: var(--forest); }
-.rate { display: inline-flex; align-items: center; gap: 8px; }
-.rate .sw { width: 11px; height: 11px; border-radius: 2px; flex: none; }
-.rate--high .sw { background: var(--rate-high); }
-.rate--medium .sw { background: var(--rate-medium); }
-.rate--low .sw { background: var(--rate-low); }
-/* A block whose content has not arrived. Labelled, never invented.
-   Do not fill this with a statistic, percentage or citation that is
-   not in the specification. (spec 8.2, 13) */
-.pending {
-  border: 1px dashed rgba(30, 51, 40, .3); border-radius: var(--r-card);
-  padding: 22px 24px; margin-top: 20px;
+.venue-plan { margin-top: 20px; max-width: 640px; }
+
+/* Area by area: what we look at, room by room. */
+.vareas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+.vareas > * { min-width: 0; }
+.varea {
+  background: var(--white); border: 1px solid var(--rule);
+  border-left: 3px solid var(--clay); border-radius: var(--r-card);
+  padding: 18px 20px;
 }
-.pending .t { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--forest-mid); margin: 0; }
-.pending p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 0; max-width: 60ch; }
-.pending + .pending { margin-top: 12px; }
-.pending-cell { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--forest-mid); }
-.venue-plan { margin-top: 20px; }
+.varea .n {
+  font-family: var(--label); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--clay); margin: 0 0 6px;
+}
+.varea p { font-size: 13.5px; color: rgba(42, 42, 40, .82); margin: 0; }
+
+/* The three signals, restating the sitewide scope. */
+.vsignals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+.vsignals > * { min-width: 0; }
+.vsig { background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 20px 22px; }
+.vsig .n {
+  font-family: var(--label); font-size: 11px; font-weight: 600;
+  letter-spacing: .12em; color: var(--forest-mid); margin: 0 0 8px;
+}
+.vsig p { font-size: 13.5px; color: rgba(42, 42, 40, .82); margin: 0; }
+
+/* The cited findings, reproduced verbatim from the homepage expanders, on the
+   evidence ground the expanders use so they read as the same kind of thing.
+
+   Two columns, like the homepage expander: the claim on the left, the source
+   and any caveat on the right. A single column left the right half of a
+   1120px panel empty, because a readable measure is nowhere near that wide. */
+.vevid {
+  background: var(--mineral); border: 1px solid var(--rule);
+  border-radius: var(--r-card); padding: 22px 26px; margin-top: 16px;
+  display: grid; grid-template-columns: 1.35fr .65fr;
+  gap: 30px; align-items: start;
+}
+.vevid > * { min-width: 0; }
+.vevid h3 { font-size: 17px; }
+.vevid p { font-size: 13.5px; color: rgba(42, 42, 40, .82); margin: 10px 0 0; }
+.vevid .src {
+  font-family: var(--label); font-size: 11px; letter-spacing: .02em;
+  color: var(--forest-mid); line-height: 1.6;
+}
+.vevid .caveat { font-size: 12.5px; color: rgba(42, 42, 40, .72); margin-top: 0; }
+/* Not hedging for its own sake. These are general service and retail
+   findings, and saying so is the difference between citing evidence and
+   misusing it. Do not delete this line to make the page read stronger. */
+.vnote {
+  font-size: 13px; color: rgba(42, 42, 40, .78); margin-top: 18px;
+  max-width: 74ch; border-left: 3px solid var(--rule); padding-left: 14px;
+}
+
+/* Links across to the other two venue types. */
+.vother { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.vopt {
+  font-family: var(--body); font-size: 13.5px; color: var(--forest);
+  text-decoration: none; padding: 11px 20px;
+  border: 1px solid var(--rule); border-radius: var(--r-btn);
+  background: var(--white);
+}
+.vopt:hover { border-color: rgba(30, 51, 40, .4); }
 
 /* ============================================================
    FOOTER (spec 3.2)
@@ -793,11 +937,11 @@ select.cf-in {
 .foot .fm { font-family: var(--display); font-size: 17px; color: var(--ivory); }
 /* 55%, not the 50% in the spec: 8.5px at 50% measured 4.38:1 and
    failed AA. 55% measures 4.97:1. */
-.foot .fm span { font-family: var(--mono); font-size: 8.5px; letter-spacing: .2em; color: rgba(251, 248, 241, .55); margin-left: 10px; }
+.foot .fm span { font-family: var(--label); font-size: 8.5px; letter-spacing: .2em; color: rgba(251, 248, 241, .55); margin-left: 10px; }
 .foot .meta { text-align: right; }
 /* The location list is plain text, not links. The email is a mailto. */
 .foot .meta a { color: rgba(251, 248, 241, .9); }
-.foot__links { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(251, 248, 241, .18); display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; }
+.foot__links { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(251, 248, 241, .18); display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--label); font-size: 10px; letter-spacing: .08em; }
 .foot__links a { color: rgba(251, 248, 241, .8); text-decoration: none; }
 .foot__links a:hover { color: var(--ivory); }
 
@@ -811,7 +955,7 @@ select.cf-in {
 .doc p, .doc li { color: rgba(42, 42, 40, .88); }
 .doc ul { padding-left: 20px; }
 .doc a { color: var(--clay); }
-.doc__back { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-decoration: none; }
+.doc__back { font-family: var(--label); font-size: 11px; letter-spacing: .08em; text-decoration: none; }
 .doc__cta { margin-top: 34px; }
 .e404 { text-align: center; padding: 90px var(--pad-x); }
 .e404 h1 { font-size: 44px; }
@@ -827,7 +971,7 @@ select.cf-in {
 .media__ph {
   position: absolute; inset: 0; z-index: 0;
   display: grid; place-content: center; gap: 8px; justify-items: center;
-  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+  font-family: var(--label); font-size: 10px; letter-spacing: .12em;
   color: var(--forest-mid);
 }
 .media__ph::before { content: ""; width: 32px; height: 42px; background: url("favicon.svg") center / contain no-repeat; opacity: .7; }
@@ -850,7 +994,10 @@ select.cf-in {
 @media (max-width: 900px) {
   :root { --pad-x: 26px; }
 
-  .hero__inner { grid-template-columns: 1fr; }
+  /* The full-bleed desktop hero collapses back to a stack. The padding-left
+     expression above would resolve to a negative number here, so it is reset
+     explicitly rather than left to max() to sort out. */
+  .hero__inner { grid-template-columns: 1fr; min-height: 0; }
   .hero .txt { padding: 46px var(--pad-x) 40px; order: 1; }
   .hero .imgside { order: 2; min-height: 240px; }
   .hero .imgside::after {
@@ -861,7 +1008,8 @@ select.cf-in {
   .rowhead { grid-template-columns: 1fr; gap: 14px; }
   .expander { grid-template-columns: 1fr; gap: 22px; }
   .vgrid, .tgrid, .mkgrid, .team__grid, .cgrid,
-  .artefacts, .scopegrid { grid-template-columns: 1fr; }
+  .vareas, .vsignals, .vevid { grid-template-columns: 1fr; }
+  .vevid { gap: 12px; }
   .cgrid { gap: 28px; }
   .bar { grid-template-columns: 104px 1fr 46px; }
   .cbar { grid-template-columns: 104px 1fr 58px; }
@@ -874,11 +1022,7 @@ select.cf-in {
 
   .amb h2, .ven h2, .sec h2, .team h2 { font-size: 26px; }
   .abouthero h1, .vhero h1 { font-size: 34px; }
-  .igrid, .igrid thead, .igrid tbody, .igrid th, .igrid td, .igrid tr { display: block; }
-  .igrid thead { display: none; }
-  .igrid td { border-top: none; }
-  .igrid tr { border-top: 1px solid var(--rule); padding: 6px 0; }
-  .igrid td::before { content: attr(data-th) "  "; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--forest-mid); }
+  /* The .igrid stacking rules went with the venue importance grid in v8. */
 }
 
 /* ============================================================

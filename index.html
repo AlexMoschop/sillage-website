@@ -24,7 +24,7 @@
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="assets/img/hero-materials.webp" type="image/webp" />
-  <link rel="stylesheet" href="styles.css?v=7.4" />
+  <link rel="stylesheet" href="styles.css?v=8.0" />
 
   <script type="application/ld+json">
   {
@@ -35,10 +35,8 @@
     "url": "https://www.seeyazh.com/",
     "areaServed": [
       { "@type": "City", "name": "Reading" },
-      { "@type": "City", "name": "Milton Keynes" },
       { "@type": "City", "name": "London" },
-      { "@type": "City", "name": "Hannover" },
-      { "@type": "City", "name": "Thessaloniki" }
+      { "@type": "City", "name": "Milton Keynes" }
     ],
     "contactPoint": {
       "@type": "ContactPoint",
@@ -258,16 +256,20 @@
     </section>
 
     <!-- ================= VENUES (4.4) =================
-         The three venue pages are built but HELD BACK: Kevin's per-venue
-         research has not arrived, and a thin venue page is worse than no
-         venue page (spec 8.2, 12.4). So these cards are not links yet and
-         carry no dead arrow.
+         PUBLISHED 2026-08-02 at the owner's instruction. Each card is now a
+         link to its own page under venues/.
 
-         TO PUBLISH, per card: change <div class="vcard vcard--pending">
-         to <a class="vcard" href="venues/<slug>/">, and change the
-         <span class="vlink"> to <span class="vlink"> unchanged (the whole
-         card is the hit area and the visible text carries the same href
-         by virtue of being inside it). Nothing else changes. -->
+         These pages had been held back since v7 because Kevin's per-venue
+         research had not arrived and a thin venue page is worse than no venue
+         page. That research still has not arrived, so the pages were NOT
+         published as they stood: the "pending" template with its empty
+         importance grid and four blank citation boxes is gone. What each page
+         carries instead is the evidence this site already publishes and can
+         already source, applied to that venue type.
+
+         The rule that made them wait still stands. Do not put a per-venue
+         statistic, percentage or citation on those pages that is not already
+         cited somewhere on this site. -->
     <section class="ven">
       <div class="wrap">
         <p class="eyebrow" data-animate>Venues</p>
@@ -275,38 +277,38 @@
         <p class="stand" data-animate data-anim-delay="120">Each venue type weighs the three signals differently. Choose yours to see what matters most there, what customers expect, and what getting it right is worth.</p>
 
         <div class="vgrid">
-          <div class="vcard vcard--pending" data-animate>
+          <a class="vcard" href="venues/wellness/" data-animate>
             <div class="draw">
-              <svg viewBox="0 0 200 110" width="100%" role="presentation" alt=""><rect width="200" height="110" fill="#FCFAF4"/><g stroke="#5E8B93" stroke-width="1.3" fill="none"><rect x="24" y="18" width="152" height="76"/><path d="M24 56h60M116 56h60M86 56v38"/><circle cx="56" cy="38" r="10" stroke-dasharray="2 3" stroke="#A85526"/><circle cx="56" cy="38" r="17" stroke-dasharray="2 3" stroke="#A85526"/></g><text x="28" y="104" font-family="ui-monospace,Menlo,monospace" font-size="6.5" letter-spacing="1.4" fill="#3A5544">WELLNESS &#183; PLAN</text></svg>
+              <svg viewBox="0 0 200 110" width="100%" role="presentation" alt=""><rect width="200" height="110" fill="#FCFAF4"/><g stroke="#5E8B93" stroke-width="1.3" fill="none"><rect x="24" y="18" width="152" height="76"/><path d="M24 56h60M116 56h60M86 56v38"/><circle cx="56" cy="38" r="10" stroke-dasharray="2 3" stroke="#A85526"/><circle cx="56" cy="38" r="17" stroke-dasharray="2 3" stroke="#A85526"/></g><text x="28" y="104" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="6.5" letter-spacing="1.4" fill="#3A5544">WELLNESS &#183; PLAN</text></svg>
             </div>
             <div class="bd">
               <h3>Wellness</h3>
               <p>Spas, massage, yoga and pilates. Clients arrive expecting the space itself to be part of the treatment; scent carries the highest weight of any venue type.</p>
               <span class="vlink">WHAT AMBIENCE DOES HERE &#8594;</span>
             </div>
-          </div>
+          </a>
 
-          <div class="vcard vcard--pending" data-animate data-anim-delay="70">
+          <a class="vcard" href="venues/personal-care/" data-animate data-anim-delay="70">
             <div class="draw">
-              <svg viewBox="0 0 200 110" width="100%" role="presentation" alt=""><rect width="200" height="110" fill="#FCFAF4"/><g stroke="#5E8B93" stroke-width="1.3" fill="none"><rect x="24" y="18" width="152" height="76"/><path d="M60 18v42M100 18v42M140 18v42"/><circle cx="42" cy="36" r="6"/><circle cx="80" cy="36" r="6"/><circle cx="120" cy="36" r="6"/><circle cx="160" cy="36" r="6"/><circle cx="100" cy="78" r="10" stroke-dasharray="2 3" stroke="#A85526"/></g><text x="28" y="104" font-family="ui-monospace,Menlo,monospace" font-size="6.5" letter-spacing="1.4" fill="#3A5544">PERSONAL CARE &#183; PLAN</text></svg>
+              <svg viewBox="0 0 200 110" width="100%" role="presentation" alt=""><rect width="200" height="110" fill="#FCFAF4"/><g stroke="#5E8B93" stroke-width="1.3" fill="none"><rect x="24" y="18" width="152" height="76"/><path d="M60 18v42M100 18v42M140 18v42"/><circle cx="42" cy="36" r="6"/><circle cx="80" cy="36" r="6"/><circle cx="120" cy="36" r="6"/><circle cx="160" cy="36" r="6"/><circle cx="100" cy="78" r="10" stroke-dasharray="2 3" stroke="#A85526"/></g><text x="28" y="104" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="6.5" letter-spacing="1.4" fill="#3A5544">PERSONAL CARE &#183; PLAN</text></svg>
             </div>
             <div class="bd">
               <h3>Personal care</h3>
               <p>Salons, barbers, beauty and aesthetics. Product smells compete for the air; the win is a signature that survives them and brings clients back on schedule.</p>
               <span class="vlink">WHAT AMBIENCE DOES HERE &#8594;</span>
             </div>
-          </div>
+          </a>
 
-          <div class="vcard vcard--pending" data-animate data-anim-delay="140">
+          <a class="vcard" href="venues/business-premises/" data-animate data-anim-delay="140">
             <div class="draw">
-              <svg viewBox="0 0 200 110" width="100%" role="presentation" alt=""><rect width="200" height="110" fill="#FCFAF4"/><g stroke="#5E8B93" stroke-width="1.3" fill="none"><rect x="24" y="18" width="152" height="76"/><path d="M24 56h48M120 56h56"/><rect x="38" y="66" width="46" height="12"/><rect x="38" y="28" width="22" height="16"/><circle cx="148" cy="76" r="10" stroke-dasharray="2 3" stroke="#A85526"/></g><text x="28" y="104" font-family="ui-monospace,Menlo,monospace" font-size="6.5" letter-spacing="1.4" fill="#3A5544">BUSINESS PREMISES &#183; PLAN</text></svg>
+              <svg viewBox="0 0 200 110" width="100%" role="presentation" alt=""><rect width="200" height="110" fill="#FCFAF4"/><g stroke="#5E8B93" stroke-width="1.3" fill="none"><rect x="24" y="18" width="152" height="76"/><path d="M24 56h48M120 56h56"/><rect x="38" y="66" width="46" height="12"/><rect x="38" y="28" width="22" height="16"/><circle cx="148" cy="76" r="10" stroke-dasharray="2 3" stroke="#A85526"/></g><text x="28" y="104" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="6.5" letter-spacing="1.4" fill="#3A5544">BUSINESS PREMISES &#183; PLAN</text></svg>
             </div>
             <div class="bd">
               <h3>Business premises</h3>
               <p>Receptions, lobbies, client-facing offices. First impressions and dwell comfort; where climate and air quality carry more weight than anywhere else.</p>
               <span class="vlink">WHAT AMBIENCE DOES HERE &#8594;</span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -344,7 +346,7 @@
       <div class="cols">
         <div class="fm">Sillage<span>SEE-YAZH</span></div>
         <div class="meta">
-          Reading &middot; Milton Keynes &middot; London &middot; Hannover &middot; Thessaloniki
+          Reading &middot; London &middot; Milton Keynes
           &nbsp;&middot;&nbsp; <a href="mailto:info@seeyazh.com">info@seeyazh.com</a>
           &nbsp;&middot;&nbsp; &copy; 2026 Sillage
         </div>
