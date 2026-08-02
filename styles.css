@@ -388,19 +388,27 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   width: 100%; height: 100%; object-fit: cover; display: block;
   filter: saturate(.95) contrast(1.05) brightness(1.02);
 }
-/* The feather is stated in percentages of the image, and the image got wider in
-   v8, so the stops were pulled in to keep the FEATHER the same real width. Past
-   26% the photograph is completely clean. */
+/* The feather has ONE job: stop a hard vertical seam where the green column
+   meets the photograph. It is not a mood wash, and every version of it so far
+   has been too greedy.
+
+   The perfume bottle sits about 4% to 10% across the frame, which is exactly
+   where the fade used to be at half strength, so the single most recognisable
+   object in the picture was the one thing you could not see (owner, 2026-08-02).
+   The ramp is now short and shallow: fully opaque for the first pixel column
+   only, so the join is still seamless, then off a cliff to .3 within 3% and
+   clean by 13%. Roughly 95px of feather at a 1440 viewport instead of 190px.
+
+   The first stop must stay at 1. At .88 the leftmost pixels showed 12% through
+   against solid green and that read as a faint line. If you need the picture
+   brighter still, pull the .3 down; do not touch the 0% stop. */
 .hero .imgside::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  /* The first stop is fully opaque, not .88. At .88 the leftmost column of the
-     image showed 12% through against solid green, which read as a faint
-     vertical seam exactly where the two halves meet. */
   background: linear-gradient(90deg,
     rgba(30, 51, 40, 1) 0%,
-    rgba(30, 51, 40, .5) 6%,
-    rgba(30, 51, 40, .15) 15%,
-    rgba(30, 51, 40, 0) 26%);
+    rgba(30, 51, 40, .3) 3%,
+    rgba(30, 51, 40, .09) 7%,
+    rgba(30, 51, 40, 0) 13%);
 }
 .hero .capt {
   position: absolute; bottom: 16px; right: 20px; z-index: 2;
