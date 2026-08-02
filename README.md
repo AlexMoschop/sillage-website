@@ -23,6 +23,14 @@ wins: it is the current statement of the colour, type and layout rules.
   off the site, and the markets block is now three city cards with photographs.
 - **The three venue pages are published** and the homepage cards link to them.
 
+### v8.1 (same day)
+- Alexandros's card says **London**; the team grid spans the full column; the lead
+  photograph is shown at 700px from a 1105px file, on purpose, because that is what makes
+  it sharp.
+- The grayscale hover target is **the whole card**, not just the picture.
+- **"never"** in the homepage H1 and **"one method."** on About are orange.
+- The venue pages lost the blueprint plan section and the "Other venue types" links.
+
 ## Files
 
 | File | What it is |
@@ -103,9 +111,9 @@ fallback path that the GitHub Pages copy also takes.
 - **File:** `about.html`, the team block. All three cards are filled: Kevin Kegel (Reading),
   Prithvish Patil (Milton Keynes), Alexandros Moschopoulos (no city, see below), each with
   remit and languages.
-- ⚠️ **Alexandros's card has no city.** Thessaloniki came off the site in v8 with the rest of
-  the location changes, and inventing a UK city for a real person was not an option, so that
-  slot carries his role instead. Put a city back when he supplies one.
+- Alexandros's card says **London**, which he supplied himself. Thessaloniki came off the
+  site in v8 with the rest of the location changes; the card briefly carried his role
+  instead, because inventing a UK city for a real person was not an option.
 - ⚠️ Courses and society roles are **facts about real people**. They came from each founder's own
   LinkedIn plus the owner's corrections (checked 26 July 2026). When a course finishes or a role
   changes, update the card; don't let it go stale.
@@ -113,6 +121,11 @@ fallback path that the GitHub Pages copy also takes.
   tasteful `[Photo]` tile, never a broken icon.
 - ⚠️ **Keep them in COLOUR.** The grayscale is a CSS filter (`.photo-bw` in `styles.css`) so it
   can lift on hover. Re-grade a file to monochrome and the hover reveal silently does nothing.
+- ⚠️ **The lead group photograph is displayed smaller than the file on purpose.** 1105px of
+  image into a 700px column is what makes it look sharp. Widening it to fill the row makes
+  it soft again.
+- The hover target is the **whole card**, not the picture. If you add a new photo block,
+  add its container to the `.photo-bw:hover` selector list or the reveal will feel broken.
 - To add a person, copy a whole `<article class="card">` and keep the `data-anim-delay` steps 80ms apart.
 
 ### 5. Set the contact names
@@ -130,6 +143,8 @@ fallback path that the GitHub Pages copy also takes.
   Do not put a stock image there.
 
 ### 7. Venue pages (published in v8)
+- Structure: hero, area by area, the three signals, the evidence, CTA. The blueprint plan
+  section and the cross-links to the other two venue types were removed in v8.1.
 - **Files:** `venues/wellness/`, `venues/personal-care/`, `venues/business-premises/`.
 - All three are **generated from one template** so they cannot drift apart. The generator is
   not in the repo; the pages are the artefact. To change all three, change them consistently.

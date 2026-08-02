@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=8.0" />
+  <link rel="stylesheet" href="styles.css?v=8.1" />
 
   <script type="application/ld+json">
   {
@@ -104,14 +104,15 @@
          inferred. Do not invent a credential, a course, a location or a role
          for a real person.
 
-         Two consequences of the 2026-08-02 location change, both deliberate:
-           - Alexandros's card no longer says THESSALONIKI, because Thessaloniki
-             came off the site. It carries his ROLE in that slot rather than a
-             city, since inventing a UK city for a real person is not an option.
-             Put a city back only when he supplies one.
-           - "Leads the Greek market and" was struck from his remit for the same
-             reason: there is no Greek market on this site any more, so the
-             sentence had stopped being true. The rest of it is untouched.
+         Two consequences of the 2026-08-02 location change:
+           - Alexandros's card said THESSALONIKI. It briefly carried his role
+             instead, because Thessaloniki came off the site and inventing a UK
+             city for a real person was not an option. He then supplied LONDON
+             himself, so that is what it says now. It came from him, not from
+             an inference.
+           - "Leads the Greek market and" was struck from his remit: there is no
+             Greek market on this site any more, so the sentence had stopped
+             being true. The rest of it is untouched.
 
          The name-to-face mapping was ASKED, never inferred:
            kevin-kegel             <- the curly-haired headshot
@@ -124,17 +125,23 @@
          is displayed, with width and height set, and lazy-loaded. -->
     <section class="team" id="team">
       <div class="wrap">
-        <h2 data-animate>Three noses, one method.</h2>
+        <h2 data-animate>Three noses, <span class="hl">one method.</span></h2>
 
-        <figure class="team__group media media--3-2 photo-bw" data-animate data-anim-delay="60">
-          <span class="media__ph" aria-hidden="true">[Photo]</span>
-          <picture>
-            <source srcset="assets/img/team/group-session.webp" type="image/webp" />
-            <img src="assets/img/team/group-session.jpg" width="1105" height="736" loading="lazy"
-                 alt="The three Sillage founders in a working session around a table, one speaking into a microphone." />
-          </picture>
-        </figure>
-        <p class="team__cap">The founding team, mid-session</p>
+        <!-- The photograph and its caption sit side by side. The picture is
+             displayed at about two thirds of the pixels it actually contains,
+             which is what makes it look sharp; do not scale it back up to fill
+             the row, that is exactly what made it look soft before. -->
+        <div class="team__lead" data-animate data-anim-delay="60">
+          <figure class="team__group media media--3-2 photo-bw">
+            <span class="media__ph" aria-hidden="true">[Photo]</span>
+            <picture>
+              <source srcset="assets/img/team/group-session.webp" type="image/webp" />
+              <img src="assets/img/team/group-session.jpg" width="1105" height="736" loading="lazy"
+                   alt="The three Sillage founders in a working session around a table, one speaking into a microphone." />
+            </picture>
+          </figure>
+          <p class="team__cap">The founding team, mid-session</p>
+        </div>
 
         <h3 class="sub-h" data-animate>The team.</h3>
         <div class="team__grid">
@@ -175,7 +182,7 @@
               </picture>
             </figure>
             <p class="nm">Alexandros Moschopoulos</p>
-            <p class="city">COMMERCIAL LEAD</p>
+            <p class="city">LONDON &middot; UNITED KINGDOM</p>
             <p class="brings">Leads the commercial side of the business, from branding through to supply chain.</p>
             <p class="langs">English &middot; Ελληνικά &middot; German</p>
           </article>
