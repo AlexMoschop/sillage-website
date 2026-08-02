@@ -31,15 +31,26 @@ wins: it is the current statement of the colour, type and layout rules.
 - **"never"** in the homepage H1 and **"one method."** on About are orange.
 - The venue pages lost the blueprint plan section and the "Other venue types" links.
 
+### v8.4 (same day)
+- **URLs lost their `.html`**: `/about/` and `/privacy/` are the live addresses, served from
+  `about/index.html` and `privacy/index.html`. The old `.html` paths are redirect stubs.
+  `/home/` is a stub pointing at `/`. See edit #9.
+- All six venue-card and market-card images are **owner-supplied photographs** now. The
+  Wikimedia credit line went with the pictures it covered.
+- Header hairline removed; the About hero is forest again; the team block is ivory; the
+  hero photograph has **no** fade over it at all.
+- The homepage `<title>` is just **`Sillage`**.
+
 ## Files
 
 | File | What it is |
 |------|------------|
 | `index.html` | Homepage - hero, the three ambience rows with their evidence expanders, the interplay band, venues, and a testimonials block that is built but switched off. |
-| `about.html` | The team, the markets and the **enquiry form**. Markets and Contact merged in here in v4. The method and the scope statement were deleted in v8. |
+| `about/index.html` | **`/about/`** - the team, the markets and the **enquiry form**. Markets and Contact merged in here in v4. The method and the scope statement were deleted in v8. Moved out of `about.html` in v8.4. |
+| `privacy/index.html` | **`/privacy/`** - privacy policy. Moved out of `privacy.html` in v8.4. |
+| `about.html`, `privacy.html`, `home/index.html` | Redirect stubs only, so old links and `/home` keep working. |
 | `markets.html` | Redirect stub only. Sends visitors to `about.html#markets`; kept so old links still work. |
 | `contact.html` | Redirect stub only. Sends visitors to `about.html#contact`; kept so old links still work. |
-| `privacy.html` | Privacy policy (required - this is a live UK/EU business). |
 | `styles.css` | All the styling. The colour palette lives at the very top. |
 | `ui.js` | The evidence expanders, moving focus to the first form field, and the contact form validation and submit. Replaced `booking.js`, deleted in v7. |
 | `contact.php` | The contact form server endpoint. **The only server-side file on the site.** See edit #1. |
@@ -49,7 +60,8 @@ wins: it is the current statement of the colour, type and layout rules.
 | `favicon.svg` | The browser-tab icon (the blotter mark). |
 | `og-image.png` | The picture shown when the site is shared on social media. |
 | `assets/img/team/` | Team photos, **in colour** since v8: `group-session.jpg`, `kevin-kegel.jpg`, `prithvish-patil.jpg`, `alexandros-moschopoulos.jpg`. |
-| `assets/img/markets/` | City photographs for the markets block: `reading.jpg`, `london.jpg`, `milton-keynes.jpg`, each with a `.webp`. **Two are share-alike and the credit line in `about.html` is a licence condition.** |
+| `assets/img/markets/` | City photographs for the markets block: `reading.jpg`, `london.jpg`, `milton-keynes.jpg`, each with a `.webp`. Owner-supplied since v8.4. |
+| `assets/img/venues/` | The three homepage venue-card photographs, owner-supplied in v8.4, replacing inline blueprint SVGs. Shown in **full colour**, unlike the team and market pictures. |
 
 ---
 
@@ -160,7 +172,17 @@ fallback path that the GitHub Pages copy also takes.
 - When the research lands it replaces the "What the evidence says" section, with its own sources.
 
 ### 8. Fill in the privacy policy
-- **File:** `privacy.html` - replace every `[BRACKETED]` field before launch.
+- **File:** `privacy/index.html` - replace every `[BRACKETED]` field before launch.
+
+### 9. Add or move a page
+- Pages live in **directories** so their URLs carry no `.html`: `about/index.html` serves
+  `/about/`. Directories rather than an `.htaccess` rewrite on purpose - GitHub Pages cannot
+  run `.htaccess`, and a rollback host that 404s every link is not a rollback.
+- Leave a redirect stub at any old address. Copy `markets.html`; it is the pattern.
+- ⚠️ **The sitemap page list lives in `deploy.sh`, not in this repo**, and nothing generates
+  it from the tree. Add the page there too or it will never be indexed.
+- ⚠️ **Deploys never delete.** A file removed from `master` stays in the web root until
+  someone deletes it by name over ssh.
 
 ---
 

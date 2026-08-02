@@ -259,9 +259,12 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
      ivory 92% (nav labels) ... 11.02  pass
      clay-bright (phonetic) .... 5.84  pass
      forest on clay-bright ..... 5.84  pass  (the evaluation button) */
+/* NO BOTTOM RULE (owner, 2026-08-02). There was a 14%-ivory hairline under the
+   header. Every page that follows the header opens on the same forest, so the
+   line was drawing a border between two identical greens and reading as a seam
+   rather than as a division. The header and the band beneath it are one field. */
 .hdr {
   background: var(--forest);
-  border-bottom: 1px solid rgba(251, 248, 241, .14);
   padding: 16px var(--pad-x);
 }
 .hdr__inner {
@@ -388,28 +391,13 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   width: 100%; height: 100%; object-fit: cover; display: block;
   filter: saturate(.95) contrast(1.05) brightness(1.02);
 }
-/* The feather has ONE job: stop a hard vertical seam where the green column
-   meets the photograph. It is not a mood wash, and every version of it so far
-   has been too greedy.
-
-   The perfume bottle sits about 4% to 10% across the frame, which is exactly
-   where the fade used to be at half strength, so the single most recognisable
-   object in the picture was the one thing you could not see (owner, 2026-08-02).
-   The ramp is now short and shallow: fully opaque for the first pixel column
-   only, so the join is still seamless, then off a cliff to .3 within 3% and
-   clean by 13%. Roughly 95px of feather at a 1440 viewport instead of 190px.
-
-   The first stop must stay at 1. At .88 the leftmost pixels showed 12% through
-   against solid green and that read as a faint line. If you need the picture
-   brighter still, pull the .3 down; do not touch the 0% stop. */
-.hero .imgside::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg,
-    rgba(30, 51, 40, 1) 0%,
-    rgba(30, 51, 40, .3) 3%,
-    rgba(30, 51, 40, .09) 7%,
-    rgba(30, 51, 40, 0) 13%);
-}
+/* THE FEATHER IS GONE (owner, 2026-08-02). There was a green-to-transparent
+   gradient over the left edge of the photograph, there to soften the join with
+   the copy column. It was reduced twice and then removed outright: the owner
+   wants the orange ground of the picture at full strength right up to the edge,
+   and the hard vertical join is the intended look, not a defect. Do not
+   reintroduce a wash here. If the seam ever needs softening again, it is a
+   one-rule change and the history is at 71dd03d. */
 .hero .capt {
   position: absolute; bottom: 16px; right: 20px; z-index: 2;
   font-family: var(--label); font-size: 9.5px; font-weight: 600;
@@ -563,7 +551,26 @@ main > .inter:last-child { padding-bottom: 14px; }
 a.vcard { text-decoration: none; color: inherit; transition: border-color 180ms ease; }
 a.vcard:hover { border-color: rgba(30, 51, 40, .38); }
 a.vcard:hover .vlink { border-bottom-color: var(--clay); }
-.vcard .draw { background: var(--bp-ground); border-bottom: 1px solid var(--rule); }
+/* PHOTOGRAPHS, not blueprint drawings (owner, 2026-08-02). Each venue card
+   carried an inline SVG plan of that venue type; all three were replaced with
+   photographs the owner supplied.
+
+   These stay in FULL COLOUR. The grayscale-that-lifts-on-hover treatment
+   (.photo-bw) is for the team portraits and the city cards on About; the
+   homepage's own photographs, the three ambience rows and these, have always
+   been in colour and should stay that way. */
+.vcard .draw {
+  aspect-ratio: 3 / 2; position: relative; overflow: hidden;
+  background: var(--ivory-2); border-bottom: 1px solid var(--rule);
+}
+.vcard .draw img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transform: scale(1.001); transition: transform 500ms ease;
+}
+a.vcard:hover .draw img { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+  .vcard .draw img, a.vcard:hover .draw img { transition: none; transform: scale(1.001); }
+}
 .vcard .bd { padding: 20px 22px; }
 .vcard h3 { font-size: 19px; }
 .vcard p { font-size: 13px; color: rgba(42, 42, 40, .78); margin: 8px 0 12px; }
@@ -600,28 +607,25 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
    ============================================================ */
 .vhero { background: var(--forest); padding: var(--pad-y) var(--pad-x); }
 
-/* ABOUT IS A LIGHT PAGE NOW (v8, owner instruction 2026-08-02).
-   Both green bands are gone: the "About Sillage" hero and the team block that
-   used to enclose the photographs. The ground is white, the type is the body
-   ink rather than forest, and the accent work is orange.
+/* THE ABOUT HERO IS FOREST AGAIN (owner, 2026-08-02, later the same day).
+   v8 turned it white with charcoal type; the owner then asked for that band to
+   go back to green, and for the header hairline above it to go, so the header
+   and this band read as one unbroken green field exactly like the homepage.
 
-   "Black" here means --charcoal #2A2A28, not #000000. Pure black as a type
-   colour is a standing rule at the top of this file and this did not repeal it;
-   at this size the two are indistinguishable and the charcoal is kinder to read
-   against a warm white.
+   THE REST OF THE PAGE STAYS LIGHT. Only this band reverted. The team block
+   below is cream and its type is still charcoal with orange accents; do not
+   take that back to green as well.
 
-   Measured on what ships:
-     charcoal on white ........ 14.55  pass
-     charcoal 82% on white .... 10.32  pass
-     clay on white ............. 5.26  pass   (eyebrows, accents, rules)
-     forest on white .......... 13.42  pass   (headings still forest) */
+   Measured on what ships, against forest #1E3328:
+     ivory ................... 12.70  pass   (the H1)
+     ivory 82% ............... 8.96   pass   (the standfirst)
+     ivory 96% at 75% opacity  ~7.5   pass   (the eyebrow) */
 .abouthero {
-  background: var(--white); padding: 52px var(--pad-x) 34px;
-  border-bottom: 1px solid var(--rule);
+  background: var(--forest); padding: 52px var(--pad-x) 56px;
 }
-.abouthero .eyebrow { color: var(--clay); opacity: 1; }
-.abouthero h1 { color: var(--charcoal); font-size: 46px; max-width: 16ch; }
-.abouthero .stand { color: rgba(42, 42, 40, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
+.abouthero .eyebrow { color: rgba(251, 248, 241, .96); opacity: .75; }
+.abouthero h1 { color: var(--ivory); font-size: 46px; max-width: 16ch; }
+.abouthero .stand { color: rgba(251, 248, 241, .82); max-width: 54ch; margin-top: 14px; font-size: 16px; }
 
 .sec--light { background: var(--ivory); }
 /* Two 56px paddings back to back put 112px of nothing between one block and
@@ -651,7 +655,11 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
    the heading and the caption 10px below the picture, inside 56px section
    padding, which left the heading, the photograph and the caption reading as
    three unrelated things. They now sit close enough to read as one unit. */
-.team { background: var(--white); padding: 40px var(--pad-x) 46px; }
+/* CREAM, not white (owner, 2026-08-02). It was --white, which put a visible
+   step between this block and the ivory markets section under it for no reason.
+   Both are --ivory now and the About page below the green hero is one
+   continuous cream field. */
+.team { background: var(--ivory); padding: 40px var(--pad-x) 46px; }
 .team h2 { color: var(--forest); font-size: 32px; }
 .team .stand { color: rgba(42, 42, 40, .82); }
 
@@ -779,10 +787,13 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
    Reading, London and Milton Keynes each get the tab Germany and Greece used
    to have.
 
-   Each card now carries a photograph of the city. Licences and sources are in
-   the header comment of the script that built them; two of the three are
-   share-alike and the credit line under the grid is a CONDITION OF USE, not
-   decoration. Do not delete it while the pictures are still there. */
+   Each card carries a photograph of the city, in grayscale until hovered.
+
+   Those were Wikimedia Commons pictures until 2026-08-02, two of them
+   share-alike, which is why a `.mkcredit` line used to sit under the grid. The
+   owner replaced all three with his own files and the credit went with them.
+   IF AN ATTRIBUTED PICTURE IS EVER PUT BACK HERE, THE CREDIT LINE COMES BACK
+   WITH IT; that is a licence condition, not decoration. */
 .mkgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
 .mkgrid > * { min-width: 0; }
 .market {
@@ -804,11 +815,6 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
    so on) was removed on 2026-08-02 at the owner's instruction. Each card is now
    the photograph, the city and the country, nothing else. .note is gone with
    it; do not reintroduce copy here without asking. */
-.mkcredit {
-  font-family: var(--label); font-size: 10.5px; letter-spacing: .02em;
-  color: rgba(42, 42, 40, .66); margin-top: 14px; line-height: 1.7;
-}
-.mkcredit a { color: var(--clay); }
 
 /* .stand is styled by `.sec .stand`, and .contact is not a .sec, so the
    standfirst beside the form was falling back to a bare <p> and sitting hard
@@ -1033,9 +1039,7 @@ select.cf-in {
   .hero__inner { grid-template-columns: 1fr; min-height: 0; }
   .hero .txt { padding: 46px var(--pad-x) 40px; order: 1; }
   .hero .imgside { order: 2; min-height: 240px; }
-  .hero .imgside::after {
-    background: linear-gradient(180deg, rgba(30, 51, 40, .72) 0%, rgba(30, 51, 40, .18) 70%);
-  }
+  /* The mobile top-down version of the feather went with the desktop one. */
   .hero h1 { font-size: 38px; max-width: none; }
 
   .rowhead { grid-template-columns: 1fr; gap: 14px; }

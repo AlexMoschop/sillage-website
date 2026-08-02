@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    document.documentElement.className = "js js-motion";
+    document.addEventListener("error", function (e) {
+      var t = e.target;
+      if (t && t.tagName === "IMG") t.classList.add("img--failed");
+    }, true);
+  </script>
+
+  <title>About &middot; Sillage</title>
+  <meta name="description" content="Who Sillage is, where we work across Reading, London and Milton Keynes, and how to ask for an evaluation." />
+  <link rel="canonical" href="https://www.seeyazh.com/about/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Sillage &middot; three noses, one method" />
+  <meta property="og:description" content="Three consultants working across Reading, London and Milton Keynes, running one method." />
+  <meta property="og:image" content="https://www.seeyazh.com/og-image.png" />
+  <meta property="og:url" content="https://www.seeyazh.com/about/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=8.4" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Sillage",
+    "description": "Sensory identity consultancy for boutique wellness and hospitality businesses. Advises on scent, aligns music to it, and trials freestanding climate and diffusion equipment.",
+    "url": "https://www.seeyazh.com/about/",
+    "areaServed": [
+      { "@type": "City", "name": "Reading" },
+      { "@type": "City", "name": "London" },
+      { "@type": "City", "name": "Milton Keynes" }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "info@seeyazh.com",
+      "availableLanguage": ["English", "German", "Greek"]
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hdr">
+    <div class="hdr__inner">
+      <a class="wordmark" href="../">Sillage<span class="phon">SEE-YAZH</span></a>
+      <nav aria-label="Primary">
+        <a class="navbtn" href="../">Home</a>
+        <a class="navbtn" href="../about/" aria-current="page">About</a>
+        <a class="bookbtn" href="../about/#contact">Get an evaluation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= HERO =================
+         FOREST band. It went white earlier on 2026-08-02 when the owner asked
+         for the green to come off the About page, then green again later the
+         same day when he asked for this band specifically to go back. The
+         header hairline above it came off in the same change, so the header and
+         this band read as one unbroken green field, like the homepage.
+
+         Only THIS band reverted. Everything below it stays light. The colours
+         are set in .abouthero in styles.css rather than by on-forest, so the
+         markup does not need to change if it flips again. The phonetic stays in
+         the header lockup and is not repeated here.
+
+         COPY NOTE: the standfirst is assembled only from facts the site
+         already states. Germany and Greece came out of it on 2026-08-02 with
+         the rest of the location changes. Nothing about the founders or the
+         founding story is written here; that copy is Kevin's to supply. -->
+    <section class="abouthero">
+      <div class="wrap" data-animate>
+        <p class="eyebrow">Who we are</p>
+        <h1>About Sillage</h1>
+        <p class="stand">A sensory identity consultancy for boutique wellness and hospitality businesses, working across Reading, London and Milton Keynes.</p>
+      </div>
+    </section>
+
+    <!-- ================= TEAM =================
+         CREAM ground (--ivory), owner instruction 2026-08-02. This block used
+         to be a forest band that enclosed the group photograph. The green is
+         gone, the gradient that feathered the photograph's edges into it is
+         gone with it, and the spacing between the heading, the picture and the
+         caption was pulled in so they read as one unit instead of three.
+
+         It was --white for part of the day, which put a visible step between
+         this block and the ivory markets section below. Both are --ivory now,
+         so everything under the green hero is one continuous cream field.
+
+         PHOTOGRAPHS ARE NOW COLOUR FILES SHOWN IN GRAYSCALE BY CSS.
+         v7.4 baked the monochrome into the JPEG. The owner asked for the
+         grayscale to lift on hover, which a converted file cannot do, so all
+         four were rebuilt in colour from the original camera files and the
+         conversion moved to .photo-bw in styles.css. Do not re-grade these
+         files to monochrome: it would make the hover reveal do nothing.
+
+         The founding-story paragraph beneath the photograph is copy Kevin is
+         supplying. It has not arrived, so the caption stands. Do not write it
+         here.
+
+         Every biographical detail below comes from each founder's own LinkedIn
+         plus the owner's corrections, checked 26 July 2026. Nothing is
+         inferred. Do not invent a credential, a course, a location or a role
+         for a real person.
+
+         Two consequences of the 2026-08-02 location change:
+           - Alexandros's card said THESSALONIKI. It briefly carried his role
+             instead, because Thessaloniki came off the site and inventing a UK
+             city for a real person was not an option. He then supplied LONDON
+             himself, so that is what it says now. It came from him, not from
+             an inference.
+           - "Leads the Greek market and" was struck from his remit: there is no
+             Greek market on this site any more, so the sentence had stopped
+             being true. The rest of it is untouched.
+
+         The name-to-face mapping was ASKED, never inferred:
+           kevin-kegel             <- the curly-haired headshot
+           prithvish-patil         <- the presenting photograph
+           alexandros-moschopoulos <- the gold-glasses headshot
+         Do not reassign a file to a different person on a hunch.
+
+         Each is cropped 4:5 around the face so no one is beheaded by
+         object-fit, served as WebP with a JPEG fallback at the size it
+         is displayed, with width and height set, and lazy-loaded. -->
+    <section class="team" id="team">
+      <div class="wrap">
+        <h2 data-animate>Three noses, <span class="hl">one method.</span></h2>
+
+        <!-- The photograph and its caption sit side by side. The picture is
+             displayed at about two thirds of the pixels it actually contains,
+             which is what makes it look sharp; do not scale it back up to fill
+             the row, that is exactly what made it look soft before. -->
+        <div class="team__lead" data-animate data-anim-delay="60">
+          <figure class="team__group media media--3-2 photo-bw">
+            <span class="media__ph" aria-hidden="true">[Photo]</span>
+            <picture>
+              <source srcset="../assets/img/team/group-session.webp" type="image/webp" />
+              <img src="../assets/img/team/group-session.jpg" width="1105" height="736" loading="lazy"
+                   alt="The three Sillage founders in a working session around a table, one speaking into a microphone." />
+            </picture>
+          </figure>
+          <p class="team__cap">The founding team, mid-session</p>
+        </div>
+
+        <h3 class="sub-h" data-animate>The team.</h3>
+        <div class="team__grid">
+          <article class="tperson" data-animate>
+            <figure class="tphoto photo-bw">
+              <picture>
+                <source srcset="../assets/img/team/kevin-kegel.webp" type="image/webp" />
+                <img src="../assets/img/team/kevin-kegel.jpg" width="614" height="767"
+                     loading="lazy" alt="Kevin Kegel." />
+              </picture>
+            </figure>
+            <p class="nm">Kevin Kegel</p>
+            <p class="city">READING &middot; UNITED KINGDOM</p>
+            <p class="brings">Owns the published research the method is built on, so every recommendation traces back to a source a client can check.</p>
+            <p class="langs">English &middot; German &middot; French &middot; Amharic</p>
+          </article>
+
+          <article class="tperson" data-animate data-anim-delay="80">
+            <figure class="tphoto photo-bw">
+              <picture>
+                <source srcset="../assets/img/team/prithvish-patil.webp" type="image/webp" />
+                <img src="../assets/img/team/prithvish-patil.jpg" width="675" height="844"
+                     loading="lazy" alt="Prithvish Patil." />
+              </picture>
+            </figure>
+            <p class="nm">Prithvish Patil</p>
+            <p class="city">MILTON KEYNES &middot; UNITED KINGDOM</p>
+            <p class="brings">Runs the measurement side, from the baseline reading to the return visit, which is what makes a claim checkable.</p>
+            <p class="langs">English &middot; German &middot; Marathi</p>
+          </article>
+
+          <article class="tperson" data-animate data-anim-delay="160">
+            <figure class="tphoto photo-bw">
+              <picture>
+                <source srcset="../assets/img/team/alexandros-moschopoulos.webp" type="image/webp" />
+                <img src="../assets/img/team/alexandros-moschopoulos.jpg" width="900" height="1125"
+                     loading="lazy" alt="Alexandros Moschopoulos." />
+              </picture>
+            </figure>
+            <p class="nm">Alexandros Moschopoulos</p>
+            <p class="city">LONDON &middot; UNITED KINGDOM</p>
+            <p class="brings">Leads the commercial side of the business, from branding through to supply chain.</p>
+            <p class="langs">English &middot; Ελληνικά &middot; German</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE METHOD AND THE SCOPE STATEMENT: DELETED =====
+         Owner instruction, 2026-08-02. Two whole sections came out here:
+
+           #method  the five-stage timeline (Primary evaluation, Time in the
+                    business, Analysis and matching, Presentation and testing,
+                    Return and refine) and the three artefact cards
+                    (Diagnostic visit, Strategy report, Stakeholder
+                    presentation).
+           #scope   "What we do, and what we do not", the scope statement,
+                    together with the cold-air nebuliser drawing beside it.
+
+         Both are recoverable verbatim from git at 4e0ef31. The scope wording
+         in particular was a legal boundary rather than marketing copy: if it
+         is ever restored it is restored word for word, never paraphrased and
+         never softened. Their CSS was removed from styles.css at the same
+         time so nothing is left lying around to be reapplied by habit.
+
+         Nothing else linked to #method or #scope, so no dead anchors remain.
+         ================================================================= -->
+
+    <!-- ================= MARKETS =================
+         Owner instruction, 2026-08-02. This was three COUNTRY cards, United
+         Kingdom / Germany / Greece. Hannover and Thessaloniki came off the
+         site entirely and the United Kingdom was expanded, so the three UK
+         cities each get the card Germany and Greece used to have. The footer
+         list and the areaServed block in the JSON-LD on every page were
+         changed in the same pass; keep all three in step.
+
+         PHOTOGRAPHS. Each card carries a picture of its city, in grayscale
+         until hovered, matching the team photographs.
+
+         All three were supplied by the owner on 2026-08-02 and replaced the
+         Wikimedia Commons pictures that stood here for part of that day. Two
+         of those were share-alike, which is why a credit line used to sit
+         under this grid; it was removed with them.
+
+         IF AN ATTRIBUTED PICTURE EVER GOES BACK IN HERE, THE CREDIT LINE GOES
+         BACK WITH IT. That is a licence condition, not decoration.
+
+         The London file arrived with a "Posted in r/wallpapers" reddit bar
+         across the bottom and a mark in the corner. Both are cropped out of
+         the shipped file, not hidden by an overflow. A third-party brand has
+         no business on a client's site; if these are ever re-cut from the
+         originals, crop them again. -->
+    <section class="sec sec--light" id="markets">
+      <div class="wrap">
+        <p class="eyebrow" data-animate>Where we work</p>
+        <h2 data-animate data-anim-delay="60">Three cities, one method.</h2>
+        <div class="mkgrid">
+          <div class="market" data-animate>
+            <figure class="mkimg photo-bw">
+              <picture>
+                <source srcset="../assets/img/markets/reading.webp" type="image/webp" />
+                <img src="../assets/img/markets/reading.jpg" width="808" height="539" loading="lazy"
+                     alt="Reading at dusk, seen from above: the station, the town centre and the river." />
+              </picture>
+            </figure>
+            <div class="bd">
+              <p class="country">Reading</p>
+              <p class="cities">UNITED KINGDOM</p>
+            </div>
+          </div>
+          <div class="market" data-animate data-anim-delay="70">
+            <figure class="mkimg photo-bw">
+              <picture>
+                <source srcset="../assets/img/markets/london.webp" type="image/webp" />
+                <img src="../assets/img/markets/london.jpg" width="900" height="600" loading="lazy"
+                     alt="The City of London from the air at sunset, the Thames curving behind the towers." />
+              </picture>
+            </figure>
+            <div class="bd">
+              <p class="country">London</p>
+              <p class="cities">UNITED KINGDOM</p>
+            </div>
+          </div>
+          <div class="market" data-animate data-anim-delay="140">
+            <figure class="mkimg photo-bw">
+              <picture>
+                <source srcset="../assets/img/markets/milton-keynes.webp" type="image/webp" />
+                <img src="../assets/img/markets/milton-keynes.jpg" width="872" height="581" loading="lazy"
+                     alt="Central Milton Keynes from directly overhead, its grid of boulevards and tree lines." />
+              </picture>
+            </figure>
+            <div class="bd">
+              <p class="country">Milton Keynes</p>
+              <p class="cities">UNITED KINGDOM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT (spec 6) =================
+         The site's only conversion point. The languages line that used
+         to sit in this block has been removed (spec 7).
+
+         The form posts to contact.php, a small single-file endpoint on
+         Hostinger. If that endpoint is unreachable, which is the case on
+         the GitHub Pages rollback host, the submit handler keeps every
+         entered value and reveals the email address instead (spec 6.2).
+
+         The privacy sentence beneath the button must remain TRUE. It is
+         why no reCAPTCHA and no tracking form service may ever be added
+         here without changing that wording first, and openly (spec 6.3). -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="cgrid">
+          <div data-animate>
+            <p class="eyebrow">Contact</p>
+            <h2>Tell us about your space.</h2>
+            <p class="stand">One conversation is usually enough to know whether an evaluation makes sense. There is no obligation and nothing to buy; the first step is always a walk-through.</p>
+            <p class="contact-direct">Prefer to write directly? <a href="mailto:info@seeyazh.com">info@seeyazh.com</a></p>
+          </div>
+
+          <form class="cform" id="contact-form" action="../contact.php" method="post" novalidate data-animate data-anim-delay="120">
+            <div class="field">
+              <label class="cf-lab" for="cf-name">YOUR NAME</label>
+              <input class="cf-in" id="cf-name" name="name" type="text" autocomplete="name"
+                     required aria-describedby="cf-name-err" />
+              <p class="cf-err" id="cf-name-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-email">EMAIL ADDRESS</label>
+              <input class="cf-in" id="cf-email" name="email" type="email" autocomplete="email"
+                     required aria-describedby="cf-email-err" />
+              <p class="cf-err" id="cf-email-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-biz">BUSINESS AND CITY</label>
+              <input class="cf-in" id="cf-biz" name="business" type="text"
+                     placeholder="The Willow Rooms, Reading"
+                     required aria-describedby="cf-biz-err" />
+              <p class="cf-err" id="cf-biz-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-type">TYPE OF SPACE</label>
+              <select class="cf-in" id="cf-type" name="type" required aria-describedby="cf-type-err">
+                <option value="" selected>Choose one</option>
+                <option>Spa or wellness studio</option>
+                <option>Yoga or pilates studio</option>
+                <option>Salon, barber or beauty</option>
+                <option>Hotel or hospitality</option>
+                <option>Office or reception</option>
+                <option>Other</option>
+              </select>
+              <p class="cf-err" id="cf-type-err" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="cf-lab" for="cf-msg">WHAT DOES YOUR SPACE SMELL LIKE TODAY?</label>
+              <textarea class="cf-in" id="cf-msg" name="message"
+                        placeholder="Honestly, we have never chosen it."></textarea>
+            </div>
+
+            <div class="consent">
+              <input type="checkbox" id="cf-consent" name="consent" value="yes"
+                     required aria-describedby="cf-consent-err" />
+              <label for="cf-consent">I am happy for Sillage to use these details to respond to my enquiry.</label>
+            </div>
+            <p class="cf-err" id="cf-consent-err" role="alert"></p>
+
+            <!-- Spam control: a honeypot plus a timing check. No reCAPTCHA,
+                 because it would load Google resources and set identifiers,
+                 which would make the sentence below untrue (spec 6.3). -->
+            <div class="hp" aria-hidden="true">
+              <label for="cf-website">Leave this field empty</label>
+              <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="ts" value="" />
+
+            <button class="btn btn--solid" type="submit">Get an evaluation</button>
+
+            <p class="cf-note">We use what you submit only to respond to your enquiry. No mailing lists, no third-party sharing, no cookies on this form. <a href="../privacy/">Read the privacy policy</a>.</p>
+
+            <div class="cf-fail" id="cf-fail" role="alert" tabindex="-1" hidden>
+              <p>We could not send that just now. Nothing you typed has been lost. Please email <a href="mailto:info@seeyazh.com">info@seeyazh.com</a> and we will pick it up from there.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="foot__inner">
+      <p class="slog">What your space leaves behind.</p>
+      <div class="cols">
+        <div class="fm">Sillage<span>SEE-YAZH</span></div>
+        <div class="meta">
+          Reading &middot; London &middot; Milton Keynes
+          &nbsp;&middot;&nbsp; <a href="mailto:info@seeyazh.com">info@seeyazh.com</a>
+          &nbsp;&middot;&nbsp; &copy; 2026 Sillage
+        </div>
+      </div>
+      <div class="foot__links">
+        <a href="../">Home</a>
+        <a href="../about/">About</a>
+        <a href="../about/#contact">Contact</a>
+        <a href="../privacy/">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../ui.js"></script>
+  <script src="../motion.js"></script>
+</body>
+</html>

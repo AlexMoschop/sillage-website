@@ -4,31 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- ============================================================
-       REDIRECT STUB. The privacy policy lost its .html on 2026-08-02 and now lives at
-       /privacy/. This keeps every inbound link to /privacy.html working.
+       REDIRECT STUB. /home exists so the address works if anyone types or links it. The
+       homepage's real address is the bare domain, which is where a homepage
+       belongs, so this sends visitors there rather than serving a duplicate.
 
        GitHub Pages cannot serve a real 301, so this is the standard static
        equivalent: a canonical tag pointing at the live address, which is what
        search engines consolidate on, a meta refresh, and a plain link for
        anyone with JavaScript and refresh both disabled.
        ============================================================ -->
-  <link rel="canonical" href="privacy/" />
+  <link rel="canonical" href="../" />
   <meta name="robots" content="noindex,follow" />
-  <meta http-equiv="refresh" content="0; url=privacy/" />
-  <title>Privacy, moved &middot; Sillage</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=8.4" />
+  <meta http-equiv="refresh" content="0; url=../" />
+  <title>Home &middot; Sillage</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=8.4" />
 </head>
 <body>
   <main id="main" class="doc">
     <div class="doc__inner">
       <h1>This page has moved.</h1>
-      <p>The privacy policy now lives at a shorter address. If you are not redirected automatically, follow the link below.</p>
+      <p>The homepage lives at the top of the site. If you are not redirected automatically, follow the link below.</p>
       <p class="doc__cta">
-        <a class="btn btn--solid" href="privacy/">Go to Privacy</a>
+        <a class="btn btn--solid" href="../">Go to the homepage</a>
       </p>
     </div>
   </main>
-  <script>window.location.replace("privacy/");</script>
+  <script>window.location.replace("../");</script>
 </body>
 </html>
