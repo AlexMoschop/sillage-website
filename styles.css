@@ -536,6 +536,14 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   color: rgba(251, 248, 241, .6); margin-top: 16px; line-height: 1.7;
 }
 .inter .btn { margin-top: 24px; }
+/* On the venue pages the CTA band is the LAST thing in <main>, and the footer
+   under it is the same forest. Its 50px bottom padding plus the footer's 40px
+   top padding put 90px of empty green between the button and the footer
+   slogan, which read as a hole rather than as breathing room (owner,
+   2026-08-02). :last-child only matches where the band actually ends the page,
+   so the homepage, where .inter is followed by the venues section, is
+   untouched. The hidden testimonials section keeps it from matching there. */
+main > .inter:last-child { padding-bottom: 14px; }
 
 /* ============================================================
    VENUES (spec 4.4)
@@ -655,21 +663,15 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
    The FILE is in colour. The monochrome is applied here in CSS instead of being
    baked in, which is the whole point of the v8 change: a filter can lift on
    hover, a converted file cannot. See .tphoto img below. */
-/* The lead photograph and its caption, side by side. The caption used to sit
-   under a full-width picture; with the picture at two thirds width that left a
-   block of empty column beside it, so the caption moved into that space and
-   sits on the picture's baseline.
+/* The lead photograph with its caption UNDER it (owner, 2026-08-02). The
+   caption sat beside the picture's bottom-right corner for one revision and
+   the owner moved it back below.
 
    THE PICTURE IS DELIBERATELY DISPLAYED SMALLER THAN THE FILE. The crop is
-   1105px wide and the column gives it about 700, so roughly 1.6 device pixels
-   land on every CSS pixel and it renders sharp. Showing it at its full 1105
-   was a 1:1 map and looked soft on any modern screen. Do not widen this to
-   fill the row. */
-.team__lead {
-  display: grid; grid-template-columns: minmax(0, 700px) auto;
-  justify-content: start; gap: 20px;
-  align-items: end; margin-top: 12px;
-}
+   1105px wide and this gives it 700, so roughly 1.6 device pixels land on every
+   CSS pixel and it renders sharp. Showing it at its full 1105 was a 1:1 map and
+   looked soft on any modern screen. Do not widen this to fill the row. */
+.team__lead { max-width: 700px; margin-top: 12px; }
 .team__group {
   position: relative;
   border-radius: var(--r-img); overflow: hidden;
@@ -678,7 +680,7 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
 .team__cap {
   font-family: var(--label); font-size: 11px; font-weight: 600;
   letter-spacing: .1em; text-transform: uppercase;
-  color: var(--clay); margin: 0 0 4px;
+  color: var(--clay); margin: 8px 0 0;
 }
 /* The portrait row spans the full content column: capping it at 900px left an
    obvious block of white on the right (owner, 2026-08-02). */
@@ -792,13 +794,16 @@ a.vcard:hover .vlink { border-bottom-color: var(--clay); }
   background: var(--ivory-2); border-bottom: 1px solid var(--rule);
 }
 .market .mkimg img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.market .bd { padding: 18px 20px 20px; }
+.market .bd { padding: 16px 20px 18px; }
 .market .country { font-family: var(--display); font-size: 21px; color: var(--forest); margin: 0; }
 .market .cities {
   font-family: var(--label); font-size: 11px; font-weight: 600;
   letter-spacing: .1em; color: var(--clay); margin: 5px 0 0;
 }
-.market .note { font-size: 13px; color: rgba(42, 42, 40, .8); margin: 9px 0 0; }
+/* The one-line description under each city ("Kevin Kegel works from here", and
+   so on) was removed on 2026-08-02 at the owner's instruction. Each card is now
+   the photograph, the city and the country, nothing else. .note is gone with
+   it; do not reintroduce copy here without asking. */
 .mkcredit {
   font-family: var(--label); font-size: 10.5px; letter-spacing: .02em;
   color: rgba(42, 42, 40, .66); margin-top: 14px; line-height: 1.7;
@@ -1036,9 +1041,8 @@ select.cf-in {
   .rowhead { grid-template-columns: 1fr; gap: 14px; }
   .expander { grid-template-columns: 1fr; gap: 22px; }
   .vgrid, .tgrid, .mkgrid, .team__grid, .cgrid,
-  .vareas, .vsignals, .vevid, .team__lead { grid-template-columns: 1fr; }
+  .vareas, .vsignals, .vevid { grid-template-columns: 1fr; }
   .vevid { gap: 12px; }
-  .team__lead { gap: 8px; align-items: start; }
   .cgrid { gap: 28px; }
   .bar { grid-template-columns: 104px 1fr 46px; }
   .cbar { grid-template-columns: 104px 1fr 58px; }
