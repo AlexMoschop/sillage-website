@@ -115,6 +115,29 @@
          conversion moved to .photo-bw in styles.css. Do not re-grade these
          files to monochrome: it would make the hover reveal do nothing.
 
+         ⚠ EVERY .photo-bw IMAGE URL ON THIS PAGE CARRIES ?v=2, AND THAT IS
+         LOAD-BEARING. The owner reported on 2026-08-03 that the hover reveal
+         did nothing on Kevin's and Alexandros's portraits. The CSS was fine.
+         What was wrong is that Hostinger's hcdn edge had cached the v7.4
+         BAKED-MONOCHROME WebP files and was still serving them: the bare
+         kevin-kegel.webp came back 720x900 with a max channel spread of 1,
+         against a local file of 614x767 and spread 69. The filter lifted from
+         grayscale(1) to grayscale(0) exactly as designed and revealed a
+         photograph that was already grey.
+
+         Assets are cached SEVEN DAYS and an image URL has no version of its
+         own, so a new query string is the only reliable fix; it is the same
+         trick styles.css uses. It is applied to all six greyscale images, the
+         three portraits and the three city cards, not just the ones that
+         happened to measure stale, because the edge answered inconsistently
+         between requests - Alexandros's returned a monochrome 1200x1500 on one
+         request and the correct 900x1125 on the next.
+
+         BUMP THE NUMBER, on the .webp AND the .jpg line, whenever one of these
+         files is replaced. And when checking whether the edge is stale: sha256
+         works for WebP and PNG, but hcdn re-encodes JPEGs in flight so their
+         hashes NEVER match; compare decoded pixel dimensions instead.
+
          ALL THREE ARE GREY AGAIN. Alexandros's portrait was shown in colour
          for one revision on 2026-08-03 and the owner reversed it the same
          session. The .photo-live class that carried the exception is deleted
@@ -168,8 +191,8 @@
           <article class="tperson" data-animate>
             <figure class="tphoto photo-bw">
               <picture>
-                <source srcset="../assets/img/team/kevin-kegel.webp" type="image/webp" />
-                <img src="../assets/img/team/kevin-kegel.jpg" width="614" height="767"
+                <source srcset="../assets/img/team/kevin-kegel.webp?v=2" type="image/webp" />
+                <img src="../assets/img/team/kevin-kegel.jpg?v=2" width="614" height="767"
                      loading="lazy" alt="Kevin Kegel." />
               </picture>
             </figure>
@@ -182,16 +205,6 @@
 
           <article class="tperson" data-animate data-anim-delay="80">
             <figure class="tphoto photo-bw">
-              <!-- ?v=2 IS LOAD-BEARING, and it is not decoration. Hostinger's
-                   hcdn edge caches static assets for seven days and an image
-                   URL has no version of its own, so replacing this file in
-                   place left the edge handing out the PREVIOUS photograph:
-                   measured straight after the v8.6 deploy, the origin served
-                   the new 720x900 file and the bare URL served the old 675x844
-                   one. A new query string is a new cache key, which is the same
-                   trick styles.css uses. BUMP IT whenever this photograph is
-                   replaced, on BOTH lines, or the change will not be visible to
-                   anyone who has been to the site before. -->
               <picture>
                 <source srcset="../assets/img/team/prithvish-patil.webp?v=2" type="image/webp" />
                 <img src="../assets/img/team/prithvish-patil.jpg?v=2" width="720" height="900"
@@ -208,8 +221,8 @@
           <article class="tperson" data-animate data-anim-delay="160">
             <figure class="tphoto photo-bw">
               <picture>
-                <source srcset="../assets/img/team/alexandros-moschopoulos.webp" type="image/webp" />
-                <img src="../assets/img/team/alexandros-moschopoulos.jpg" width="900" height="1125"
+                <source srcset="../assets/img/team/alexandros-moschopoulos.webp?v=2" type="image/webp" />
+                <img src="../assets/img/team/alexandros-moschopoulos.jpg?v=2" width="900" height="1125"
                      loading="lazy" alt="Alexandros Moschopoulos." />
               </picture>
             </figure>
@@ -275,8 +288,8 @@
           <div class="market" data-animate>
             <figure class="mkimg photo-bw">
               <picture>
-                <source srcset="../assets/img/markets/reading.webp" type="image/webp" />
-                <img src="../assets/img/markets/reading.jpg" width="808" height="539" loading="lazy"
+                <source srcset="../assets/img/markets/reading.webp?v=2" type="image/webp" />
+                <img src="../assets/img/markets/reading.jpg?v=2" width="808" height="539" loading="lazy"
                      alt="Reading at dusk, seen from above: the station, the town centre and the river." />
               </picture>
             </figure>
@@ -288,8 +301,8 @@
           <div class="market" data-animate data-anim-delay="70">
             <figure class="mkimg photo-bw">
               <picture>
-                <source srcset="../assets/img/markets/london.webp" type="image/webp" />
-                <img src="../assets/img/markets/london.jpg" width="900" height="600" loading="lazy"
+                <source srcset="../assets/img/markets/london.webp?v=2" type="image/webp" />
+                <img src="../assets/img/markets/london.jpg?v=2" width="900" height="600" loading="lazy"
                      alt="The City of London from the air at sunset, the Thames curving behind the towers." />
               </picture>
             </figure>
@@ -301,8 +314,8 @@
           <div class="market" data-animate data-anim-delay="140">
             <figure class="mkimg photo-bw">
               <picture>
-                <source srcset="../assets/img/markets/milton-keynes.webp" type="image/webp" />
-                <img src="../assets/img/markets/milton-keynes.jpg" width="872" height="581" loading="lazy"
+                <source srcset="../assets/img/markets/milton-keynes.webp?v=2" type="image/webp" />
+                <img src="../assets/img/markets/milton-keynes.jpg?v=2" width="872" height="581" loading="lazy"
                      alt="Central Milton Keynes from directly overhead, its grid of boulevards and tree lines." />
               </picture>
             </figure>
