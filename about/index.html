@@ -182,9 +182,19 @@
 
           <article class="tperson" data-animate data-anim-delay="80">
             <figure class="tphoto photo-bw">
+              <!-- ?v=2 IS LOAD-BEARING, and it is not decoration. Hostinger's
+                   hcdn edge caches static assets for seven days and an image
+                   URL has no version of its own, so replacing this file in
+                   place left the edge handing out the PREVIOUS photograph:
+                   measured straight after the v8.6 deploy, the origin served
+                   the new 720x900 file and the bare URL served the old 675x844
+                   one. A new query string is a new cache key, which is the same
+                   trick styles.css uses. BUMP IT whenever this photograph is
+                   replaced, on BOTH lines, or the change will not be visible to
+                   anyone who has been to the site before. -->
               <picture>
-                <source srcset="../assets/img/team/prithvish-patil.webp" type="image/webp" />
-                <img src="../assets/img/team/prithvish-patil.jpg" width="720" height="900"
+                <source srcset="../assets/img/team/prithvish-patil.webp?v=2" type="image/webp" />
+                <img src="../assets/img/team/prithvish-patil.jpg?v=2" width="720" height="900"
                      loading="lazy" alt="Prithvish Patil." />
               </picture>
             </figure>
