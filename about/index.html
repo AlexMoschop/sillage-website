@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles.css?v=8.4" />
+  <link rel="stylesheet" href="../styles.css?v=8.5" />
 
   <script type="application/ld+json">
   {
@@ -88,40 +88,52 @@
 
     <!-- ================= TEAM =================
          CREAM ground (--ivory), owner instruction 2026-08-02. This block used
-         to be a forest band that enclosed the group photograph. The green is
+         to be a forest band that enclosed a group photograph. The green is
          gone, the gradient that feathered the photograph's edges into it is
-         gone with it, and the spacing between the heading, the picture and the
-         caption was pulled in so they read as one unit instead of three.
+         gone with it, and everything under the green hero is one continuous
+         cream field.
 
-         It was --white for part of the day, which put a visible step between
-         this block and the ivory markets section below. Both are --ivory now,
-         so everything under the green hero is one continuous cream field.
+         REBUILT 2026-08-03 TO A MOCK-UP THE OWNER SUPPLIED. Three changes,
+         all of them from that picture, none of them inferred:
+           1. The three-across grid became THREE STACKED ROWS, each a round
+              portrait on the left with the name, the remit and the languages
+              beside it. Heading and standfirst are centred above them.
+           2. The group photograph (assets/img/team/group-session.*) and the
+              "The team." sub-heading came OUT. The mock-up runs heading ->
+              standfirst -> Kevin with nothing between, so there is nowhere
+              left for either. THE FILES ARE STILL IN THE REPO; putting the
+              block back is a revert of this commit, not a re-shoot.
+           3. The per-card city line (READING / MILTON KEYNES / LONDON) came
+              out with it. The mock-up carries no city line. The cities
+              themselves are unchanged and still stated in the markets block
+              and the footer.
 
-         PHOTOGRAPHS ARE NOW COLOUR FILES SHOWN IN GRAYSCALE BY CSS.
+         PHOTOGRAPHS ARE COLOUR FILES SHOWN IN GRAYSCALE BY CSS.
          v7.4 baked the monochrome into the JPEG. The owner asked for the
          grayscale to lift on hover, which a converted file cannot do, so all
-         four were rebuilt in colour from the original camera files and the
+         of them were rebuilt in colour from the original camera files and the
          conversion moved to .photo-bw in styles.css. Do not re-grade these
          files to monochrome: it would make the hover reveal do nothing.
 
-         The founding-story paragraph beneath the photograph is copy Kevin is
-         supplying. It has not arrived, so the caption stands. Do not write it
-         here.
+         ALEXANDROS'S PORTRAIT IS THE EXCEPTION: owner instruction of the same
+         day, it is shown in COLOUR. It carries .photo-live rather than
+         .photo-bw, which keeps the hover zoom and drops the grayscale filter.
+         It is not a different file and the file was not re-graded.
 
          Every biographical detail below comes from each founder's own LinkedIn
-         plus the owner's corrections, checked 26 July 2026. Nothing is
-         inferred. Do not invent a credential, a course, a location or a role
-         for a real person.
+         plus the owner's corrections, and the wording of all three remits is
+         reproduced VERBATIM from the owner's mock-up. Nothing is inferred. Do
+         not invent a credential, a course, a location or a role for a real
+         person, and do not "tidy" these three paragraphs.
 
-         Two consequences of the 2026-08-02 location change:
-           - Alexandros's card said THESSALONIKI. It briefly carried his role
-             instead, because Thessaloniki came off the site and inventing a UK
-             city for a real person was not an option. He then supplied LONDON
-             himself, so that is what it says now. It came from him, not from
-             an inference.
-           - "Leads the Greek market and" was struck from his remit: there is no
-             Greek market on this site any more, so the sentence had stopped
-             being true. The rest of it is untouched.
+         ONE KNOWN INCONSISTENCY, deliberately left as the owner wrote it:
+         Alexandros's remit says he holds the Greek market from Thessaloniki.
+         v8 struck exactly that clause because Greece had come off the site,
+         and the About hero above still says the team works across Reading,
+         London and Milton Keynes. He put it back himself, about himself, so it
+         stands; but the markets block, the footer city list and the areaServed
+         array in the JSON-LD on every page still name three UK cities only.
+         If Greece is coming back as a market, those go with it.
 
          The name-to-face mapping was ASKED, never inferred:
            kevin-kegel             <- the curly-haired headshot
@@ -129,31 +141,18 @@
            alexandros-moschopoulos <- the gold-glasses headshot
          Do not reassign a file to a different person on a hunch.
 
-         Each is cropped 4:5 around the face so no one is beheaded by
-         object-fit, served as WebP with a JPEG fallback at the size it
-         is displayed, with width and height set, and lazy-loaded. -->
+         Each file is cropped 4:5 around the face; the round frame takes a
+         square out of the middle of that, so a face that is not centred will
+         lose its chin. Check all three after replacing any of them. Served as
+         WebP with a JPEG fallback, width and height set, lazy-loaded. -->
     <section class="team" id="team">
       <div class="wrap">
-        <h2 data-animate>Three noses, <span class="hl">one method.</span></h2>
-
-        <!-- The photograph and its caption sit side by side. The picture is
-             displayed at about two thirds of the pixels it actually contains,
-             which is what makes it look sharp; do not scale it back up to fill
-             the row, that is exactly what made it look soft before. -->
-        <div class="team__lead" data-animate data-anim-delay="60">
-          <figure class="team__group media media--3-2 photo-bw">
-            <span class="media__ph" aria-hidden="true">[Photo]</span>
-            <picture>
-              <source srcset="../assets/img/team/group-session.webp" type="image/webp" />
-              <img src="../assets/img/team/group-session.jpg" width="1105" height="736" loading="lazy"
-                   alt="The three Sillage founders in a working session around a table, one speaking into a microphone." />
-            </picture>
-          </figure>
-          <p class="team__cap">The founding team, mid-session</p>
+        <div class="team__intro">
+          <h2 data-animate>Three noses, <span class="hl">one method.</span></h2>
+          <p class="stand" data-animate data-anim-delay="60">A team that runs on research. Three people, three cities, and one method that every recommendation has to pass through before it reaches a client.</p>
         </div>
 
-        <h3 class="sub-h" data-animate>The team.</h3>
-        <div class="team__grid">
+        <div class="team__people">
           <article class="tperson" data-animate>
             <figure class="tphoto photo-bw">
               <picture>
@@ -162,10 +161,11 @@
                      loading="lazy" alt="Kevin Kegel." />
               </picture>
             </figure>
-            <p class="nm">Kevin Kegel</p>
-            <p class="city">READING &middot; UNITED KINGDOM</p>
-            <p class="brings">Owns the published research the method is built on, so every recommendation traces back to a source a client can check.</p>
-            <p class="langs">English &middot; German &middot; French &middot; Amharic</p>
+            <div class="tperson__body">
+              <h3 class="nm">Kevin Kegel</h3>
+              <p class="brings">Owns the published research the method is built on, and writes the strategy reports that come out of it. Every scent recommendation traces back to a source a client can look up, which is the part of this business he is most stubborn about.</p>
+              <p class="langs">English &middot; German &middot; French &middot; Amharic</p>
+            </div>
           </article>
 
           <article class="tperson" data-animate data-anim-delay="80">
@@ -176,24 +176,28 @@
                      loading="lazy" alt="Prithvish Patil." />
               </picture>
             </figure>
-            <p class="nm">Prithvish Patil</p>
-            <p class="city">MILTON KEYNES &middot; UNITED KINGDOM</p>
-            <p class="brings">Runs the measurement side, from the baseline reading to the return visit, which is what makes a claim checkable.</p>
-            <p class="langs">English &middot; German &middot; Marathi</p>
+            <div class="tperson__body">
+              <h3 class="nm">Prithvish Patil</h3>
+              <p class="brings">Runs the measurement side, from the baseline reading on the first visit to the numbers on the return visit. He builds the systems that turn a walk-through into something repeatable, which is what makes a claim checkable rather than just confident.</p>
+              <p class="langs">English &middot; German &middot; Marathi</p>
+            </div>
           </article>
 
+          <!-- COLOUR, not grayscale: .photo-live instead of .photo-bw. Owner
+               instruction 2026-08-03, and the only portrait it applies to. -->
           <article class="tperson" data-animate data-anim-delay="160">
-            <figure class="tphoto photo-bw">
+            <figure class="tphoto photo-live">
               <picture>
                 <source srcset="../assets/img/team/alexandros-moschopoulos.webp" type="image/webp" />
                 <img src="../assets/img/team/alexandros-moschopoulos.jpg" width="900" height="1125"
                      loading="lazy" alt="Alexandros Moschopoulos." />
               </picture>
             </figure>
-            <p class="nm">Alexandros Moschopoulos</p>
-            <p class="city">LONDON &middot; UNITED KINGDOM</p>
-            <p class="brings">Leads the commercial side of the business, from branding through to supply chain.</p>
-            <p class="langs">English &middot; Ελληνικά &middot; German</p>
+            <div class="tperson__body">
+              <h3 class="nm">Alexandros Moschopoulos</h3>
+              <p class="brings">Leads the commercial side, from branding through to the supply chain behind every product we put in a room. He handles how the work looks and how it reaches clients, and holds our Greek market from Thessaloniki.</p>
+              <p class="langs">English &middot; Ελληνικά &middot; German</p>
+            </div>
           </article>
         </div>
       </div>

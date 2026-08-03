@@ -41,6 +41,19 @@ wins: it is the current statement of the colour, type and layout rules.
   hero photograph has **no** fade over it at all.
 - The homepage `<title>` is just **`Sillage`**.
 
+### v8.5 (2026-08-03) — the About team block, rebuilt to an owner mock-up
+- **Three stacked rows, not a three-across grid.** Round portrait on the left, name, remit
+  and languages on the right. The heading and a new standfirst are centred above them.
+- **Alexandros's portrait is in COLOUR.** It carries `.photo-live` rather than `.photo-bw`,
+  so it keeps the hover zoom and simply has no grayscale to lift. The file was not changed.
+- **The group photograph and the "The team." sub-heading are gone**, along with the per-card
+  city lines. The mock-up has none of them. Files and old markup are one revert away
+  (`f6d3788`); nothing was deleted from `assets/`.
+- All three remits are **longer and in the owner's own words**, reproduced verbatim.
+- ⚠️ Alexandros's remit now names **Thessaloniki and the Greek market**, which v8 had struck.
+  The About standfirst, the markets block, the footer and the JSON-LD `areaServed` still
+  name three UK cities only. See edit #4.
+
 ## Files
 
 | File | What it is |
@@ -120,25 +133,37 @@ fallback path that the GitHub Pages copy also takes.
 - Change text **between** the tags (e.g. the homepage headline lives inside `<h1>…</h1>`). Save, refresh.
 
 ### 4. Edit the team (About page)
-- **File:** `about.html`, the team block. All three cards are filled: Kevin Kegel (Reading),
-  Prithvish Patil (Milton Keynes), Alexandros Moschopoulos (no city, see below), each with
-  remit and languages.
-- Alexandros's card says **London**, which he supplied himself. Thessaloniki came off the
-  site in v8 with the rest of the location changes; the card briefly carried his role
-  instead, because inventing a UK city for a real person was not an option.
-- ⚠️ Courses and society roles are **facts about real people**. They came from each founder's own
-  LinkedIn plus the owner's corrections (checked 26 July 2026). When a course finishes or a role
-  changes, update the card; don't let it go stale.
-- Photos go in `assets/img/team/` at 4:5 for portraits and 3:2 for the group. Missing photos show a
+- **File:** `about/index.html`, the `.team` block. It is a centred heading and standfirst,
+  then **three stacked rows**, one per person: round portrait on the left, name, remit and
+  languages on the right. Rebuilt to a mock-up the owner supplied on 3 August 2026.
+- To add a person, copy a whole `<article class="tperson">` and keep the `data-anim-delay`
+  steps 80ms apart.
+- ⚠️ The three remit paragraphs are **the owner's own wording, reproduced verbatim** from
+  that mock-up. Don't tighten or re-phrase them.
+- ⚠️ Courses, roles and languages are **facts about real people**. They came from each founder's
+  own LinkedIn plus the owner's corrections (checked 26 July 2026). When a course finishes or a
+  role changes, update the card; don't let it go stale.
+- **Alexandros's remit says Thessaloniki and the Greek market.** He wrote it that way about
+  himself. Note that the rest of the site — the About standfirst, the markets block, the footer
+  and the `areaServed` in the JSON-LD — still names Reading, London and Milton Keynes only. If
+  Greece is coming back as a market, those all change together.
+- **There is no per-card city line any more**, and no group photograph. The mock-up has
+  neither. `assets/img/team/group-session.*` is still in the repo and the old three-across
+  grid is in git at `f6d3788`, so both are a revert away, not a re-shoot.
+- Photos go in `assets/img/team/` cropped **4:5 around the face**. Missing photos show a
   tasteful `[Photo]` tile, never a broken icon.
-- ⚠️ **Keep them in COLOUR.** The grayscale is a CSS filter (`.photo-bw` in `styles.css`) so it
-  can lift on hover. Re-grade a file to monochrome and the hover reveal silently does nothing.
-- ⚠️ **The lead group photograph is displayed smaller than the file on purpose.** 1105px of
-  image into a 700px column is what makes it look sharp. Widening it to fill the row makes
-  it soft again.
-- The hover target is the **whole card**, not the picture. If you add a new photo block,
+- ⚠️ **The round frame takes a square out of the middle of a 4:5 file**, so roughly a tenth
+  off the top and a tenth off the bottom never renders. Replace a portrait and look at it in
+  a browser — `object-fit` will happily behead someone.
+- ⚠️ **Keep the files in COLOUR.** The grayscale is a CSS filter (`.photo-bw` in `styles.css`)
+  so it can lift on hover. Re-grade a file to monochrome and the hover reveal silently does
+  nothing.
+- **Alexandros's portrait is shown in colour** (owner instruction, 3 August 2026). It carries
+  `.photo-live` instead of `.photo-bw`: same hover zoom, no grayscale. Don't just delete
+  `.photo-bw` from a figure to make it colour — that removes the zoom too, and one portrait
+  that doesn't move under the cursor reads as a bug.
+- The hover target is the **whole row**, not the picture. If you add a new photo block,
   add its container to the `.photo-bw:hover` selector list or the reveal will feel broken.
-- To add a person, copy a whole `<article class="card">` and keep the `data-anim-delay` steps 80ms apart.
 
 ### 5. Set the contact names
 - **File:** `about.html`, the `.cities` list in the Contact section. Each city names its lead

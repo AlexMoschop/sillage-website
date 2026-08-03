@@ -659,53 +659,53 @@ a.vcard:hover .draw img { transform: scale(1.04); }
    step between this block and the ivory markets section under it for no reason.
    Both are --ivory now and the About page below the green hero is one
    continuous cream field. */
-.team { background: var(--ivory); padding: 40px var(--pad-x) 46px; }
-.team h2 { color: var(--forest); font-size: 32px; }
+.team { background: var(--ivory); padding: 56px var(--pad-x) 64px; }
 .team .stand { color: rgba(42, 42, 40, .82); }
 
-/* The group photograph. The gradient that used to feather its edges into the
-   green is DELETED (owner instruction 2026-08-02): there is no green left for
-   it to dissolve into, and the owner asked for the fade to go regardless. What
-   remains is a plain rectangle with a hairline.
+/* REBUILT 2026-08-03 to a mock-up the owner supplied. What went:
+     .team__lead / .team__group / .team__cap   the group photograph and its
+                                               caption; the mock-up has no
+                                               room for them
+     .team h3.sub-h                            the "The team." sub-heading
+     .team__grid                               the three-across portrait grid
+     .tperson .city                            the per-card city line
+   All recoverable from git at f6d3788. The image files are still in the repo.
 
-   The FILE is in colour. The monochrome is applied here in CSS instead of being
-   baked in, which is the whole point of the v8 change: a filter can lift on
-   hover, a converted file cannot. See .tphoto img below. */
-/* The lead photograph with its caption UNDER it (owner, 2026-08-02). The
-   caption sat beside the picture's bottom-right corner for one revision and
-   the owner moved it back below.
+   The heading and the standfirst are CENTRED and capped, everything below
+   them is a left-aligned stack. That contrast is the whole shape of the
+   block: centre the rows too and it turns into a wedding invitation. */
+.team__intro { max-width: 760px; margin: 0 auto; text-align: center; }
+.team__intro h2 { color: var(--forest); font-size: 42px; line-height: 1.12; }
+.team__intro .stand { margin: 14px auto 0; max-width: 640px; }
 
-   THE PICTURE IS DELIBERATELY DISPLAYED SMALLER THAN THE FILE. The crop is
-   1105px wide and this gives it 700, so roughly 1.6 device pixels land on every
-   CSS pixel and it renders sharp. Showing it at its full 1105 was a 1:1 map and
-   looked soft on any modern screen. Do not widen this to fill the row. */
-.team__lead { max-width: 700px; margin-top: 12px; }
-.team__group {
-  position: relative;
-  border-radius: var(--r-img); overflow: hidden;
-  box-shadow: inset 0 0 0 1px var(--rule);
+/* One row per person: a round portrait in a fixed track, the words in the
+   rest of the line. The gap between people is deliberately large — these are
+   three separate statements, not a list, and the mock-up gives each one air.
+   align-items:start keeps the portrait level with the name rather than
+   floating to the middle of a paragraph whose length varies by person. */
+.team__people {
+  margin: 54px auto 0; max-width: 940px;
+  display: grid; gap: 64px;
 }
-.team__cap {
-  font-family: var(--label); font-size: 11px; font-weight: 600;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--clay); margin: 8px 0 0;
+.tperson {
+  display: grid; grid-template-columns: 230px 1fr; gap: 44px;
+  align-items: start;
 }
-/* The portrait row spans the full content column: capping it at 900px left an
-   obvious block of white on the right (owner, 2026-08-02). */
-.team h3.sub-h { color: var(--forest); font-size: 24px; margin-top: 34px; }
-.team__grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; margin-top: 14px;
-}
-.team__grid > * { min-width: 0; }
+.tperson > * { min-width: 0; }
+/* Optical, not arithmetic: the cap-height of a 30px display face sits a few
+   pixels below the top of its line box, so a portrait flush with the top of
+   the row reads as sitting slightly high next to the name. */
+.tperson .tphoto { margin-top: 6px; }
 /* GRAYSCALE THAT LIFTS ON HOVER (v8, owner instruction 2026-08-02).
    Until v7.4 the monochrome was baked into the JPEG. The owner asked for the
    grayscale to disappear on hover, which a converted file cannot do, so every
    photograph in this set was rebuilt IN COLOUR from the original camera file
    and the conversion moved here into .photo-bw.
 
-   Applies to the three portraits, the group photograph and the three city
-   pictures in the markets block, so all seven behave identically.
+   Applies to two of the three portraits and to the three city pictures in the
+   markets block. Alexandros's portrait is in COLOUR from 2026-08-03 by owner
+   instruction and carries .photo-live instead; the group photograph it also
+   used to cover is no longer on the page.
 
    Hover is a progressive nicety, never the only way to see something: the
    pictures are legible in grayscale and no alt text depends on colour. A
@@ -729,43 +729,72 @@ a.vcard:hover .draw img { transform: scale(1.04); }
 .photo-bw:focus-within img,
 .tperson:hover .photo-bw img,
 .tperson:focus-within .photo-bw img,
-.team__lead:hover .photo-bw img,
 .market:hover .photo-bw img,
 .market:focus-within .photo-bw img {
   filter: grayscale(0) contrast(1);
   transform: scale(1.03);
 }
+
+/* A PHOTOGRAPH THAT IS ALREADY IN COLOUR. Owner instruction 2026-08-03, and
+   Alexandros's portrait is the only thing wearing it. It exists so that the
+   one colour picture still answers a pointer the same way its neighbours do:
+   same 1.03 zoom, same easing, same whole-card hit area. There is simply no
+   grayscale left for it to lift.
+
+   Do NOT do this by dropping .photo-bw and adding nothing. That silently
+   removes the zoom as well, and one portrait out of three that does not move
+   under the cursor reads as a bug rather than as a decision. */
+.photo-live img {
+  transform: scale(1.001);
+  transition: transform 420ms ease;
+}
+.photo-live:hover img,
+.photo-live:focus-within img,
+.tperson:hover .photo-live img,
+.tperson:focus-within .photo-live img { transform: scale(1.03); }
+
 @media (prefers-reduced-motion: reduce) {
   .photo-bw img { transition: filter 260ms ease; }
   .photo-bw:hover img, .photo-bw:focus-within img,
   .tperson:hover .photo-bw img, .tperson:focus-within .photo-bw img,
-  .team__lead:hover .photo-bw img,
-  .market:hover .photo-bw img, .market:focus-within .photo-bw img {
+  .market:hover .photo-bw img, .market:focus-within .photo-bw img,
+  .photo-live:hover img, .photo-live:focus-within img,
+  .tperson:hover .photo-live img, .tperson:focus-within .photo-live img {
     transform: scale(1.001);
   }
 }
 
-/* Individual portraits. Cropped 4:5 around the face upstream, so object-fit
-   has nothing left to cut off, and served at the largest size the source
-   actually contains, never upscaled. A hairline seats each picture on the
-   white so it reads as a photograph and not as a hole cut in the page. */
+/* Individual portraits, ROUND from 2026-08-03 (owner mock-up). They were 4:5
+   rectangles with a hairline and a rounded corner.
+
+   ⚠ THE FILES ARE STILL 4:5, cropped around the face upstream. A circle takes
+   a SQUARE out of the middle of that, so roughly a tenth off the top and a
+   tenth off the bottom never renders. All three were checked in the browser
+   after the change and no one lost a chin or a forehead. Replace a portrait
+   and you have to look again — object-fit will happily behead someone.
+
+   No hairline ring: on a circle it read as a badge. The ivory-2 disc behind it
+   still catches the two portraits whose own background is near-white, so they
+   do not float loose on the cream. */
 .tphoto {
-  aspect-ratio: 4 / 5; position: relative; overflow: hidden;
-  border-radius: var(--r-img);
+  aspect-ratio: 1 / 1; position: relative; overflow: hidden;
+  border-radius: 50%;
   background: var(--ivory-2);
-  box-shadow: inset 0 0 0 1px var(--rule);
-  margin-bottom: 10px;
 }
 .tphoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.tperson .nm { font-family: var(--display); font-size: 19px; color: var(--forest); }
-.tperson .city {
-  font-family: var(--label); font-size: 10.5px; font-weight: 600;
-  letter-spacing: .1em; color: var(--clay); margin-top: 4px;
+.tperson .nm {
+  font-family: var(--display); font-weight: 400;
+  font-size: 30px; line-height: 1.2; color: var(--forest);
 }
-.tperson .brings { font-size: 13.5px; color: rgba(42, 42, 40, .82); margin: 8px 0 0; }
+.tperson .brings {
+  font-size: 16px; line-height: 1.62;
+  color: rgba(42, 42, 40, .82); margin: 14px 0 0;
+}
+/* --label, never a monospace stack: there is no monospace face on this site.
+   The wide tracking is what makes a proportional face read as a label. */
 .tperson .langs {
-  font-family: var(--label); font-size: 11px; letter-spacing: .04em;
-  color: var(--forest-mid); margin-top: 8px; line-height: 1.6;
+  font-family: var(--label); font-size: 13px; letter-spacing: .12em;
+  color: var(--forest-mid); margin-top: 18px; line-height: 1.6;
 }
 
 /* DELETED IN v8, at the owner's instruction of 2026-08-02:
@@ -1044,8 +1073,24 @@ select.cf-in {
 
   .rowhead { grid-template-columns: 1fr; gap: 14px; }
   .expander { grid-template-columns: 1fr; gap: 22px; }
-  .vgrid, .tgrid, .mkgrid, .team__grid, .cgrid,
+  .vgrid, .tgrid, .mkgrid, .cgrid,
   .vareas, .vsignals, .vevid { grid-template-columns: 1fr; }
+
+  /* The team rows keep their portrait BESIDE the words rather than stacking:
+     a 230px circle over a paragraph pushes the third person most of a screen
+     down the page. The circle shrinks to 96px instead, which is still a
+     recognisable face at arm's length, and the gap between people closes with
+     it. Everything stays left-aligned, including the intro, because a centred
+     paragraph in a 26px gutter reads ragged on both edges. */
+  .team { padding-top: 40px; padding-bottom: 46px; }
+  .team__intro { text-align: left; }
+  .team__intro .stand { margin-left: 0; }
+  .team__people { margin-top: 34px; gap: 36px; }
+  .tperson { grid-template-columns: 96px 1fr; gap: 20px; }
+  .tperson .tphoto { margin-top: 2px; }
+  .tperson .nm { font-size: 23px; }
+  .tperson .brings { font-size: 15px; margin-top: 10px; }
+  .tperson .langs { margin-top: 12px; }
   .vevid { gap: 12px; }
   .cgrid { gap: 28px; }
   .bar { grid-template-columns: 104px 1fr 46px; }
@@ -1057,7 +1102,7 @@ select.cf-in {
   .foot .cols { flex-direction: column; }
   .foot .meta { text-align: left; }
 
-  .amb h2, .ven h2, .sec h2, .team h2 { font-size: 26px; }
+  .amb h2, .ven h2, .sec h2, .team__intro h2 { font-size: 26px; }
   .abouthero h1, .vhero h1 { font-size: 34px; }
   /* The .igrid stacking rules went with the venue importance grid in v8. */
 }
