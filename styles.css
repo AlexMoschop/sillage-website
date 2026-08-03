@@ -702,10 +702,10 @@ a.vcard:hover .draw img { transform: scale(1.04); }
    photograph in this set was rebuilt IN COLOUR from the original camera file
    and the conversion moved here into .photo-bw.
 
-   Applies to two of the three portraits and to the three city pictures in the
-   markets block. Alexandros's portrait is in COLOUR from 2026-08-03 by owner
-   instruction and carries .photo-live instead; the group photograph it also
-   used to cover is no longer on the page.
+   Applies to all three portraits and to the three city pictures in the markets
+   block. Alexandros's was shown in colour for one revision on 2026-08-03, on a
+   .photo-live class; the owner reversed it the same session and that class is
+   deleted. The group photograph this also used to cover is off the page.
 
    Hover is a progressive nicety, never the only way to see something: the
    pictures are legible in grayscale and no alt text depends on colour. A
@@ -735,31 +735,18 @@ a.vcard:hover .draw img { transform: scale(1.04); }
   transform: scale(1.03);
 }
 
-/* A PHOTOGRAPH THAT IS ALREADY IN COLOUR. Owner instruction 2026-08-03, and
-   Alexandros's portrait is the only thing wearing it. It exists so that the
-   one colour picture still answers a pointer the same way its neighbours do:
-   same 1.03 zoom, same easing, same whole-card hit area. There is simply no
-   grayscale left for it to lift.
-
-   Do NOT do this by dropping .photo-bw and adding nothing. That silently
-   removes the zoom as well, and one portrait out of three that does not move
-   under the cursor reads as a bug rather than as a decision. */
-.photo-live img {
-  transform: scale(1.001);
-  transition: transform 420ms ease;
-}
-.photo-live:hover img,
-.photo-live:focus-within img,
-.tperson:hover .photo-live img,
-.tperson:focus-within .photo-live img { transform: scale(1.03); }
-
+/* .photo-live is DELETED. It existed for one revision on 2026-08-03, to show
+   Alexandros's portrait in colour while keeping the hover zoom its neighbours
+   have, and the owner reversed that instruction the same session. Recoverable
+   at dd0e31f. The reason it existed is still worth knowing: making a single
+   photograph colour by simply dropping .photo-bw removes the zoom with it, and
+   one portrait out of three that does not move under the cursor reads as a bug
+   rather than as a decision. */
 @media (prefers-reduced-motion: reduce) {
   .photo-bw img { transition: filter 260ms ease; }
   .photo-bw:hover img, .photo-bw:focus-within img,
   .tperson:hover .photo-bw img, .tperson:focus-within .photo-bw img,
-  .market:hover .photo-bw img, .market:focus-within .photo-bw img,
-  .photo-live:hover img, .photo-live:focus-within img,
-  .tperson:hover .photo-live img, .tperson:focus-within .photo-live img {
+  .market:hover .photo-bw img, .market:focus-within .photo-bw img {
     transform: scale(1.001);
   }
 }

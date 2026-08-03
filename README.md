@@ -44,12 +44,14 @@ wins: it is the current statement of the colour, type and layout rules.
 ### v8.5 (2026-08-03) — the About team block, rebuilt to an owner mock-up
 - **Three stacked rows, not a three-across grid.** Round portrait on the left, name, remit
   and languages on the right. The heading and a new standfirst are centred above them.
-- **Alexandros's portrait is in COLOUR.** It carries `.photo-live` rather than `.photo-bw`,
-  so it keeps the hover zoom and simply has no grayscale to lift. The file was not changed.
 - **The group photograph and the "The team." sub-heading are gone**, along with the per-card
   city lines. The mock-up has none of them. Files and old markup are one revert away
   (`f6d3788`); nothing was deleted from `assets/`.
 - All three remits are **longer and in the owner's own words**, reproduced verbatim.
+- **Prithvish's photograph was replaced** with a new one the owner supplied, cut to 4:5 and
+  composed for the circle rather than for the rectangle. 720x900.
+- Alexandros's portrait was **in colour for one revision and is grey again**, same session,
+  same day. All three are grey. The `.photo-live` class that carried the exception is gone.
 - ⚠️ Alexandros's remit now names **Thessaloniki and the Greek market**, which v8 had struck.
   The About standfirst, the markets block, the footer and the JSON-LD `areaServed` still
   name three UK cities only. See edit #4.

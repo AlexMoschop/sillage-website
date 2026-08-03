@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles.css?v=8.5" />
+  <link rel="stylesheet" href="../styles.css?v=8.6" />
 
   <script type="application/ld+json">
   {
@@ -115,10 +115,13 @@
          conversion moved to .photo-bw in styles.css. Do not re-grade these
          files to monochrome: it would make the hover reveal do nothing.
 
-         ALEXANDROS'S PORTRAIT IS THE EXCEPTION: owner instruction of the same
-         day, it is shown in COLOUR. It carries .photo-live rather than
-         .photo-bw, which keeps the hover zoom and drops the grayscale filter.
-         It is not a different file and the file was not re-graded.
+         ALL THREE ARE GREY AGAIN. Alexandros's portrait was shown in colour
+         for one revision on 2026-08-03 and the owner reversed it the same
+         session. The .photo-live class that carried the exception is deleted
+         rather than left on the shelf. If a single portrait is ever wanted in
+         colour again, bring that class back from git: dropping .photo-bw and
+         adding nothing takes the hover zoom with it, and one portrait out of
+         three that does not answer the cursor reads as a bug.
 
          Every biographical detail below comes from each founder's own LinkedIn
          plus the owner's corrections, and the wording of all three remits is
@@ -137,9 +140,18 @@
 
          The name-to-face mapping was ASKED, never inferred:
            kevin-kegel             <- the curly-haired headshot
-           prithvish-patil         <- the presenting photograph
+           prithvish-patil         <- REPLACED 2026-08-03, see below
            alexandros-moschopoulos <- the gold-glasses headshot
          Do not reassign a file to a different person on a hunch.
+
+         prithvish-patil.jpg/.webp were the photograph of him speaking into a
+         microphone. The owner supplied a replacement the same session: a
+         standing shot against a tiled wall, 1536x2048, with the subject small
+         in the middle of the frame. It was cut to the 4:5 the other two use,
+         composed for the CIRCLE rather than for the rectangle - head about 55%
+         of the disc's height, eye line about 40% down it - and reduced to
+         720x900. The alt text is unchanged because it never described the
+         setting. The original is Downloads/unnamed.jpg.
 
          Each file is cropped 4:5 around the face; the round frame takes a
          square out of the middle of that, so a face that is not centred will
@@ -172,7 +184,7 @@
             <figure class="tphoto photo-bw">
               <picture>
                 <source srcset="../assets/img/team/prithvish-patil.webp" type="image/webp" />
-                <img src="../assets/img/team/prithvish-patil.jpg" width="675" height="844"
+                <img src="../assets/img/team/prithvish-patil.jpg" width="720" height="900"
                      loading="lazy" alt="Prithvish Patil." />
               </picture>
             </figure>
@@ -183,10 +195,8 @@
             </div>
           </article>
 
-          <!-- COLOUR, not grayscale: .photo-live instead of .photo-bw. Owner
-               instruction 2026-08-03, and the only portrait it applies to. -->
           <article class="tperson" data-animate data-anim-delay="160">
-            <figure class="tphoto photo-live">
+            <figure class="tphoto photo-bw">
               <picture>
                 <source srcset="../assets/img/team/alexandros-moschopoulos.webp" type="image/webp" />
                 <img src="../assets/img/team/alexandros-moschopoulos.jpg" width="900" height="1125"
