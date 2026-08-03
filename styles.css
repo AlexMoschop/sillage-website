@@ -659,7 +659,12 @@ a.vcard:hover .draw img { transform: scale(1.04); }
    step between this block and the ivory markets section under it for no reason.
    Both are --ivory now and the About page below the green hero is one
    continuous cream field. */
-.team { background: var(--ivory); padding: 56px var(--pad-x) 64px; }
+/* Scaled DOWN a step on 2026-08-03, owner instruction "a little smaller":
+   section padding 56/64 -> 44/48, portrait 230 -> 186, row gap 64 -> 46,
+   heading 42 -> 36, name 30 -> 26. The body copy did NOT move; it is the one
+   thing here that has to stay comfortably readable, and shrinking it is what
+   would actually make the block feel cramped rather than tighter. */
+.team { background: var(--ivory); padding: 44px var(--pad-x) 48px; }
 .team .stand { color: rgba(42, 42, 40, .82); }
 
 /* REBUILT 2026-08-03 to a mock-up the owner supplied. What went:
@@ -674,9 +679,9 @@ a.vcard:hover .draw img { transform: scale(1.04); }
    The heading and the standfirst are CENTRED and capped, everything below
    them is a left-aligned stack. That contrast is the whole shape of the
    block: centre the rows too and it turns into a wedding invitation. */
-.team__intro { max-width: 760px; margin: 0 auto; text-align: center; }
-.team__intro h2 { color: var(--forest); font-size: 42px; line-height: 1.12; }
-.team__intro .stand { margin: 14px auto 0; max-width: 640px; }
+.team__intro { max-width: 720px; margin: 0 auto; text-align: center; }
+.team__intro h2 { color: var(--forest); font-size: 36px; line-height: 1.12; }
+.team__intro .stand { margin: 12px auto 0; max-width: 620px; }
 
 /* One row per person: a round portrait in a fixed track, the words in the
    rest of the line. The gap between people is deliberately large — these are
@@ -684,18 +689,18 @@ a.vcard:hover .draw img { transform: scale(1.04); }
    align-items:start keeps the portrait level with the name rather than
    floating to the middle of a paragraph whose length varies by person. */
 .team__people {
-  margin: 54px auto 0; max-width: 940px;
-  display: grid; gap: 64px;
+  margin: 42px auto 0; max-width: 880px;
+  display: grid; gap: 46px;
 }
 .tperson {
-  display: grid; grid-template-columns: 230px 1fr; gap: 44px;
+  display: grid; grid-template-columns: 186px 1fr; gap: 38px;
   align-items: start;
 }
 .tperson > * { min-width: 0; }
-/* Optical, not arithmetic: the cap-height of a 30px display face sits a few
+/* Optical, not arithmetic: the cap-height of a 26px display face sits a few
    pixels below the top of its line box, so a portrait flush with the top of
    the row reads as sitting slightly high next to the name. */
-.tperson .tphoto { margin-top: 6px; }
+.tperson .tphoto { margin-top: 5px; }
 /* GRAYSCALE THAT LIFTS ON HOVER (v8, owner instruction 2026-08-02).
    Until v7.4 the monochrome was baked into the JPEG. The owner asked for the
    grayscale to disappear on hover, which a converted file cannot do, so every
@@ -771,17 +776,17 @@ a.vcard:hover .draw img { transform: scale(1.04); }
 .tphoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .tperson .nm {
   font-family: var(--display); font-weight: 400;
-  font-size: 30px; line-height: 1.2; color: var(--forest);
+  font-size: 26px; line-height: 1.2; color: var(--forest);
 }
 .tperson .brings {
-  font-size: 16px; line-height: 1.62;
-  color: rgba(42, 42, 40, .82); margin: 14px 0 0;
+  font-size: 15.5px; line-height: 1.62;
+  color: rgba(42, 42, 40, .82); margin: 12px 0 0;
 }
 /* --label, never a monospace stack: there is no monospace face on this site.
    The wide tracking is what makes a proportional face read as a label. */
 .tperson .langs {
-  font-family: var(--label); font-size: 13px; letter-spacing: .12em;
-  color: var(--forest-mid); margin-top: 18px; line-height: 1.6;
+  font-family: var(--label); font-size: 12.5px; letter-spacing: .12em;
+  color: var(--forest-mid); margin-top: 15px; line-height: 1.6;
 }
 
 /* DELETED IN v8, at the owner's instruction of 2026-08-02:
@@ -1069,15 +1074,15 @@ select.cf-in {
      recognisable face at arm's length, and the gap between people closes with
      it. Everything stays left-aligned, including the intro, because a centred
      paragraph in a 26px gutter reads ragged on both edges. */
-  .team { padding-top: 40px; padding-bottom: 46px; }
+  .team { padding-top: 34px; padding-bottom: 38px; }
   .team__intro { text-align: left; }
   .team__intro .stand { margin-left: 0; }
-  .team__people { margin-top: 34px; gap: 36px; }
-  .tperson { grid-template-columns: 96px 1fr; gap: 20px; }
+  .team__people { margin-top: 28px; gap: 30px; }
+  .tperson { grid-template-columns: 84px 1fr; gap: 18px; }
   .tperson .tphoto { margin-top: 2px; }
-  .tperson .nm { font-size: 23px; }
-  .tperson .brings { font-size: 15px; margin-top: 10px; }
-  .tperson .langs { margin-top: 12px; }
+  .tperson .nm { font-size: 21px; }
+  .tperson .brings { font-size: 14.5px; margin-top: 9px; }
+  .tperson .langs { margin-top: 11px; }
   .vevid { gap: 12px; }
   .cgrid { gap: 28px; }
   .bar { grid-template-columns: 104px 1fr 46px; }
