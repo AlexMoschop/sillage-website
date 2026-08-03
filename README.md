@@ -160,12 +160,24 @@ fallback path that the GitHub Pages copy also takes.
 - ⚠️ **Keep the files in COLOUR.** The grayscale is a CSS filter (`.photo-bw` in `styles.css`)
   so it can lift on hover. Re-grade a file to monochrome and the hover reveal silently does
   nothing.
-- **Alexandros's portrait is shown in colour** (owner instruction, 3 August 2026). It carries
-  `.photo-live` instead of `.photo-bw`: same hover zoom, no grayscale. Don't just delete
-  `.photo-bw` from a figure to make it colour — that removes the zoom too, and one portrait
-  that doesn't move under the cursor reads as a bug.
+- **All three portraits are grey.** Alexandros's was in colour for one revision on 3 August
+  2026 and the owner reversed it the same day. If a single portrait is ever wanted in colour,
+  bring back the `.photo-live` class from `dd0e31f` — don't just delete `.photo-bw` from the
+  figure, because that removes the hover zoom too, and one portrait out of three that doesn't
+  move under the cursor reads as a bug.
 - The hover target is the **whole row**, not the picture. If you add a new photo block,
   add its container to the `.photo-bw:hover` selector list or the reveal will feel broken.
+- ⚠️ **Every greyscale image URL on About carries `?v=2`, and it is load-bearing.** Hostinger
+  caches assets for seven days and an image URL has no version of its own, so after the v8
+  deploy the CDN was still handing out the old v7.4 *monochrome* WebP files — the hover
+  lifted the filter and revealed a photograph that was already grey. That is what "the
+  grayscale doesn't work" turned out to be. **Bump the number on both the `.webp` and the
+  `.jpg` line whenever you replace one of these pictures**, or nobody who has visited the
+  site before will see the new one for a week.
+- ⚠️ **Don't verify the hover by checking the CSS.** Reading the computed filter passes even
+  when the file being delivered is already grey — which is precisely how the bug above
+  survived a "verified" check. Look at the picture, or compare screenshot pixels at rest and
+  on hover.
 
 ### 5. Set the contact names
 - **File:** `about.html`, the `.cities` list in the Contact section. Each city names its lead
